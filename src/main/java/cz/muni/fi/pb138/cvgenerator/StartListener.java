@@ -16,7 +16,7 @@ public class StartListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent)
     {
         ServletContext servletContext = servletContextEvent.getServletContext();
-        File file = new File("classpath::profiles.xml");
+        File file = new File("classpath:profiles.xml");
         servletContext.setAttribute("profilesDoc", file);
     }
 
