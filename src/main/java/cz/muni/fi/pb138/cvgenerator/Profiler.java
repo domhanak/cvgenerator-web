@@ -1,6 +1,6 @@
 package cz.muni.fi.pb138.cvgenerator;
 
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +16,10 @@ import java.io.IOException;
 @WebServlet(Profiler.URL_MAPPING + "/*")
 public class Profiler extends HttpServlet {
 
-    private static final String LIST_JSP = "/list.jsp";
+    private static final String LIST_JSP = "/index.jsp";
     private static Document profiles = (Document) new File("classpath:profiles.xml");
 
-    public static final String URL_MAPPING = "/create_prof";
+    public static final String URL_MAPPING = "/profiles";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse httpServletResponse)
@@ -31,17 +31,28 @@ public class Profiler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
+
+        Document profiles = (Document) getServletContext().getAttribute("profilesDoc");
+
         String action = request.getPathInfo();
         switch (action)
         {
-            case "a" :
-            case "b" :
-            case "c" :
+            case "/add" :
+                String degree = request.getParameter("degree");
+                String name = request.getParameter("name");
+                String surname = request.getParameter("surname");
+                String street = request.getParameter("street");
+                int houseNumber = Integer.parseInt(request.getParameter("housenumber"));
+                int postCode = Integer.parseInt(request.getParameter("postcode"));
+                String city = request.getParameter("city");
+                String phone = request.getParameter("tel");
+                String email = request.getParameter("email");
+                String country = request.getParameter("country");
+                String sex = request.getParameter("sex");
+                String martialStatus = request.getParameter("mas");
+                String date = request.getParameter("dateOfBirth");
+
             default :
         }
     }
-
-    private void createProfile(HttpServletRequest request)
-    { }
-
 }
