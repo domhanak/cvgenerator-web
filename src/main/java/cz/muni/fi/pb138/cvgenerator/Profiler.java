@@ -1,6 +1,7 @@
 package cz.muni.fi.pb138.cvgenerator;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,35 +25,98 @@ public class Profiler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws ServletException, IOException {
-        super.doPost(request, httpServletResponse);
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-
         Document profiles = (Document) getServletContext().getAttribute("profilesDoc");
 
         String action = request.getPathInfo();
-        switch (action)
-        {
-            case "/add" :
+        switch (action) {
+            case "/add":
                 String degree = request.getParameter("degree");
-                String name = request.getParameter("name");
-                String surname = request.getParameter("surname");
-                String street = request.getParameter("street");
-                int houseNumber = Integer.parseInt(request.getParameter("housenumber"));
-                int postCode = Integer.parseInt(request.getParameter("postcode"));
-                String city = request.getParameter("city");
-                String phone = request.getParameter("tel");
-                String email = request.getParameter("email");
-                String country = request.getParameter("country");
-                String sex = request.getParameter("sex");
-                String martialStatus = request.getParameter("mas");
-                String date = request.getParameter("dateOfBirth");
+                Element degreeEl = (Element) profiles.createElement("degree");
+                degreeEl.setTextContent(degree);
 
-            default :
+                String name = request.getParameter("name");
+                Element nameEl = (Element) profiles.createElement("name");
+                degreeEl.setTextContent(name);
+
+                String surname = request.getParameter("surname");
+                Element surnameEl = profiles.createElement("surname");
+                degreeEl.setTextContent(surname);
+
+                String street = request.getParameter("street");
+                Element streetEl = profiles.createElement("street");
+                degreeEl.setTextContent(street);
+
+                String houseNumber = request.getParameter("housenumber");
+                Element houseNumberEl = profiles.createElement("houseNumber");
+                degreeEl.setTextContent(houseNumber);
+
+                String postCode = request.getParameter("postcode");
+                Element postCodeEl = profiles.createElement("postCode");
+                degreeEl.setTextContent(postCode);
+
+                String city = request.getParameter("city");
+                Element cityEl = profiles.createElement("city");
+                degreeEl.setTextContent(city);
+
+                String phone = request.getParameter("tel");
+                Element phoneEl = profiles.createElement("phone");
+                degreeEl.setTextContent(phone);
+
+                String email = request.getParameter("email");
+                Element emailEl = profiles.createElement("email");
+                degreeEl.setTextContent(email);
+
+                String country = request.getParameter("country");
+                Element countryEl = profiles.createElement("country");
+                degreeEl.setTextContent(country);
+
+                String sex = request.getParameter("sex");
+                Element sexEl = profiles.createElement("sex");
+                degreeEl.setTextContent(sex);
+
+                String martialStatus = request.getParameter("mas");
+                Element martialStatusEl = profiles.createElement("martialStatus");
+                degreeEl.setTextContent(martialStatus);
+
+                String date = request.getParameter("dateOfBirth");
+                Element dateEl = profiles.createElement("date");
+                degreeEl.setTextContent(date);
+
+                if (name.isEmpty() || name == null || surname.isEmpty() || surname == null
+                        || degree.isEmpty() || degree == null || street.isEmpty() || street == null
+                        || houseNumber.isEmpty() || houseNumber == null || email.isEmpty() || email == null
+                        || country.isEmpty() || country == null) {
+                }
+
+
+                Element profile = (Element) profiles.createElement("profile");
+                profile.setAttribute("pid", "");
+                profile.appendChild(degreeEl);
+                profile.appendChild(nameEl);
+                profile.appendChild(surnameEl);
+                profile.appendChild(dateEl);
+                profile.appendChild(cityEl);
+                profile.appendChild(streetEl);
+                profile.appendChild(houseNumberEl);
+                profile.appendChild(postCodeEl);
+                profile.appendChild(phoneEl);
+                profile.appendChild(emailEl);
+                profile.appendChild(countryEl);
+                profile.appendChild(sexEl);
+                profile.appendChild(martialStatusEl);
+
+                profiles.appendChild(profile);
+
+                return;
+            default:
+                throw new ServletException("");
         }
     }
 }
