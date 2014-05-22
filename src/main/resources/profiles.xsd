@@ -15,14 +15,28 @@
 
     <xsd:complexType name="profilesType">
         <xsd:sequence>
-            <xsd:element name="profile" type="profileType"/>
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="profile" type="profileType"/>
         </xsd:sequence>
     </xsd:complexType>
 
 
     <xsd:complexType name="profileType">
 
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="contact" type="contactType"/>
+            <xsd:element minOccurs="1" name="details" type="detailsType"/>
+            <xsd:element minOccurs="1" name="education" type="educationType"/>
+            <xsd:element name="thesis" type="thesisType"/>
+            <xsd:element name="experience" type="experienceType"/>
+            <xsd:element minOccurs="1" name="languages" type="leanguagesType"/>
+            <xsd:element name="reference" type="referenceType"/>
+            
+
+
+        </xsd:sequence>
+
         <xsd:attribute name = "pid" use = "required" type="positiveIntType"/>
+
     </xsd:complexType>
 
     <xsd:simpleType name="positiveIntType">
@@ -30,6 +44,72 @@
             <xsd:minInclusive value="0"/>
         </xsd:restriction>
     </xsd:simpleType>
+    
+    <xsd:complexType name="contactType">
+        <xsd:sequence>
+            <xsd:element name="degree" type="xsd:string"/>
+            <xsd:element name="surname" type="xsd:string"/>
+            <xsd:element name="adress" type="adressType"/>
+            <xsd:element name="country" type="xsd:string"/>
+            <xsd:element name="phone" type="phoneType"/>
+            <xsd:element name="fax" type="faxType"/>
+            <xsd:element name="email" type="emailType"/>
+            <xsd:element name="homepage" type="homepageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="adressType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="phoneType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="faxType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="emailType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="homepageType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="detailsType">
+        <xsd:sequence>
+            <xsd:element name="gender" type="xsd:string"/>
+            <xsd:element name="birthDate" type="xsd:date"/>
+            <xsd:element name="birthPlace" type="xsd:string"/>
+            <xsd:element name="citizenship" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="educationType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="thesisType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="experienceType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="leanguagesType">
+
+    </xsd:complexType>
+
+    <xsd:complexType name="referenceType">
+
+    </xsd:complexType>
+
+
+
+
 
 
 </xsd:schema>
