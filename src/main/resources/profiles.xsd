@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<xsd:schema version="1.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+
+    <xsd:element name="profiles" type="profilesType">
+
+        <xsd:key name="keyProfileId">
+            <xsd:selector xpath="./profile"/>
+            <xsd:field xpath="@pid"/>
+        </xsd:key>
+
+    </xsd:element>
+
+    <xsd:complexType name="profilesType">
+        <xsd:sequence>
+            <xsd:element name="profile" type="profileType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="profileType">
+
+        <xsd:attribute name = "pid" use = "required" type="positiveIntType"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="positiveIntType">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>
