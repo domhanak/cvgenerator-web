@@ -25,7 +25,7 @@
 
 <img src="images/CVlogo.jpg">
 
-<form method="post">
+<form action="${pageContext.request.contextPath}/profiles/add" method="post">
     <div id="tabs" style="width: 1105px" >
         <ul>
             <li><a href="#tabs-1">Address</a></li>

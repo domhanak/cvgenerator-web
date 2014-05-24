@@ -8,8 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Hany on 4.5.2014.
@@ -17,9 +18,9 @@ import java.io.IOException;
 @WebServlet(Profiler.URL_MAPPING + "/*")
 public class Profiler extends HttpServlet {
 
-    private static final String LIST_JSP = "/index.jsp";
-    private static Document profiles = (Document) new File("classpath:profiles.xml");
+    private static Document profiles = null;
 
+    private static final String LIST_JSP = "/index.jsp";
     public static final String URL_MAPPING = "/profiles";
 
     @Override
@@ -32,7 +33,7 @@ public class Profiler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        Document profiles = (Document) getServletContext().getAttribute("profilesDoc");
+        profiles = (Document) request.getAttribute("profilesDoc");
 
         String action = request.getPathInfo();
         switch (action) {
@@ -58,40 +59,70 @@ public class Profiler extends HttpServlet {
                 personalInfo.appendChild(createSimpleElement(request.getParameter("citizenship"), "citizenship"));
 
                 Element education = profiles.createElement("education");
+                education.appendChild(createComplexElement(request.getParameter("stschoolname"),
+                        Arrays.asList(request.getParameter("stschoolfrom"), request.getParameter("stschoolto")), "school"));
+                education.appendChild(createComplexElement(request.getParameter("ndschoolname"),
+                        Arrays.asList(request.getParameter("ndschoolfrom"), request.getParameter("ndschoolto")), "school"));
+                education.appendChild(createComplexElement(request.getParameter("rdschoolname"),
+                        Arrays.asList(request.getParameter("rdschoolfrom"), request.getParameter("rdschoolto")), "school"));
+
+                Element experience = profiles.createElement("experience");
+                experience.appendChild(createComplexElement(request.getParameter("stwork"),
+                        Arrays.asList(request.getParameter("stworkfrom"), request.getParameter("stworkto")), "job"));
+                experience.appendChild(createComplexElement(request.getParameter("ndwork"),
+                        Arrays.asList(request.getParameter("ndworkfrom"), request.getParameter("ndworkto")), "job"));
+                experience.appendChild(createComplexElement(request.getParameter("rdwork"),
+                        Arrays.asList(request.getParameter("rdworkfrom"), request.getParameter("rdworkto")), "job"));
+
+                Element languages = profiles.createElement("languages");
+                languages.appendChild(createLanguageElement(
+                        request.getParameter("stlanguage"), request.getParameter("stlanguagelvl")));
+                languages.appendChild(createLanguageElement(
+                        request.getParameter("ndlanguage"), request.getParameter("ndlanguagelvl")));
+                languages.appendChild(createLanguageElement(
+                        request.getParameter("rdlanguage"), request.getParameter("rdlanguagelvl")));
+                languages.appendChild(createLanguageElement(
+                        request.getParameter("thlanguage"), request.getParameter("thlanguagelvl")));
 
 
                 profile.appendChild(contact);
                 profile.appendChild(personalInfo);
-              //  profile.appendChild(createEducationElement(request));
+                profile.appendChild(education);
                 profile.appendChild(createSimpleElement(request.getParameter("thesis"), "thesis"));
+                profile.appendChild(experience);
+                profile.appendChild(languages);
 
+                profiles.appendChild(profile);
                 return;
             default:
                 throw new ServletException("");
         }
     }
+
     private Element createSimpleElement(String textContent, String name)
     {
-        if (textContent.isEmpty() || textContent == null
-                || name.isEmpty() || name == null) {
-            //TODO: vyhod chybu
-        }
-
         Element element = profiles.createElement(name);
         element.setTextContent(textContent);
 
         return element;
     }
 
-    private Element createElementWithNameAttribute(String attribute, String name)
+    private Element createComplexElement(String attribute, List<String> childs, String name)
     {
-        if (attribute.isEmpty() || attribute == null
-                || name.isEmpty() || name == null) {
-            //TODO: vyhod chybu
+        if (attribute.isEmpty()){
+            return null;
         }
 
         Element element = profiles.createElement(name);
+        Element from = profiles.createElement("from");
+        Element to = profiles.createElement("to");
+
         element.setAttribute("name", attribute);
+        from.setTextContent(childs.get(0));
+        to.setTextContent(childs.get(1));
+
+        element.appendChild(from);
+        element.appendChild(to);
 
         return element;
     }
@@ -110,5 +141,17 @@ public class Profiler extends HttpServlet {
         address.appendChild(cityEl);
 
         return address;
+    }
+
+    private Element createLanguageElement(String languageName, String languageLvl)
+    {
+        if (languageName.isEmpty()){
+            return null;
+        }
+
+        Element language = profiles.createElement("language");
+        language.setAttribute(languageName, languageLvl);
+
+        return language;
     }
 }
