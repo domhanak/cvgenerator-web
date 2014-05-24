@@ -40,6 +40,6 @@ public class StartListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent)
     {
-
+        System.out.print(true);
     }
 }
