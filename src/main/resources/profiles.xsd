@@ -28,7 +28,7 @@
             <xsd:element minOccurs="1" name="education" type="educationType"/>
             <xsd:element name="thesis" type="xsd:string"/>
             <xsd:element name="experience" type="experienceType"/>
-            <xsd:element minOccurs="1" name="languages" type="leanguagesType"/>
+            <xsd:element minOccurs="1" name="languages" type="languagesType"/>
             <xsd:element name="reference" type="referenceType"/>
             
 
@@ -49,7 +49,7 @@
         <xsd:sequence>
             <xsd:element name="degree" type="xsd:string"/>
             <xsd:element minOccurs="1" name="name" type="nameType"/>
-            <xsd:element minOccurs="1" name="adress" type="adressType"/>
+            <xsd:element minOccurs="1" name="address" type="addressType"/>
             <xsd:element minOccurs="1" name="phone" type="phoneType"/>
             <xsd:element name="fax" type="faxType"/>
             <xsd:element minOccurs="1" name="email" type="emailType"/>
@@ -63,7 +63,7 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:complexType name="adressType">
+    <xsd:complexType name="addressType">
         <xsd:sequence>
             <xsd:element minOccurs="1" name="street" type="streetType"/>
             <xsd:element minOccurs="1" name="city" type="xsd:string"/>
@@ -121,11 +121,11 @@
 
     <xsd:complexType name="educationType">
         <xsd:sequence>
-            <xsd:element minOccurs="1" name="school" type="shoolType"/>
+            <xsd:element minOccurs="1" name="school" type="schoolType"/>
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:complexType name="shoolType">
+    <xsd:complexType name="schoolType">
         <xsd:sequence>
             <xsd:element name="from" type="xsd:date" />
             <xsd:element name="to" type="xsd:date" />
@@ -140,12 +140,12 @@
 
     <xsd:complexType name="experienceType">
         <xsd:sequence>
-            <xsd:element minOccurs="1" name="job" type="shoolType"/>
+            <xsd:element minOccurs="1" name="job" type="schoolType"/>
         </xsd:sequence>
 
     </xsd:complexType>
 
-    <xsd:complexType name="leanguagesType">
+    <xsd:complexType name="languagesType">
         <xsd:sequence>
             <xsd:element minOccurs="1" name="language" type="languageType"/>
         </xsd:sequence>

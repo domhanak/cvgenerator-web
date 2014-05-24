@@ -37,86 +37,78 @@ public class Profiler extends HttpServlet {
         String action = request.getPathInfo();
         switch (action) {
             case "/add":
-                String degree = request.getParameter("degree");
-                Element degreeEl = (Element) profiles.createElement("degree");
-                degreeEl.setTextContent(degree);
-
-                String name = request.getParameter("name");
-                Element nameEl = (Element) profiles.createElement("name");
-                degreeEl.setTextContent(name);
-
-                String surname = request.getParameter("surname");
-                Element surnameEl = profiles.createElement("surname");
-                degreeEl.setTextContent(surname);
-
-                String street = request.getParameter("street");
-                Element streetEl = profiles.createElement("street");
-                degreeEl.setTextContent(street);
-
-                String houseNumber = request.getParameter("housenumber");
-                Element houseNumberEl = profiles.createElement("houseNumber");
-                degreeEl.setTextContent(houseNumber);
-
-                String postCode = request.getParameter("postcode");
-                Element postCodeEl = profiles.createElement("postCode");
-                degreeEl.setTextContent(postCode);
-
-                String city = request.getParameter("city");
-                Element cityEl = profiles.createElement("city");
-                degreeEl.setTextContent(city);
-
-                String phone = request.getParameter("tel");
-                Element phoneEl = profiles.createElement("phone");
-                degreeEl.setTextContent(phone);
-
-                String email = request.getParameter("email");
-                Element emailEl = profiles.createElement("email");
-                degreeEl.setTextContent(email);
-
-                String country = request.getParameter("country");
-                Element countryEl = profiles.createElement("country");
-                degreeEl.setTextContent(country);
-
-                String sex = request.getParameter("sex");
-                Element sexEl = profiles.createElement("sex");
-                degreeEl.setTextContent(sex);
-
-                String martialStatus = request.getParameter("mas");
-                Element martialStatusEl = profiles.createElement("martialStatus");
-                degreeEl.setTextContent(martialStatus);
-
-                String date = request.getParameter("dateOfBirth");
-                Element dateEl = profiles.createElement("date");
-                degreeEl.setTextContent(date);
-
-                if (name.isEmpty() || name == null || surname.isEmpty() || surname == null
-                        || degree.isEmpty() || degree == null || street.isEmpty() || street == null
-                        || houseNumber.isEmpty() || houseNumber == null || email.isEmpty() || email == null
-                        || country.isEmpty() || country == null) {
-                }
-
-
-                Element profile = (Element) profiles.createElement("profile");
+                Element profile = profiles.createElement("profile");
                 profile.setAttribute("pid", "");
-                profile.appendChild(degreeEl);
-                profile.appendChild(nameEl);
-                profile.appendChild(surnameEl);
-                profile.appendChild(dateEl);
-                profile.appendChild(cityEl);
-                profile.appendChild(streetEl);
-                profile.appendChild(houseNumberEl);
-                profile.appendChild(postCodeEl);
-                profile.appendChild(phoneEl);
-                profile.appendChild(emailEl);
-                profile.appendChild(countryEl);
-                profile.appendChild(sexEl);
-                profile.appendChild(martialStatusEl);
 
-                profiles.appendChild(profile);
+                Element contact = profiles.createElement("contact");
+                contact.appendChild(createSimpleElement(request.getParameter("degree"), "degree"));
+                contact.appendChild(createSimpleElement(request.getParameter("name"), "name"));
+                contact.appendChild(createSimpleElement(request.getParameter("surname"), "surname"));
+                contact.appendChild(createAddressElement(request));
+                contact.appendChild(createSimpleElement(request.getParameter("country"), "country"));
+                contact.appendChild(createSimpleElement(request.getParameter("fax"), "fax"));
+                contact.appendChild(createSimpleElement(request.getParameter("tel"), "phone"));
+                contact.appendChild(createSimpleElement(request.getParameter("email"), "email"));
+                contact.appendChild(createSimpleElement(request.getParameter("homepage"), "homepage"));
+
+                Element personalInfo = profiles.createElement("details");
+                personalInfo.appendChild(createSimpleElement(request.getParameter("gender"), "gender"));
+                personalInfo.appendChild(createSimpleElement(request.getParameter("dateofbrith"), "birthDate"));
+                personalInfo.appendChild(createSimpleElement(request.getParameter("placeofbirth"), "birthPlace"));
+                personalInfo.appendChild(createSimpleElement(request.getParameter("citizenship"), "citizenship"));
+
+                Element education = profiles.createElement("education");
+
+
+                profile.appendChild(contact);
+                profile.appendChild(personalInfo);
+              //  profile.appendChild(createEducationElement(request));
+                profile.appendChild(createSimpleElement(request.getParameter("thesis"), "thesis"));
 
                 return;
             default:
                 throw new ServletException("");
         }
+    }
+    private Element createSimpleElement(String textContent, String name)
+    {
+        if (textContent.isEmpty() || textContent == null
+                || name.isEmpty() || name == null) {
+            //TODO: vyhod chybu
+        }
+
+        Element element = profiles.createElement(name);
+        element.setTextContent(textContent);
+
+        return element;
+    }
+
+    private Element createElementWithNameAttribute(String attribute, String name)
+    {
+        if (attribute.isEmpty() || attribute == null
+                || name.isEmpty() || name == null) {
+            //TODO: vyhod chybu
+        }
+
+        Element element = profiles.createElement(name);
+        element.setAttribute("name", attribute);
+
+        return element;
+    }
+
+    private Element createAddressElement(HttpServletRequest request)
+    {
+        Element streetEl = createSimpleElement(request.getParameter("street"), "street");
+        Element houseNumberEl = createSimpleElement(request.getParameter("housenumber"), "number");
+        Element postCodeEl = createSimpleElement(request.getParameter("postcode"), "postcode");
+        Element cityEl = createSimpleElement(request.getParameter("city"), "city");
+
+        Element address = profiles.createElement("address");
+        address.appendChild(streetEl);
+        address.appendChild(houseNumberEl);
+        address.appendChild(postCodeEl);
+        address.appendChild(cityEl);
+
+        return address;
     }
 }
