@@ -156,8 +156,6 @@
         <xsd:attribute name="knowledge" type="xsd:string" use="required"/>
     </xsd:complexType>
 
-
-
     <xsd:complexType name="referenceType">
         <xsd:sequence>
             <xsd:element name="relationship" type="xsd:string"/>

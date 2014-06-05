@@ -25,6 +25,11 @@
 
 <img src="images/CVlogo.jpg">
 
+<c:if test="${not empty error}">
+    <div style="border: solid 1px red; background-color: yellow; padding: 10px">
+        <c:out value="${error}"/>
+    </div>
+</c:if>
 <form action="${pageContext.request.contextPath}/profiles/add" method="post">
     <div id="tabs" style="width: 1105px" >
         <ul>

@@ -1,5 +1,6 @@
 package cz.muni.fi.pb138.cvgenerator;
 
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import javax.servlet.ServletContext;
@@ -18,28 +19,44 @@ import java.io.IOException;
 @WebListener
 public class StartListener implements ServletContextListener {
 
+    private DocumentBuilder dBuilder = null;
+    private Document doc = null;
+    private File file = null;
+
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent)
     {
         ServletContext servletContext = servletContextEvent.getServletContext();
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        File file = new File("classpath::profiles.xml");
+        File file = new File("profiles.xml");
+        if (file == null) {
+            throw new NullPointerException("File is null!");
+        }
+
         try {
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            dBuilder.parse(file);
-        } catch (ParserConfigurationException e) {
+            doc = fileParser(file);
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        servletContext.setAttribute("profilesDoc", file);
+
+        servletContext.setAttribute("xmlFile", file);
+        servletContext.setAttribute("profilesDoc", doc);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent)
     {
         System.out.print(true);
+    }
+
+    private Document fileParser(File xmlFile) throws IOException, SAXException, ParserConfigurationException
+    {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setValidating(true);
+        dBuilder = dbFactory.newDocumentBuilder();
+        return dBuilder.parse(xmlFile);
     }
 }
