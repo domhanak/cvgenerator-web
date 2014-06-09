@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * Created by Hany on 4.5.2014.
@@ -27,7 +28,13 @@ public class StartListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent)
     {
         ServletContext servletContext = servletContextEvent.getServletContext();
-        File file = new File("profiles.xml");
+        File file = null;
+        try {
+            file = new File(this.getClass().getResource("/profiles.xml").toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
         if (file == null) {
             throw new NullPointerException("File is null!");
         }
