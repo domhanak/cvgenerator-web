@@ -95,8 +95,8 @@
                     <th>Gender:</th>
                     <td>
                         <select id="gender" name="gender" value="<c:out value='${param.gendre}'/>">
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </td>
                 </tr>

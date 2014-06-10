@@ -105,6 +105,7 @@ public class Profiler {
         }
 
         Element element = doc.createElement(name);
+        System.out.println(name + " " + textContent);
         element.setTextContent(textContent);
 
         return element;
