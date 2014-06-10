@@ -21,7 +21,7 @@ public class Profiler {
         this.request = request;
     }
 
-    public Element createProfile(){
+    public Element createProfile() throws ProfilerException {
         Element profile = doc.createElement("profile");
         profile.setAttribute("pid", "");
 
@@ -34,8 +34,7 @@ public class Profiler {
         return profile;
     }
 
-    private Element createContactElement()
-    {
+    private Element createContactElement() throws ProfilerException {
         Element contact = doc.createElement("contact");
         contact.appendChild(createSimpleElement(request.getParameter("degree"), "degree", request));
         contact.appendChild(createSimpleElement(request.getParameter("name"), "name", request));
@@ -50,8 +49,7 @@ public class Profiler {
         return contact;
     }
 
-    private Element createPersonalInfo()
-    {
+    private Element createPersonalInfo() throws ProfilerException {
         Element personalInfo = doc.createElement("details");
         personalInfo.appendChild(createSimpleElement(request.getParameter("gender"), "gender", request));
         personalInfo.appendChild(createSimpleElement(request.getParameter("dateofbrith"), "birthDate", request));
@@ -61,8 +59,7 @@ public class Profiler {
         return personalInfo;
     }
 
-    private Element createEducation()
-    {
+    private Element createEducation() throws ProfilerException {
         Element education = doc.createElement("education");
         education.appendChild(createComplexElement(request.getParameter("stschoolname"),
                 Arrays.asList(request.getParameter("stschoolfrom"), request.getParameter("stschoolto")), "school", request));
@@ -74,8 +71,7 @@ public class Profiler {
         return education;
     }
 
-    private Element createExperience()
-    {
+    private Element createExperience() throws ProfilerException {
         Element experience = doc.createElement("experience");
         experience.appendChild(createComplexElement(request.getParameter("stwork"),
                 Arrays.asList(request.getParameter("stworkfrom"), request.getParameter("stworkto")), "job", request));
@@ -87,8 +83,7 @@ public class Profiler {
         return experience;
     }
 
-    private Element createLanguages()
-    {
+    private Element createLanguages() throws ProfilerException {
         Element languages = doc.createElement("languages");
         languages.appendChild(createLanguageElement(
                 request.getParameter("stlanguage"), request.getParameter("stlanguagelvl"), request));
@@ -102,10 +97,10 @@ public class Profiler {
         return languages;
     }
 
-    private Element createSimpleElement(String textContent, String name, HttpServletRequest req)
-    {
+    private Element createSimpleElement(String textContent, String name, HttpServletRequest req) throws ProfilerException {
         if (textContent.isEmpty()){
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + name);
+            throw new ProfilerException("Text content of " + name + "field is empty.");
         }
 
         Element element = doc.createElement(name);
@@ -114,10 +109,10 @@ public class Profiler {
         return element;
     }
 
-    private Element createComplexElement(String attribute, List<String> childs, String name, HttpServletRequest req)
-    {
-        if (attribute.isEmpty()){
+    private Element createComplexElement(String attribute, List<String> childs, String name, HttpServletRequest req) throws ProfilerException {
+        if (attribute.isEmpty() || childs.get(0).isEmpty() || childs.get(1).isEmpty()){
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + name);
+            throw new ProfilerException("Text content of " + name + "field  is empty.");
         }
 
         Element element = doc.createElement(name);
@@ -134,7 +129,7 @@ public class Profiler {
         return element;
     }
 
-    private Element createAddressElement(HttpServletRequest request)
+    private Element createAddressElement(HttpServletRequest request) throws  ProfilerException
     {
         Element streetEl = createSimpleElement(request.getParameter("street"), "street", request);
         Element houseNumberEl = createSimpleElement(request.getParameter("housenumber"), "number", request);
@@ -150,10 +145,10 @@ public class Profiler {
         return address;
     }
 
-    public Element createLanguageElement(String languageName, String languageLvl, HttpServletRequest req)
-    {
-        if (languageName.isEmpty()){
+    public Element createLanguageElement(String languageName, String languageLvl, HttpServletRequest req) throws ProfilerException {
+        if (languageName.isEmpty() || languageName.contains("st") || languageName.contains("nd")){
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + languageName);
+            throw new ProfilerException("Two language weren't filled. Fill at least first two.");
         }
 
         Element language = doc.createElement("language");

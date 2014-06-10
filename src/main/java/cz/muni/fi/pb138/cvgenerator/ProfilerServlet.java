@@ -42,14 +42,21 @@ public class ProfilerServlet extends HttpServlet {
         switch (action) {
             case "/add":
                 Profiler profiler = new Profiler(request);
-                Element profile = profiler.createProfile();
+                Element profile = null;
+                try {
+                    profile = profiler.createProfile();
+                } catch (ProfilerException e) {
+                    request.setAttribute("error2", "Some required fields weren't filled. Hint: " + e.getMessage());
+                    return;
+                }
+
                 Element el = profiles.getDocumentElement();
                 el.appendChild(profile);
                 try {
-                    saveToFile((File) getServletContext().getAttribute("xmlFile"),
-                            profiles);
+                    saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
                 } catch (TransformerException e) {
                     e.printStackTrace();
+                    return;
                 }
                 return;
             default:
