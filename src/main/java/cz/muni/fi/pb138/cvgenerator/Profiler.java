@@ -16,14 +16,15 @@ public class Profiler {
 
     Profiler() {}
 
-    Profiler(HttpServletRequest request)
+    Profiler(HttpServletRequest request, Document doc)
     {
         this.request = request;
+        this.doc = doc;
     }
 
     public Element createProfile() throws ProfilerException {
         Element profile = doc.createElement("profile");
-        profile.setAttribute("pid", "");
+        //profile.setAttribute("pid", request.);
 
         profile.appendChild(createContactElement());
         profile.appendChild(createPersonalInfo());

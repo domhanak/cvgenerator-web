@@ -2,7 +2,6 @@ package cz.muni.fi.pb138.cvgenerator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -41,7 +38,7 @@ public class ProfilerServlet extends HttpServlet {
         String action = request.getPathInfo();
         switch (action) {
             case "/add":
-                Profiler profiler = new Profiler(request);
+                Profiler profiler = new Profiler(request, profiles);
                 Element profile = null;
                 try {
                     profile = profiler.createProfile();
@@ -51,6 +48,7 @@ public class ProfilerServlet extends HttpServlet {
                 }
 
                 Element el = profiles.getDocumentElement();
+                System.out.print(el.getTagName());
                 el.appendChild(profile);
                 try {
                     saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
@@ -67,7 +65,6 @@ public class ProfilerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws ServletException, IOException {
-
     }
 
     private void saveToFile(File xmlFile, Document doc) throws TransformerException
@@ -77,13 +74,5 @@ public class ProfilerServlet extends HttpServlet {
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(xmlFile);
         transformer.transform(source, result);
-    }
-
-    private Document fileParser(File xmlFile) throws IOException, SAXException, ParserConfigurationException
-    {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setValidating(true);
-        dBuilder = dbFactory.newDocumentBuilder();
-        return dBuilder.parse(xmlFile);
     }
 }
