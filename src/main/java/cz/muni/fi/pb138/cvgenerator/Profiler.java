@@ -99,7 +99,7 @@ public class Profiler {
     }
 
     private Element createSimpleElement(String textContent, String name, HttpServletRequest req) throws ProfilerException {
-        if (textContent.isEmpty()){
+        if (textContent == null || textContent.isEmpty()){
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + name);
             throw new ProfilerException("Text content of " + name + "field is empty.");
         }
@@ -111,7 +111,8 @@ public class Profiler {
     }
 
     private Element createComplexElement(String attribute, List<String> childs, String name, HttpServletRequest req) throws ProfilerException {
-        if (attribute.isEmpty() || childs.get(0).isEmpty() || childs.get(1).isEmpty()){
+        if (attribute == null || childs.get(0) == null || childs.get(1) == null
+                || attribute.isEmpty() || childs.get(0).isEmpty() || childs.get(1).isEmpty()) {
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + name);
             throw new ProfilerException("Text content of " + name + "field  is empty.");
         }
@@ -147,7 +148,7 @@ public class Profiler {
     }
 
     public Element createLanguageElement(String languageName, String languageLvl, HttpServletRequest req) throws ProfilerException {
-        if (languageName.isEmpty() || languageName.contains("st") || languageName.contains("nd")){
+        if (languageName == null || languageName.isEmpty() || languageName.contains("st") || languageName.contains("nd")){
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + languageName);
             throw new ProfilerException("Two language weren't filled. Fill at least first two.");
         }

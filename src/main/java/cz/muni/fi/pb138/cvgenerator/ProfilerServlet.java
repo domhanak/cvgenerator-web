@@ -30,7 +30,7 @@ public class ProfilerServlet extends HttpServlet {
     private DocumentBuilder dBuilder;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse httpServletResponse)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         profiles = (Document) getServletContext().getAttribute("profilesDoc");
@@ -44,6 +44,7 @@ public class ProfilerServlet extends HttpServlet {
                     profile = profiler.createProfile();
                 } catch (ProfilerException e) {
                     request.setAttribute("error2", "Some required fields weren't filled. Hint: " + e.getMessage());
+                    request.getRequestDispatcher(LIST_JSP).forward(request, response);
                     return;
                 }
 
