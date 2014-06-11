@@ -8,14 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * Created by Hany on 4.5.2014.
@@ -27,7 +26,6 @@ public class ProfilerServlet extends HttpServlet {
 
     private static final String LIST_JSP = "/index.jsp";
     public static final String URL_MAPPING = "/profiles";
-    private DocumentBuilder dBuilder;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +55,23 @@ public class ProfilerServlet extends HttpServlet {
                     e.printStackTrace();
                     return;
                 }
+
+                TransformerFactory tf = TransformerFactory.newInstance();
+                try {
+                    Transformer xsltProc = tf.newTransformer(
+                            new StreamSource(new File(this.getClass().getResource("/toPdf.xsl").toURI())));
+                    xsltProc.transform(
+                            new StreamSource(new File(this.getClass().getResource("/profiles.xml").toURI())),
+                            new StreamResult(new File(this.getClass().getResource("/out.pdf").toURI())));
+                } catch (TransformerException e) {
+                    e.printStackTrace();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
             default:
                 throw new ServletException("");
@@ -72,6 +87,8 @@ public class ProfilerServlet extends HttpServlet {
     {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.ENCODING,"UTF-8");
+        transformer.setOutputProperty(OutputKeys.INDENT,"yes");
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(xmlFile);
         transformer.transform(source, result);
