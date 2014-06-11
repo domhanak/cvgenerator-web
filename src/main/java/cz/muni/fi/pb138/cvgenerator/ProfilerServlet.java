@@ -38,6 +38,7 @@ public class ProfilerServlet extends HttpServlet {
             case "/add":
                 Profiler profiler = new Profiler(request, profiles);
                 Element profile = null;
+
                 try {
                     profile = profiler.createProfile();
                 } catch (ProfilerException e) {
@@ -62,15 +63,12 @@ public class ProfilerServlet extends HttpServlet {
                             new StreamSource(new File(this.getClass().getResource("/toPdf.xsl").toURI())));
                     xsltProc.transform(
                             new StreamSource(new File(this.getClass().getResource("/profiles.xml").toURI())),
-                            new StreamResult(new File(this.getClass().getResource("/out.pdf").toURI())));
+                            new StreamResult(new File(this.getClass().getResource("/latex.tex").toURI())));
                 } catch (TransformerException e) {
                     e.printStackTrace();
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-
-
-
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
             default:

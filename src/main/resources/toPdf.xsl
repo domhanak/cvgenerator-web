@@ -120,11 +120,6 @@
         \caption{Titel\label{Tabelle: Label}}
         \end{table}
 
-
-
-
-
-
     </xsl:template>
 
 </xsl:stylesheet>
