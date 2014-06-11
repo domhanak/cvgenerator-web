@@ -29,7 +29,7 @@ public class Profiler {
         profile.appendChild(createContactElement());
         profile.appendChild(createPersonalInfo());
         profile.appendChild(createEducation());
-        if (request.getParameter("thesis") != null || !request.getParameter("thesis").isEmpty()) {
+        if (request.getParameter("thesis") != null && !request.getParameter("thesis").isEmpty()) {
             profile.appendChild(createSimpleElement(request.getParameter("thesis"), "thesis"));
         }
         profile.appendChild(createExperience());
@@ -40,7 +40,7 @@ public class Profiler {
 
     private Element createContactElement() throws ProfilerException {
         Element contact = doc.createElement("contact");
-        if (request.getParameter("degree") != null || !request.getParameter("degree").isEmpty()) {
+        if (request.getParameter("degree") != null && !request.getParameter("degree").isEmpty()) {
             contact.appendChild(createSimpleElement(request.getParameter("degree"), "degree"));
         }
         if (request.getParameter("name") != null && request.getParameter("surname") != null) {
@@ -50,30 +50,31 @@ public class Profiler {
                 request.getParameter("housenumber"),
                 request.getParameter("postcode"),
                 request.getParameter("city")));
-        if (request.getParameter("country") != null || !request.getParameter("country").isEmpty()) {
+
+        if (request.getParameter("country") != null && !request.getParameter("country").isEmpty()) {
             contact.appendChild(createSimpleElement(request.getParameter("country"), "country"));
         } else {
             request.setAttribute("error", "Please fill country field.");
             throw new ProfilerException("Country field not filled.");
         }
 
-        if (request.getParameter("tel") != null || !request.getParameter("tel").isEmpty()) {
+        if (request.getParameter("tel") != null && !request.getParameter("tel").isEmpty()) {
             contact.appendChild(createSimpleElement(request.getParameter("tel"), "phone"));
         } else {
             request.setAttribute("error", "Please fill phone field.");
             throw new ProfilerException("Phone field not filled.");
         }
 
-        if (request.getParameter("fax") != null || !request.getParameter("fax").isEmpty()) {
+        if (request.getParameter("fax") != null && !request.getParameter("fax").isEmpty()) {
             contact.appendChild(createSimpleElement(request.getParameter("fax"), "fax"));
         }
-        if (request.getParameter("email") != null || !request.getParameter("email").isEmpty()) {
+        if (request.getParameter("email") != null && !request.getParameter("email").isEmpty()) {
             contact.appendChild(createSimpleElement(request.getParameter("email"), "email"));
         } else {
             request.setAttribute("error", "Please fill email field.");
             throw new ProfilerException("Email field not filled.");
         }
-        if (request.getParameter("homepage") != null || !request.getParameter("homepage").isEmpty()) {
+        if (request.getParameter("homepage") != null && !request.getParameter("homepage").isEmpty()) {
             contact.appendChild(createSimpleElement(request.getParameter("homepage"), "homepage"));
         }
         return contact;
@@ -82,25 +83,25 @@ public class Profiler {
     private Element createPersonalInfo() throws ProfilerException {
         Element personalInfo = doc.createElement("details");
 
-        if (request.getParameter("gender") != null || !request.getParameter("gender").isEmpty()) {
+        if (request.getParameter("gender") != null && !request.getParameter("gender").isEmpty()) {
             personalInfo.appendChild(createSimpleElement(request.getParameter("gender"), "gender"));
         } else {
             request.setAttribute("error", "Please fill you gender.");
             throw new ProfilerException("Fill gender!.");
         }
-        if (request.getParameter("dateofbirth") != null || !request.getParameter("dateofbirth").isEmpty()) {
+        if (request.getParameter("dateofbirth") != null && !request.getParameter("dateofbirth").isEmpty()) {
             personalInfo.appendChild(createSimpleElement(request.getParameter("dateofbirth"), "birthDate"));
         } else {
             request.setAttribute("error", "Please fill you date of birth.");
             throw new ProfilerException("Fill date fo brith!.");
         }
-        if (request.getParameter("placeofbirth") != null || !request.getParameter("placeofbirth").isEmpty()) {
+        if (request.getParameter("placeofbirth") != null && !request.getParameter("placeofbirth").isEmpty()) {
             personalInfo.appendChild(createSimpleElement(request.getParameter("placeofbirth"), "birthPlace"));
         } else {
             request.setAttribute("error", "Please fill you place fo birth.");
             throw new ProfilerException("Fill place of birth!.");
         }
-        if (request.getParameter("citizenship") != null || !request.getParameter("citizenship").isEmpty()) {
+        if (request.getParameter("citizenship") != null && !request.getParameter("citizenship").isEmpty()) {
             personalInfo.appendChild(createSimpleElement(request.getParameter("citizenship"), "citizenship"));
         } else {
             request.setAttribute("error", "Please fill you place fo birth.");
@@ -113,7 +114,7 @@ public class Profiler {
     private Element createEducation() throws ProfilerException {
         Element education = doc.createElement("education");
 
-        if (request.getParameter("stschoolname") != null || !request.getParameter("stschoolname").isEmpty()) {
+        if (request.getParameter("stschoolname") != null && !request.getParameter("stschoolname").isEmpty()) {
             education.appendChild(createComplexElement(request.getParameter("stschoolname"),
                     Arrays.asList(request.getParameter("stschoolfrom"), request.getParameter("stschoolto")), "school"));
         } else {
@@ -121,11 +122,11 @@ public class Profiler {
             throw new ProfilerException("Fill at least one school!");
         }
 
-        if (request.getParameter("ndschoolname") != null || !request.getParameter("ndschoolname").isEmpty()) {
+        if (request.getParameter("ndschoolname") != null && !request.getParameter("ndschoolname").isEmpty()) {
             education.appendChild(createComplexElement(request.getParameter("ndschoolname"),
                     Arrays.asList(request.getParameter("ndschoolfrom"), request.getParameter("ndschoolto")), "job"));
         }
-        if (request.getParameter("rdschoolname") != null || !request.getParameter("rdschoolname").isEmpty()) {
+        if (request.getParameter("rdschoolname") != null && !request.getParameter("rdschoolname").isEmpty()) {
             education.appendChild(createComplexElement(request.getParameter("rdschoolname"),
                     Arrays.asList(request.getParameter("rdschoolfrom"), request.getParameter("rdschoolto")), "job"));
         }
@@ -137,7 +138,7 @@ public class Profiler {
         Element experience = doc.createElement("experience");
 
         /* Check if at least one job element was inputed. */
-        if (request.getParameter("stwork") != null || !request.getParameter("stwork").isEmpty()) {
+        if (request.getParameter("stwork") != null && !request.getParameter("stwork").isEmpty()) {
             experience.appendChild(createComplexElement(request.getParameter("stwork"),
                     Arrays.asList(request.getParameter("stworkfrom"), request.getParameter("stworkto")), "job"));
         } else {
@@ -145,11 +146,11 @@ public class Profiler {
             throw new ProfilerException("Fill at least on work!.");
         }
 
-        if (request.getParameter("ndwork") != null || !request.getParameter("ndwork").isEmpty()) {
+        if (request.getParameter("ndwork") != null && !request.getParameter("ndwork").isEmpty()) {
             experience.appendChild(createComplexElement(request.getParameter("ndwork"),
                     Arrays.asList(request.getParameter("ndworkfrom"), request.getParameter("ndworkto")), "job"));
         }
-        if (request.getParameter("rdwork") != null || !request.getParameter("rdwork").isEmpty()) {
+        if (request.getParameter("rdwork") != null && !request.getParameter("rdwork").isEmpty()) {
             experience.appendChild(createComplexElement(request.getParameter("ndwork"),
                     Arrays.asList(request.getParameter("ndworkfrom"), request.getParameter("ndworkto")), "job"));
         }
@@ -179,11 +180,11 @@ public class Profiler {
                 request.getParameter("ndlanguage"), request.getParameter("ndlanguagelvl")));
 
         /* Check for other languages and add them if they were inputed */
-        if (request.getParameter("rdlanguage") != null || !request.getParameter("rdlanguage").isEmpty()) {
+        if (request.getParameter("rdlanguage") != null && !request.getParameter("rdlanguage").isEmpty()) {
             languages.appendChild(createLanguageElement(
                     request.getParameter("rdlanguage"), request.getParameter("rdlanguagelvl")));
         }
-        if (request.getParameter("thlanguage") != null || !request.getParameter("thlanguage").isEmpty()) {
+        if (request.getParameter("thlanguage") != null && !request.getParameter("thlanguage").isEmpty()) {
             languages.appendChild(createLanguageElement(
                     request.getParameter("thlanguage"), request.getParameter("thlanguagelvl")));
         }
@@ -204,7 +205,7 @@ public class Profiler {
             throw new IllegalArgumentException("Name is null.");
         }
         if (textContent == null || textContent.isEmpty()) {
-            throw new IllegalArgumentException("TextContent is null.");
+            throw new IllegalArgumentException("TextContent is null." + name);
         }
 
         Element element = doc.createElement(name);
