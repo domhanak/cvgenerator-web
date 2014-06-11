@@ -167,8 +167,9 @@ public class Profiler {
         }
 
         Element language = doc.createElement("language");
-        language.setAttribute(languageName, languageLvl);
-
+        language.setAttribute("name", languageName);
+        language.setAttribute("level", languageLvl);
+        
         return language;
     }
 }
