@@ -14,9 +14,9 @@ public class Profiler {
     private HttpServletRequest request;
     private Document doc = null;
 
-    Profiler() {}
+    public Profiler() {}
 
-    Profiler(HttpServletRequest request, Document doc)
+    public Profiler(HttpServletRequest request, Document doc)
     {
         this.request = request;
         this.doc = doc;
@@ -98,7 +98,13 @@ public class Profiler {
         return languages;
     }
 
-    private Element createSimpleElement(String textContent, String name, HttpServletRequest req) throws ProfilerException {
+    public Element createSimpleElement(String textContent, String name, HttpServletRequest req) throws ProfilerException {
+        if (name == null || name.isEmpty()){
+            throw new IllegalArgumentException("name is empty or null.");
+        }
+        if (req == null){
+            throw new IllegalArgumentException("request is null.");
+        }
         if (textContent == null || textContent.isEmpty()){
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + name);
             throw new ProfilerException("Text content of " + name + "field is empty.");
@@ -111,7 +117,13 @@ public class Profiler {
         return element;
     }
 
-    private Element createComplexElement(String attribute, List<String> childs, String name, HttpServletRequest req) throws ProfilerException {
+    public Element createComplexElement(String attribute, List<String> childs, String name, HttpServletRequest req) throws ProfilerException {
+        if(name == null || name.isEmpty()){
+            throw new IllegalArgumentException("name is empty or null.");
+        }
+        if (req == null){
+            throw new IllegalArgumentException("request is null.");
+        }
         if (attribute == null || childs.get(0) == null || childs.get(1) == null
                 || attribute.isEmpty() || childs.get(0).isEmpty() || childs.get(1).isEmpty()) {
             req.setAttribute("error", "Please fill in all fields! You didn't fill: " + name);
