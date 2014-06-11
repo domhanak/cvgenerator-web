@@ -50,6 +50,7 @@
             <xsd:element name="degree" type="xsd:string"/>
             <xsd:element minOccurs="1" name="name" type="nameType"/>
             <xsd:element minOccurs="1" name="address" type="addressType"/>
+            <xsd:element minOccurs="1" name="country" type="xsd:string"/>
             <xsd:element minOccurs="1" name="phone" type="phoneType"/>
             <xsd:element name="fax" type="phoneType"/>
             <xsd:element minOccurs="1" name="email" type="emailType"/>
@@ -68,7 +69,7 @@
             <xsd:element minOccurs="1" name="street" type="streetType"/>
             <xsd:element minOccurs="1" name="city" type="xsd:string"/>
             <xsd:element minOccurs="1" name="postcode" type="xsd:string"/>
-
+            
         </xsd:sequence>
 
 
