@@ -162,22 +162,20 @@ public class Profiler {
         Element languages = doc.createElement("languages");
 
         /* Check if at least two langauages were inputed */
-        if (request.getParameter("stlanguage") == null || request.getParameter("stlanguagelvl") == null
-                || request.getParameter("stlanguage").isEmpty() || request.getParameter("stlanguagelvl").isEmpty()) {
+        if (request.getParameter("stlanguage") != null && !request.getParameter("stlanguage").isEmpty()) {
+            languages.appendChild(createLanguageElement(
+                    request.getParameter("stlanguage"), request.getParameter("stlanguagelvl")));
+        } else {
             request.setAttribute("error", "First two languages are required!");
             throw new ProfilerException("Fill first two languages!");
         }
-        if (request.getParameter("ndlanguage") == null || request.getParameter("ndlanguagelvl") == null
-                || request.getParameter("ndlanguage").isEmpty() || request.getParameter("ndlanguagelvl").isEmpty()) {
+        if (request.getParameter("ndlanguage") != null && !request.getParameter("ndlanguage").isEmpty()) {
+            languages.appendChild(createLanguageElement(
+                    request.getParameter("ndlanguage"), request.getParameter("ndlanguagelvl")));
+        } else {
             request.setAttribute("error", "First two languages are required!");
             throw new ProfilerException("Fill first two languages!");
         }
-
-        /* Add them to root language element */
-        languages.appendChild(createLanguageElement(
-                request.getParameter("stlanguage"), request.getParameter("stlanguagelvl")));
-        languages.appendChild(createLanguageElement(
-                request.getParameter("ndlanguage"), request.getParameter("ndlanguagelvl")));
 
         /* Check for other languages and add them if they were inputed */
         if (request.getParameter("rdlanguage") != null && !request.getParameter("rdlanguage").isEmpty()) {
