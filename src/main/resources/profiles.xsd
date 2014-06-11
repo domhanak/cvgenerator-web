@@ -2,7 +2,7 @@
 
 <xsd:schema version="1.0"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            elementFormDefault="qualified">
+            >
 
     <xsd:element name="profiles" type="profilesType">
 
@@ -15,8 +15,9 @@
 
     <xsd:complexType name="profilesType">
         <xsd:sequence>
-            <xsd:element minOccurs="1" maxOccurs="unbounded" name="profile" type="profileType"/>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="profile" type="profileType"/>
         </xsd:sequence>
+
     </xsd:complexType>
 
 
