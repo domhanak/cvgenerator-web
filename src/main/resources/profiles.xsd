@@ -30,7 +30,7 @@
             <xsd:element name="experience" type="experienceType"/>
             <xsd:element minOccurs="1" name="languages" type="languagesType"/>
             <xsd:element name="reference" type="referenceType"/>
-            
+
 
 
         </xsd:sequence>
@@ -44,15 +44,14 @@
             <xsd:minInclusive value="0"/>
         </xsd:restriction>
     </xsd:simpleType>
-    
+
     <xsd:complexType name="contactType">
         <xsd:sequence>
             <xsd:element name="degree" type="xsd:string"/>
             <xsd:element minOccurs="1" name="name" type="nameType"/>
             <xsd:element minOccurs="1" name="address" type="addressType"/>
-            <xsd:element minOccurs="1" name="country" type="xsd:string"/>
             <xsd:element minOccurs="1" name="phone" type="phoneType"/>
-            <xsd:element name="fax" type="faxType"/>
+            <xsd:element name="fax" type="phoneType"/>
             <xsd:element minOccurs="1" name="email" type="emailType"/>
             <xsd:element name="homepage" type="homepageType"/>
         </xsd:sequence>
@@ -60,7 +59,7 @@
 
     <xsd:simpleType name="nameType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([A-Z])([a-z])+([ ])*)+"/>
+            <xsd:pattern value="(([A-Z])([a-z])*([ ])?)+"/>
         </xsd:restriction>
     </xsd:simpleType>
 
@@ -68,7 +67,7 @@
         <xsd:sequence>
             <xsd:element minOccurs="1" name="street" type="streetType"/>
             <xsd:element minOccurs="1" name="city" type="xsd:string"/>
-            <xsd:element minOccurs="1" name="postcode" type="postCodeType"/>
+            <xsd:element minOccurs="1" name="postcode" type="xsd:string"/>
 
         </xsd:sequence>
 
@@ -77,7 +76,7 @@
 
     <xsd:simpleType name="streetType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([A-Za-z])+([ ]))+([0-9])+"/>
+            <xsd:pattern value="(([A-Za-z])+([ ]))*([0-9])+"/>
         </xsd:restriction>
     </xsd:simpleType>
 
@@ -89,7 +88,7 @@
 
     <xsd:simpleType name="phoneType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="([+])(([0-9])3([ ])*)4"/>
+            <xsd:pattern value="([+])?(([0-9])3([ ])?)4"/>
         </xsd:restriction>
 
     </xsd:simpleType>
@@ -100,25 +99,31 @@
 
     <xsd:simpleType name="emailType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="([a-zA-Z])*[@]([a-zA-Z])*[.]([a-z])*"/>
+            <xsd:pattern value="(([a-zA-Z])([.])?)+[@](([a-zA-Z])([.])?)+[.](([a-z])2|([a-z])3)"/>
         </xsd:restriction>
     </xsd:simpleType>
 
     <xsd:simpleType name="homepageType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[www][.](([a-zA-Z])*[.])*([a-z])*"/>
+            <xsd:pattern value="[www][.](([a-zA-Z])+[.])+(([a-z])2|([a-z])3)"/>
         </xsd:restriction>
 
     </xsd:simpleType>
 
     <xsd:complexType name="detailsType">
         <xsd:sequence>
-            <xsd:element name="gender" type="xsd:string"/>
-            <xsd:element name="birthDate" type="xsd:date"/>
-            <xsd:element name="birthPlace" type="xsd:string"/>
-            <xsd:element name="citizenship" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="gender" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="birthDate" type="dateType"/>
+            <xsd:element minOccurs="1" name="birthPlace" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="citizenship" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
+
+    <xsd:simpleType name="dateType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-3][0-9][.][0-1][0-9].[1-2]([0-9])3"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:complexType name="educationType">
         <xsd:sequence>
@@ -128,8 +133,8 @@
 
     <xsd:complexType name="schoolType">
         <xsd:sequence>
-            <xsd:element name="from" type="xsd:date" />
-            <xsd:element name="to" type="xsd:date" />
+            <xsd:element name="from" type="dateType" />
+            <xsd:element name="to" type="dateType" />
         </xsd:sequence>
 
         <xsd:attribute name="name" type="xsd:string" use="required"/>
