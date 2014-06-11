@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java" line="31" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="added ProfileValidator">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfileValidator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/profiles.xml" afterPath="$PROJECT_DIR$/src/main/resources/profiles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/profiles.xsd" afterPath="$PROJECT_DIR$/src/main/resources/profiles.xsd" />
+    <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cvgenerator-web.iws" />
@@ -148,8 +145,8 @@
       <file leaf-file-name="ProfileValidator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfileValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8428835" vertical-offset="326" max-vertical-offset="918">
-              <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.59149724" vertical-offset="377" max-vertical-offset="918">
+              <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -786,7 +783,7 @@
       <workItem from="1402480307972" duration="741000" />
       <workItem from="1402487621625" duration="5382000" />
       <workItem from="1402496934553" duration="59000" />
-      <workItem from="1402497280872" duration="13325000" />
+      <workItem from="1402497280872" duration="13561000" />
     </task>
     <task id="LOCAL-00001" summary="Added profiler exception">
       <created>1402396112195</created>
@@ -820,11 +817,15 @@
       <created>1402506919122</created>
       <updated>1402506919122</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added ProfileValidator">
+      <created>1402513187360</created>
+      <updated>1402513187360</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37216000" />
+    <option name="totallyTimeSpent" value="37452000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1692" height="997" extended-state="0" />
@@ -1336,8 +1337,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfileValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8428835" vertical-offset="326" max-vertical-offset="918">
-          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.59149724" vertical-offset="377" max-vertical-offset="918">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
