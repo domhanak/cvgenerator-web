@@ -53,7 +53,7 @@ public class Profiler {
     private Element createPersonalInfo() throws ProfilerException {
         Element personalInfo = doc.createElement("details");
         personalInfo.appendChild(createSimpleElement(request.getParameter("gender"), "gender", request));
-        personalInfo.appendChild(createSimpleElement(request.getParameter("dateofbrith"), "birthDate", request));
+        personalInfo.appendChild(createSimpleElement(request.getParameter("dateofbirth"), "birthDate", request));
         personalInfo.appendChild(createSimpleElement(request.getParameter("placeofbirth"), "birthPlace", request));
         personalInfo.appendChild(createSimpleElement(request.getParameter("citizenship"), "citizenship", request));
 
