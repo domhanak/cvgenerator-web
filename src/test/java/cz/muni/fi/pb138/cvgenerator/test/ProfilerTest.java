@@ -5,9 +5,13 @@ import cz.muni.fi.pb138.cvgenerator.ProfilerException;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 public class ProfilerTest {
@@ -35,30 +39,30 @@ public class ProfilerTest {
     @Test
     public void createSimpleElementTest()
     {
-        /*
-        try {
-            profiler.createSimpleElement("","meno", request);
-            fail();
-        } catch (ProfilerException e) {}
-        try {
-            profiler.createSimpleElement(null,"meno", request);
-            fail();
-        } catch (ProfilerException e) {}
-        try {
-            profiler.createSimpleElement("textcontent","", request);
-            fail();
-        } catch (IllegalArgumentException e) {}
-          catch (ProfilerException e) {}
-        try {
-            profiler.createSimpleElement("textcontent",null, request);
-            fail();
-        } catch (ProfilerException e) {}
-          catch (IllegalArgumentException e) {}
-        try {
-            profiler.createSimpleElement("textcontent","name", null);
-            fail();
-        } catch (ProfilerException e) {}
-        catch (IllegalArgumentException e) {}
-        */
+        Element element;
+        String elementName = "simpleElementName";
+        String elementContent = "simpleElementTextContent";
+
+        element = profiler.createSimpleElement(elementContent, elementName);
+
+        assertNotNull(element);
+        assertEquals(element.getTagName(), elementName);
+        assertEquals(element.getTextContent(), elementContent);
     }
+
+    @Test
+    public void createComplexElementTest() {
+
+    }
+
+    @Test
+    public void createAddressElementTest(){
+
+    }
+
+    @Test
+    public void createLanguageElement(){
+
+    }
+
 }
