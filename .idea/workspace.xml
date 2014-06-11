@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="transformation handling added + file for CV in latex added">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/Profiler.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/Profiler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/cz/muni/fi/pb138/cvgenerator/test/ProfilerTest.java" afterPath="$PROJECT_DIR$/src/test/java/cz/muni/fi/pb138/cvgenerator/test/ProfilerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/profiles.xsd" afterPath="$PROJECT_DIR$/src/main/resources/profiles.xsd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
     </list>
     <ignored path="cvgenerator-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,7 +70,7 @@
       <file leaf-file-name="ProfilerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/cz/muni/fi/pb138/cvgenerator/test/ProfilerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="5" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="612">
+            <state line="19" column="5" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1105">
               <folding />
             </state>
           </provider>
@@ -81,25 +79,25 @@
       <file leaf-file-name="Profiler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/Profiler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="64" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="5287">
+            <state line="11" column="64" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="5355">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfilerServlet.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ProfilerServlet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="9" selection-start="3037" selection-end="3037" vertical-scroll-proportion="1.707124" vertical-offset="390" max-vertical-offset="1445">
+            <state line="76" column="5" selection-start="3043" selection-end="3043" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1445">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.jsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="41" selection-start="5314" selection-end="5314" vertical-scroll-proportion="-15.346154" vertical-offset="1658" max-vertical-offset="4522">
+            <state line="246" column="45" selection-start="14025" selection-end="14025" vertical-scroll-proportion="0.7536232" vertical-offset="3766" max-vertical-offset="4522">
               <folding />
             </state>
           </provider>
@@ -108,7 +106,7 @@
       <file leaf-file-name="profiles.xsd" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/profiles.xsd">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="70" selection-start="1808" selection-end="1808" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="3009">
+            <state line="51" column="70" selection-start="1717" selection-end="1717" vertical-scroll-proportion="0.0" vertical-offset="1819" max-vertical-offset="3094">
               <folding />
             </state>
           </provider>
@@ -131,12 +129,12 @@
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/StartListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerException.java" />
         <option value="$PROJECT_DIR$/src/main/resources/profiles.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/toPdf.xsl" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java" />
         <option value="$PROJECT_DIR$/src/main/resources/profiles.xsd" />
         <option value="$PROJECT_DIR$/src/test/java/cz/muni/fi/pb138/cvgenerator/test/ProfilerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/Profiler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       </list>
     </option>
   </component>
@@ -158,7 +156,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -533,18 +531,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="transportHostId" />
-        </data>
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -562,6 +548,18 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" />
+        </data>
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
       <method />
     </configuration>
     <configuration default="false" name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.3" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
@@ -682,6 +680,7 @@
       <workItem from="1402478718529" duration="1524000" />
       <workItem from="1402480307972" duration="741000" />
       <workItem from="1402487621625" duration="5382000" />
+      <workItem from="1402496934553" duration="59000" />
     </task>
     <task id="LOCAL-00001" summary="Added profiler exception">
       <created>1402396112195</created>
@@ -711,14 +710,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23832000" />
+    <option name="totallyTimeSpent" value="23891000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32387313" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32252836" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -792,9 +791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java">
@@ -855,9 +852,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java">
@@ -991,8 +986,8 @@
           <OriginalElement>cz.muni.fi.pb138.cvgenerator</OriginalElement>
           <nodes>
             <node x="" y="">cz.muni.fi.pb138.cvgenerator.StartListener</node>
-            <node x="" y="">cz.muni.fi.pb138.cvgenerator.Profiler</node>
             <node x="" y="">cz.muni.fi.pb138.cvgenerator.ProfilerServlet</node>
+            <node x="" y="">cz.muni.fi.pb138.cvgenerator.Profiler</node>
             <node x="" y="">cz.muni.fi.pb138.cvgenerator.test</node>
           </nodes>
           <notes />
@@ -1061,8 +1056,8 @@
           <OriginalElement>cz.muni.fi.pb138.cvgenerator</OriginalElement>
           <nodes>
             <node x="" y="">cz.muni.fi.pb138.cvgenerator.StartListener</node>
-            <node x="" y="">cz.muni.fi.pb138.cvgenerator.Profiler</node>
             <node x="" y="">cz.muni.fi.pb138.cvgenerator.ProfilerServlet</node>
+            <node x="" y="">cz.muni.fi.pb138.cvgenerator.Profiler</node>
             <node x="" y="">cz.muni.fi.pb138.cvgenerator.test</node>
           </nodes>
           <notes />
@@ -1082,9 +1077,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="374" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/StartListener.java">
@@ -1110,9 +1103,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/latex.tex">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/profiles.xml">
@@ -1124,21 +1115,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cz/muni/fi/pb138/cvgenerator/test/ProfilerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="5" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="612">
+        <state line="19" column="5" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/profiles.xsd">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="70" selection-start="1808" selection-end="1808" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="3009">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="41" selection-start="5314" selection-end="5314" vertical-scroll-proportion="-15.346154" vertical-offset="1658" max-vertical-offset="4522">
+        <state line="51" column="70" selection-start="1717" selection-end="1717" vertical-scroll-proportion="0.0" vertical-offset="1819" max-vertical-offset="3094">
           <folding />
         </state>
       </provider>
@@ -1152,7 +1136,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="9" selection-start="3037" selection-end="3037" vertical-scroll-proportion="1.707124" vertical-offset="390" max-vertical-offset="1445">
+        <state line="76" column="5" selection-start="3043" selection-end="3043" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1445">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="246" column="45" selection-start="14025" selection-end="14025" vertical-scroll-proportion="0.7536232" vertical-offset="3766" max-vertical-offset="4522">
           <folding />
         </state>
       </provider>

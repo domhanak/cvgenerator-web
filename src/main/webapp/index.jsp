@@ -240,11 +240,11 @@
                     </tr>
                     <tr>
                         <th>Phone:</th>
-                        <td><input type="number" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reftel}'/>"></td>
+                        <td><input type="text" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reftel}'/>"></td>
                     </tr>
                     <tr>
                         <th>Fax:</th>
-                        <td><input type="number" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reffax}'/>"></td>
+                        <td><input type="text" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reffax}'/>"></td>
                     </tr>
                     <th>E-mail:</th>
                     <td><input type="email" name="refemail" value="<c:out value='${param.refemail}'/>"></td>
