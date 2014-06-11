@@ -30,6 +30,11 @@
         <c:out value="${error}"/>
     </div>
 </c:if>
+<c:if test="${not empty error2}">
+    <div style="border: solid 1px red; background-color: yellow; padding: 10px">
+        <c:out value="${error2}"/>
+    </div>
+</c:if>
 <form action="${pageContext.request.contextPath}/profiles/add" method="post">
     <div id="tabs" style="width: 1105px" >
         <ul>
@@ -61,7 +66,7 @@
                     <td><input type="text" name="street" value="<c:out value='${param.street}'/>" placeholder="Street" required>
                         <input type="number" name="housenumber" value="<c:out value='${param.housenumber}'/>" placeholder="House number" required><br />
                         <input type="text" name="city" value="<c:out value='${param.city}'/>" placeholder="City" required>
-                        <input type="number" name="postcode" value="<c:out value='${param.postcode}'/>" placeholder="Postcode" required></td>
+                        <input type="text" name="postcode" value="<c:out value='${param.postcode}'/>" placeholder="Postcode" required></td>
                 </tr>
                 <tr>
                     <th>Country:</th>
@@ -69,11 +74,11 @@
                 </tr>
                 <tr>
                     <th>Phone:</th>
-                    <td><input type="text" name="tel" value="<c:out value='${param.tel}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" required></td>
+                    <td><input type="text" name="tel" value="<c:out value='${param.tel}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" required></td>
                 </tr>
                 <tr>
                     <th>Fax:</th>
-                    <td><input type="tel" name="fax" value="<c:out value='${param.fax}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" ></td>
+                    <td><input type="tel" name="fax" value="<c:out value='${param.fax}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" ></td>
                 </tr>
                     <th>E-mail:</th>
                     <td><input type="email" name="email" value="<c:out value='${param.email}'/>"></td>
@@ -89,23 +94,23 @@
                 <tr>
                     <th>Gender:</th>
                     <td>
-                        <select id="gender" name="gender" value="<c:out value='${param.gendre}'/>">
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                        <select id="gender" name="gender" required value="<c:out value='${param.gendre}'/>">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <th>Date of birth:</th>
-                    <td><input type="date" name="dateofbirth" value="<c:out value='${param.dateofbirth}'/>"></td>
+                    <td><input type="text" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" name="dateofbirth" value="<c:out value='${param.dateofbirth}'/>"></td>
                 </tr>
                 <tr>
                     <th>Place of birth:</th>
-                    <td><input type="text" name="placeofbirth" value="<c:out value='${param.placeofbirth}'/>"></td>
+                    <td><input type="text" required name="placeofbirth" value="<c:out value='${param.placeofbirth}'/>"></td>
                 </tr>
                 <tr>
                     <th>Present Citizenship:</th>
-                    <td><input type="text" name="citizenship" value="<c:out value='${param.citizenship}'/>"></td>
+                    <td><input type="text" required name="citizenship" value="<c:out value='${param.citizenship}'/>"></td>
                 </tr>
 
             </table>
@@ -114,18 +119,18 @@
         <div id="tabs-3">
             <table>
                 <tr>
-                    <td>From: <input type="month" name="stschoolfrom" value="<c:out value='${param.stschoolfrom}'/>"></td>
-                    <td>To: <input type="month" name="stschoolto" value="<c:out value='${param.stschoolto}'/>"></td>
-                    <td>School name: <input type="text" name="stschoolname" value="<c:out value='${param.stchoolname}'/>"  style="width: 350px"></td>
+                    <td>From: <input type="text" name="stschoolfrom" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stschoolfrom}'/>"></td>
+                    <td>To: <input type="text" name="stschoolto" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stschoolto}'/>"></td>
+                    <td>School name: <input type="text" name="stschoolname" required value="<c:out value='${param.stchoolname}'/>"  style="width: 350px"></td>
                 </tr>
                 <tr>
-                    <td>From: <input type="month" name="ndschoolfrom" value="<c:out value='${param.ndschoolfrom}'/>"></td>
-                    <td>To: <input type="month" name="ndschoolto" value="<c:out value='${param.ndschoolto}'/>"></td>
+                    <td>From: <input type="text" name="ndschoolfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndschoolfrom}'/>"></td>
+                    <td>To: <input type="text" name="ndschoolto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndschoolto}'/>"></td>
                     <td>School name: <input type="text" name="ndschoolname" value="<c:out value='${param.ndschoolname}'/>"  style="width: 350px"></td>
                 </tr>
                 <tr>
-                    <td>From: <input type="month" name="rdschoolfrom" value="<c:out value='${param.rdschoolfrom}'/>"></td>
-                    <td>To: <input type="month" name="rdschoolto" value="<c:out value='${param.rdschoolto}'/>"></td>
+                    <td>From: <input type="text" name="rdschoolfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdschoolfrom}'/>"></td>
+                    <td>To: <input type="text" name="rdschoolto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdschoolto}'/>"></td>
                     <td>School name: <input type="text" name="rdschoolname" value="<c:out value='${param.rdschoolname}'/>"  style="width: 350px"></td>
                 </tr>
             </table>
@@ -140,18 +145,18 @@
         <div id="tabs-5">
             <table>
                 <tr>
-                    <td>From: <input type="month" name="stworkfrom" value="<c:out value='${param.stworkfrom}'/>"></td>
-                    <td>To: <input type="month" name="stworkto" value="<c:out value='${param.stworkto}'/>"></td>
+                    <td>From: <input type="text" name="stworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stworkfrom}'/>"></td>
+                    <td>To: <input type="text" name="stworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stworkto}'/>"></td>
                     <td>Work: <input type="text" name="stwork" value="<c:out value='${param.stwork}'/>"  style="width: 350px"></td>
                 </tr>
                 <tr>
-                    <td>From: <input type="month" name="ndworkfrom" value="<c:out value='${param.ndworkfrom}'/>"></td>
-                    <td>To: <input type="month" name="ndworkto" value="<c:out value='${param.ndworkto}'/>"></td>
+                    <td>From: <input type="text" name="ndworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndworkfrom}'/>"></td>
+                    <td>To: <input type="text" name="ndworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndworkto}'/>"></td>
                     <td>Work: <input type="text" name="ndwork" value="<c:out value='${param.ndwork}'/>"  style="width: 350px"></td>
                 </tr>
                 <tr>
-                    <td>From: <input type="month" name="rdworkfrom" value="<c:out value='${param.rdworkfrom}'/>"></td>
-                    <td>To: <input type="month" name="rdworkto" value="<c:out value='${param.rdworkto}'/>"></td>
+                    <td>From: <input type="text" name="rdworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdworkfrom}'/>"></td>
+                    <td>To: <input type="text" name="rdworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdworkto}'/>"></td>
                     <td>Work: <input type="text" name="rdwork" value="<c:out value='${param.rdwork}'/>"  style="width: 350px"></td>
                 </tr>
             </table>
@@ -227,7 +232,7 @@
                         <td><input type="text" name="refstreet" value="<c:out value='${param.refstreet}'/>" placeholder="Street">
                             <input type="number" name="refhousenumber" value="<c:out value='${param.refhousenumber}'/>" placeholder="House number"><br />
                             <input type="text" name="refcity" value="<c:out value='${param.refcity}'/>" placeholder="City">
-                            <input type="number" name="refpostcode" value="<c:out value='${param.refpostcode}'/>" placeholder="Postcode"></td>
+                            <input type="text" name="refpostcode" value="<c:out value='${param.refpostcode}'/>" placeholder="Postcode"></td>
                     </tr>
                     <tr>
                         <th>Country:</th>
@@ -235,11 +240,11 @@
                     </tr>
                     <tr>
                         <th>Phone:</th>
-                        <td><input type="tel" name="reftel" value="<c:out value='${param.reftel}'/>"></td>
+                        <td><input type="number" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reftel}'/>"></td>
                     </tr>
                     <tr>
                         <th>Fax:</th>
-                        <td><input type="tel" name="reffax" value="<c:out value='${param.reffax}'/>"></td>
+                        <td><input type="number" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reffax}'/>"></td>
                     </tr>
                     <th>E-mail:</th>
                     <td><input type="email" name="refemail" value="<c:out value='${param.refemail}'/>"></td>
