@@ -2,6 +2,8 @@
 
     <xsl:template match="/">
         \documentclass[a4paper]{article}
+        \usepackage[dvips]{graphicx,color} % or [pdftex]?
+        \usepackage[pdftex,colorlinks]{hyperref}
 
         \usepackage{tabularx}
 

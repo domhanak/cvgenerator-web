@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -85,6 +88,25 @@ public class ProfilerServlet extends HttpServlet {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
+
+                File workingDirectory = null;
+                try {
+                    workingDirectory = new File(this.getClass().getResource("/").toURI());
+                    File template = new File(workingDirectory.getAbsolutePath() + File.separator + "latex.tex");
+                    File desktop = new File(System.getProperty("user.home")	+ File.separator + "Desktop");
+                /*
+                    JLRGenerator pdfGen = new JLRGenerator();
+
+                    pdfGen.generate(template, desktop, workingDirectory);
+
+                    File pdf1 = pdfGen.getPDF();
+                    JLROpener.open(pdf1);
+
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+*/
+
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
             default:

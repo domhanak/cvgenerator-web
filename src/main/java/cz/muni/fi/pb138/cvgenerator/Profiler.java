@@ -192,7 +192,7 @@ public class Profiler {
 
     /**
      * Creates simple element.
-     * Element looks liek this: <@name> @textContent</@name>
+     * Element looks like this: <@name> @textContent</@name>
      *
      * @param textContent text content of simple element
      * @param name        name of the element

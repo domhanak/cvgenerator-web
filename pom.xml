@@ -55,6 +55,11 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.reflext</groupId>
+            <artifactId>reflext.jlr</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>
