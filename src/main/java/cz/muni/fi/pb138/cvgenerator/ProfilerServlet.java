@@ -90,11 +90,12 @@ public class ProfilerServlet extends HttpServlet {
                 }
 
                 File workingDirectory = null;
-                try {
+               /* try {
+
                     workingDirectory = new File(this.getClass().getResource("/").toURI());
                     File template = new File(workingDirectory.getAbsolutePath() + File.separator + "latex.tex");
                     File desktop = new File(System.getProperty("user.home")	+ File.separator + "Desktop");
-                /*
+
                     JLRGenerator pdfGen = new JLRGenerator();
 
                     pdfGen.generate(template, desktop, workingDirectory);
