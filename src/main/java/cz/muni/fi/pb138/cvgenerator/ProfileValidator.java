@@ -41,8 +41,29 @@ public class ProfileValidator {
             error = exception.getMessage();
             throw new SAXException(error);
         }
+    }
 
         private DocumentBuilder docBuilder;
         private String error;
-    }
+
+        public ProfileValidator(String schemaName)
+        {
+            try {
+                SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+                Schema schema = sf.newSchema(new File(schemaName));
+
+                DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+                dbf.setNamespaceAware(true);
+
+                dbf.setSchema(schema);
+                docBuilder = dbf.newDocumentBuilder();
+                docBuilder.setErrorHandler(new ValidationErrorsHandler());
+            } catch (SAXException ex) {
+                System.err.println("Invalid schema: " + ex.getMessage());
+                System.exit(-1);
+            } catch (ParserConfigurationException ex) {
+                System.err.println("Parser configuration error: " + ex.getMessage());
+            }
+        }
+
 }

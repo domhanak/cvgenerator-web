@@ -47,6 +47,10 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
+
+
+
+
                 Element el = profiles.getDocumentElement();
                 System.out.print(el.getTagName());
                 el.appendChild(profile);
