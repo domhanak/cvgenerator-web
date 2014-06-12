@@ -47,19 +47,31 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
-
-
-
-
                 Element el = profiles.getDocumentElement();
-                System.out.print(el.getTagName());
+                System.out.println(el.getTagName());
                 el.appendChild(profile);
+
                 try {
                     saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
                 } catch (TransformerException e) {
                     e.printStackTrace();
                     return;
                 }
+
+
+                ProfileValidator profileValidator = new ProfileValidator((File) getServletContext().getAttribute("schemaFile"));
+                String validationError = null;
+                try
+                {
+                    validationError = profileValidator.validate((File) getServletContext().getAttribute("xmlFile"));
+                    System.err.println(validationError);
+
+                }catch (IOException ex) {
+                    System.err.println("File not found: "+ex.getMessage());
+                }
+
+
+
 
                 TransformerFactory tf = TransformerFactory.newInstance();
                 try {

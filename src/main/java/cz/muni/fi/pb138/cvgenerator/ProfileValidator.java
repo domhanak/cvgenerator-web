@@ -46,11 +46,11 @@ public class ProfileValidator {
         private DocumentBuilder docBuilder;
         private String error;
 
-        public ProfileValidator(String schemaName)
+        public ProfileValidator(File schemaFile)
         {
             try {
                 SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                Schema schema = sf.newSchema(new File(schemaName));
+                Schema schema = sf.newSchema(schemaFile);
 
                 DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
                 dbf.setNamespaceAware(true);
@@ -64,6 +64,15 @@ public class ProfileValidator {
             } catch (ParserConfigurationException ex) {
                 System.err.println("Parser configuration error: " + ex.getMessage());
             }
+        }
+
+        public String validate(File xmlFile) throws IOException{
+            try {
+                Document doc = docBuilder.parse(xmlFile);
+            } catch (SAXException ex) {
+                return "Validation error: " + ex.getMessage();
+            }
+            return null;
         }
 
 }

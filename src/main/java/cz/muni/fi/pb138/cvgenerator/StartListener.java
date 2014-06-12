@@ -27,10 +27,14 @@ public class StartListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent)
     {
+
         ServletContext servletContext = servletContextEvent.getServletContext();
+
+        File schemaFile = null;
         File file = null;
         try {
             file = new File(this.getClass().getResource("/profiles.xml").toURI());
+            schemaFile = new File(this.getClass().getResource("/profiles.xsd").toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -50,6 +54,7 @@ public class StartListener implements ServletContextListener {
         }
 
         servletContext.setAttribute("xmlFile", file);
+        servletContext.setAttribute("schemaFile", schemaFile);
         servletContext.setAttribute("profilesDoc", doc);
     }
 
