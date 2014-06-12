@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java" line="31" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="added ProfileValidator">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfileValidator.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfileValidator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/ProfilerServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/StartListener.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/cvgenerator/StartListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/profiles.xml" afterPath="$PROJECT_DIR$/src/main/resources/profiles.xml" />
+    <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cvgenerator-web.iws" />
@@ -785,7 +781,7 @@
       <workItem from="1402480307972" duration="741000" />
       <workItem from="1402487621625" duration="5382000" />
       <workItem from="1402496934553" duration="59000" />
-      <workItem from="1402497280872" duration="18200000" />
+      <workItem from="1402497280872" duration="18220000" />
     </task>
     <task id="LOCAL-00001" summary="Added profiler exception">
       <created>1402396112195</created>
@@ -831,11 +827,15 @@
       <created>1402562551020</created>
       <updated>1402562551020</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added ProfileValidator">
+      <created>1402566634539</created>
+      <updated>1402566634539</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42091000" />
+    <option name="totallyTimeSpent" value="42111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1692" height="997" extended-state="0" />
