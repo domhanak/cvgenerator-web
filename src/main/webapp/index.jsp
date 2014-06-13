@@ -262,7 +262,7 @@
     <input class="button" type="Submit" value="Create CV" style="margin-top: 15px; margin-left: 905px;"/>
 </form>
 <form action="${pageContext.request.contextPath}/profiles/load" method="post">
-    <input type="number" name="loadpid" value="<c:out value='${param.loadpid}'/>" placeholder="Your profile ID" style="margin-left: 750px;">
+    <input type="text" name="loadpid" value="<c:out value='${param.loadpid}'/>" placeholder="Your profile ID" style="margin-left: 750px;">
     <input class="button" type="submit" value="Load CV">
 </form>
 </body>

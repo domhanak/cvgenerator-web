@@ -53,10 +53,8 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 } else {
                     /* Check if user that came created CV before */
-                    if (checkIfNewUser(request.getParameter("pid"), profiles)){
-                        pid = request.getParameter("pid");
-                    } else {
-                        pid = request.getParameter("pid");
+                    pid = request.getParameter("pid");
+                    if (!checkIfNewUser(pid, profiles)) {
                         Element el = profiles.getDocumentElement();
                         NodeList nl = el.getChildNodes();
                         for (int i = 0; i < nl.getLength(); i++)
@@ -118,6 +116,17 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
+                try {
+                    File latex = new File(this.getClass().getResource("/latex.tex").toURI());
+                    try {
+                        Process p = Runtime.getRuntime().exec("pdflatex " + latex.getAbsolutePath());
+
+                    } catch (IOException e) {
+                        System.out.print("error  " + e.getMessage());
+                    }
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
                 //TODO: Convert to pdf.
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
@@ -161,8 +170,19 @@ public class ProfilerServlet extends HttpServlet {
 
     private boolean checkIfNewUser(String pid, Document doc)
     {
+        if (pid == null || doc == null){
+            throw new IllegalArgumentException("pid or doc are null");
+        }
+
         Element docEle = doc.getDocumentElement();
+        if (docEle == null) {
+            return true;
+        }
         NodeList nl = docEle.getChildNodes();
+        if (nl == null){
+            return true;
+        }
+
         for (int i = 0; i < nl.getLength(); i++)
         {
             if(nl.item(i).getNodeType() == Node.ELEMENT_NODE){
