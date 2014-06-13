@@ -68,9 +68,6 @@ public class Profiler {
 
         if (request.getParameter("reftel") != null && !request.getParameter("reftel").isEmpty()) {
             refContact.appendChild(createSimpleElement(request.getParameter("reftel"), "phone"));
-        } else {
-            request.setAttribute("error", "Please fill phone field.");
-            throw new ProfilerException("Phone field not filled.");
         }
 
         if (request.getParameter("reffax") != null && !request.getParameter("reffax").isEmpty()) {
