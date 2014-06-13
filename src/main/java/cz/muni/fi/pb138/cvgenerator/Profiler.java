@@ -106,7 +106,8 @@ public class Profiler {
         }
 
         if (request.getParameter("tel") != null && !request.getParameter("tel").isEmpty()) {
-            contact.appendChild(createSimpleElement(request.getParameter("tel"), "phone"));
+            String tel = request.getParameter("tel");
+            contact.appendChild(createSimpleElement(tel , "phone"));
         } else {
             request.setAttribute("error", "Please fill phone field.");
             throw new ProfilerException("Phone field not filled.");
