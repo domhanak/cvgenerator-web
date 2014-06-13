@@ -13,6 +13,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.XMLConstants;
+import javax.xml.validation.Schema;
 
 /**
  * Created by Hany on 4.5.2014.
@@ -23,6 +26,7 @@ public class StartListener implements ServletContextListener {
     private DocumentBuilder dBuilder = null;
     private Document doc = null;
     private File file = null;
+    private File schemaFile = null;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent)
@@ -30,8 +34,8 @@ public class StartListener implements ServletContextListener {
 
         ServletContext servletContext = servletContextEvent.getServletContext();
 
-        File schemaFile = null;
-        File file = null;
+
+        //File file = null;
         try {
             file = new File(this.getClass().getResource("/profiles.xml").toURI());
             schemaFile = new File(this.getClass().getResource("/profiles.xsd").toURI());
@@ -66,9 +70,28 @@ public class StartListener implements ServletContextListener {
 
     private Document fileParser(File xmlFile) throws IOException, SAXException, ParserConfigurationException
     {
+        /*
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = sf.newSchema(schemaFile);
+
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         dbFactory.setValidating(true);
+        dbFactory.setSchema(schema);
         dBuilder = dbFactory.newDocumentBuilder();
         return dBuilder.parse(xmlFile);
+        */
+        ProfileValidator profileValidator = new ProfileValidator(schemaFile);
+
+        try
+        {
+            return profileValidator.parse(file);
+
+        }catch (IOException ex) {
+            System.err.println("File not found: "+ex.getMessage());
+        }catch (SAXException ex) {
+            System.err.println("Validation error: " + ex.getMessage());
+        }
+        return null;
+
     }
 }

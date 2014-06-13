@@ -74,5 +74,10 @@ public class ProfileValidator {
             }
             return null;
         }
+        public Document parse(File xmlFile) throws IOException, SAXException{
+
+            Document doc = docBuilder.parse(xmlFile);
+            return doc;
+        }
 
 }
