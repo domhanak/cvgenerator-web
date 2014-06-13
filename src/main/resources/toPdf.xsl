@@ -23,7 +23,7 @@
         \huge{\textsc{Curriculum Vitae}}
         \vspace{\baselineskip}
 
-        \Large{\textsc{<xsl:value-of select="profiles/profile/contact/degree"/> <xsl:value-of select="profiles/profile/contact/name"/>}}
+        \Large{\textsc{<xsl:value-of select="profiles/profile[$pid]/contact/degree"/> <xsl:value-of select="profiles/profile/contact/name"/>}}
         \end{center}
         \vspace{1.5\baselineskip}
 
@@ -53,14 +53,13 @@
 
         \begin{CV}
         \item[<xsl:value-of select="profiles/profile/education/school[1]/from"/>--<xsl:value-of select="profiles/profile/education/school[1]/to"/>] <xsl:value-of select="profiles/profile/education/school[1]/@name"/>
-        \item[<xsl:value-of select="profiles/profile/education/school[2]/from"/>--<xsl:value-of select="profiles/profile/education/school[2]/to"/>] <xsl:value-of select="profiles/profile/education/school[2]/@name"/>
-        \item[<xsl:value-of select="profiles/profile/education/school[3]/from"/>--<xsl:value-of select="profiles/profile/education/school[3]/to"/>] <xsl:value-of select="profiles/profile/education/school[3]/@name"/>
+        <xsl:apply-templates select="/profiles/profile/education/school[2]" mode="school2" />
+        <xsl:apply-templates select="/profiles/profile/education/school[3]" mode="school3" />
         \end{CV}
 
         \pagebreak
 
-        \section{Thesis}
-        \noindent <xsl:value-of select="profiles/profile/thesis"/>
+        <xsl:apply-templates select="profiles/profile/thesis" mode="thesis"/>
 
         \section{Working Experience}
 
@@ -68,10 +67,9 @@
 
         \item[<xsl:value-of select="profiles/profile/experience/job[1]/from"/>--<xsl:value-of select="profiles/profile/experience/job[1]/to"/>] <xsl:value-of select="profiles/profile/experience/job[1]/@name"/>
 
-        \item[<xsl:value-of select="profiles/profile/experience/job[2]/from"/>--<xsl:value-of select="profiles/profile/experience/job[2]/to"/>] <xsl:value-of select="profiles/profile/experience/job[2]/@name"/>
+        <xsl:apply-templates select="/profiles/profile/experience/job[2]" mode="job2" />
 
-
-        \item[<xsl:value-of select="profiles/profile/experience/job[3]/from"/>--<xsl:value-of select="profiles/profile/experience/job[3]/to"/>] <xsl:value-of select="profiles/profile/experience/job[3]/@name"/>
+        <xsl:apply-templates select="/profiles/profile/experience/job[3]" mode="job3" />
 
         \end{CV}
 
@@ -81,24 +79,14 @@
         \begin{tabular}{p{2cm}>{\bfseries}p{2.5cm}p{3cm}}
         &amp; <xsl:value-of select="profiles/profile/languages/language[1]/@name"/>  &amp; <xsl:value-of select="profiles/profile/languages/language[1]/@knowledge"/> \\
         &amp; <xsl:value-of select="profiles/profile/languages/language[2]/@name"/>  &amp; <xsl:value-of select="profiles/profile/languages/language[2]/@knowledge"/> \\
-        &amp; <xsl:value-of select="profiles/profile/languages/language[3]/@name"/> &amp; <xsl:value-of select="profiles/profile/languages/language[3]/@knowledge"/>\\
-        &amp; <xsl:value-of select="profiles/profile/languages/language[4]/@name"/> &amp; <xsl:value-of select="profiles/profile/languages/language[4]/@knowledge"/> \\
+        <xsl:apply-templates select="profiles/profile/languages/language[3]/@name" mode="language3"/>
+        <xsl:apply-templates select="profiles/profile/languages/language[3]/@name" mode="language4"/>
         \end{tabular}
         \end{table}
 
         \pagebreak
 
-        \section{References}
-
-        \begin{table}[h]
-        \begin{tabular}{@{}lll@{}}
-        \textbf{<xsl:value-of select="profiles/profile/reference/contact/degree"/> <xsl:value-of select="profiles/profile/reference/contact/name"/>} \\
-        <xsl:value-of select="profiles/profile/reference/relationship"/> &amp; Phone: &amp; <xsl:value-of select="profiles/profile/reference/contact/phone"/>\\
-        <xsl:value-of select="profiles/profile/reference/contact/address/street"/> &amp; Fax: &amp; <xsl:value-of select="profiles/profile/reference/contact/fax"/>\\
-        <xsl:value-of select="profiles/profile/reference/contact/address/postcode"/> <xsl:value-of select="profiles/profile/reference/contact/address/city"/> &amp; Email: &amp; <xsl:value-of select="profiles/profile/reference/contact/email"/> \\
-        <xsl:value-of select="profiles/profile/reference/contact/address/country"/> \\
-        \end{tabular}
-        \end{table}
+        <xsl:apply-templates select="profiles/profile/reference" mode="reference"/>
 
         \vspace{2\baselineskip}
         \noindent Groningen, \today
@@ -118,5 +106,49 @@
         \end{table}
 
     </xsl:template>
+
+    <xsl:template match="profiles/profile/education/school[2]" mode="school2">
+        \item[<xsl:value-of select="profiles/profile/education/school[2]/from"/>--<xsl:value-of select="profiles/profile/education/school[2]/to"/>] <xsl:value-of select="profiles/profile/education/school[2]/@name"/>
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/education/school[3]" mode="school3">
+        \item[<xsl:value-of select="profiles/profile/education/school[3]/from"/>--<xsl:value-of select="profiles/profile/education/school[3]/to"/>] <xsl:value-of select="profiles/profile/education/school[3]/@name"/>
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/thesis" mode="thesis">
+        \section{Thesis}
+        \noindent <xsl:value-of select="profiles/profile/thesis"/>
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/experience/job[2]" mode="job2">
+        \item[<xsl:value-of select="profiles/profile/experience/job[2]/from"/>--<xsl:value-of select="profiles/profile/experience/job[2]/to"/>] <xsl:value-of select="profiles/profile/experience/job[2]/@name"/>
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/experience/job[2]" mode="job3">
+        \item[<xsl:value-of select="profiles/profile/experience/job[3]/from"/>--<xsl:value-of select="profiles/profile/experience/job[3]/to"/>] <xsl:value-of select="profiles/profile/experience/job[3]/@name"/>
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/languages/language[3]/@name" mode="language3">
+        &amp; <xsl:value-of select="profiles/profile/languages/language[3]/@name"/> &amp; <xsl:value-of select="profiles/profile/languages/language[3]/@knowledge"/>\\
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/languages/language[4]/@name" mode="language4">
+        &amp; <xsl:value-of select="profiles/profile/languages/language[4]/@name"/> &amp; <xsl:value-of select="profiles/profile/languages/language[4]/@knowledge"/> \\
+    </xsl:template>
+
+    <xsl:template match="profiles/profile/reference" mode="reference">
+        \section{References}
+
+        \begin{table}[h]
+        \begin{tabular}{@{}lll@{}}
+        \textbf{<xsl:value-of select="profiles/profile/reference/contact/degree"/> <xsl:value-of select="profiles/profile/reference/contact/name"/>} \\
+        <xsl:value-of select="profiles/profile/reference/relationship"/> &amp; Phone: &amp; <xsl:value-of select="profiles/profile/reference/contact/phone"/>\\
+        <xsl:value-of select="profiles/profile/reference/contact/address/street"/> &amp; Fax: &amp; <xsl:value-of select="profiles/profile/reference/contact/fax"/>\\
+        <xsl:value-of select="profiles/profile/reference/contact/address/postcode"/> <xsl:value-of select="profiles/profile/reference/contact/address/city"/> &amp; Email: &amp; <xsl:value-of select="profiles/profile/reference/contact/email"/> \\
+        <xsl:value-of select="profiles/profile/reference/contact/address/country"/> \\
+        \end{tabular}
+        \end{table}
+    </xsl:template>
+
 
 </xsl:stylesheet>
