@@ -125,7 +125,7 @@
         \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[2]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[2]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[2]/@name"/>
     </xsl:template>
 
-    <xsl:template match="profiles/profile[@pid=$pid]/experience/job[2]" mode="job3">
+    <xsl:template match="profiles/profile[@pid=$pid]/experience/job[3]" mode="job3">
         \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[3]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[3]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[3]/@name"/>
     </xsl:template>
 
