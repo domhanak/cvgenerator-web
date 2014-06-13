@@ -61,119 +61,121 @@
 
     <xsd:simpleType name="nameType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([A-Z])([a-z])*([ ])?)+"/>
+            <xsd:minLength value="1"/>
+
+            <!--    <xsd:pattern value="(([A-Z])([a-z])*([ ])?)+"/>-->
         </xsd:restriction>
-    </xsd:simpleType>
+        </xsd:simpleType>
 
-    <xsd:complexType name="addressType">
-        <xsd:sequence>
-            <xsd:element minOccurs="1" name="street" type="streetType"/>
-            <xsd:element minOccurs="1" name="postcode" type="xsd:string"/>
-            <xsd:element minOccurs="1" name="city" type="xsd:string"/>
-        </xsd:sequence>
-
-
-    </xsd:complexType>
-
-    <xsd:simpleType name="streetType">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([A-Za-z])+([ ]))*([0-9])+"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="postCodeType">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[1-9]([0-9])2[ ]([0-9])2"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="phoneType">
-        <xsd:restriction base="xsd:string">
-           <xsd:pattern value="([+])?([0-9]{3}([ ])?){4}"/>
-
-        </xsd:restriction>
-
-    </xsd:simpleType>
-
-    <xsd:complexType name="faxType">
-
-    </xsd:complexType>
-
-    <xsd:simpleType name="emailType">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([a-zA-Z0-9])+([.])?)+[@](([a-zA-Z])+[.])+([a-z]{2}|[a-z]{3})"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="homepageType">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[hH][tT]{2}[pP]://[wW]{3}.(([a-zA-Z]+)[.])+(([a-z]){2}|([a-z]){3})"/>
-        </xsd:restriction>
-
-    </xsd:simpleType>
-
-    <xsd:complexType name="detailsType">
-        <xsd:sequence>
-            <xsd:element minOccurs="1" name="gender" type="xsd:string"/>
-            <xsd:element minOccurs="1" name="birthDate" type="dateType"/>
-            <xsd:element minOccurs="1" name="birthPlace" type="xsd:string"/>
-            <xsd:element minOccurs="1" name="citizenship" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-
-    <xsd:simpleType name="dateType">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[0-3][0-9][.][0-1][0-9][.][1-2][0-9]{3}"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:complexType name="educationType">
-        <xsd:sequence>
-            <xsd:element minOccurs="1" name="school" type="schoolType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-
-    <xsd:complexType name="schoolType">
-        <xsd:sequence>
-            <xsd:element name="from" type="dateType" />
-            <xsd:element name="to" type="dateType" />
-        </xsd:sequence>
-
-        <xsd:attribute name="name" type="xsd:string" use="required"/>
-    </xsd:complexType>
-
-    <xsd:complexType name="thesisType">
-
-    </xsd:complexType>
-
-    <xsd:complexType name="experienceType">
-        <xsd:sequence>
-            <xsd:element minOccurs="1" name="job" type="schoolType"/>
-        </xsd:sequence>
-
-    </xsd:complexType>
-
-    <xsd:complexType name="languagesType">
-        <xsd:sequence>
-            <xsd:element minOccurs="1" maxOccurs="4" name="language" type="languageType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-
-    <xsd:complexType name="languageType">
-        <xsd:attribute name="name" type="xsd:string" use="required"/>
-        <xsd:attribute name="knowledge" type="xsd:string" use="required"/>
-    </xsd:complexType>
-
-    <xsd:complexType name="referenceType">
-        <xsd:sequence>
-            <xsd:element minOccurs="0" name="relationship" type="xsd:string"/>
-            <xsd:element name="contact" type="contactType"/>
-        </xsd:sequence>
-    </xsd:complexType>
+        <xsd:complexType name="addressType">
+            <xsd:sequence>
+                <xsd:element minOccurs="1" name="street" type="nameType"/>
+                <xsd:element minOccurs="1" name="postcode" type="xsd:string"/>
+                <xsd:element minOccurs="1" name="city" type="xsd:string"/>
+            </xsd:sequence>
 
 
+        </xsd:complexType>
+
+        <xsd:simpleType name="streetType">
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="(($[A-Za-z])+([ ]))*([0-9])+"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+
+        <xsd:simpleType name="postCodeType">
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="[1-9]([0-9])2[ ]([0-9])2"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+
+        <xsd:simpleType name="phoneType">
+            <xsd:restriction base="xsd:string">
+               <xsd:pattern value="([+])?([0-9]{3}([ ])?){4}"/>
+
+            </xsd:restriction>
+
+        </xsd:simpleType>
+
+        <xsd:complexType name="faxType">
+
+        </xsd:complexType>
+
+        <xsd:simpleType name="emailType">
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="(([a-zA-Z0-9])+([.])?)+[@](([a-zA-Z])+[.])+([a-z]{2}|[a-z]{3})"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+
+        <xsd:simpleType name="homepageType">
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="[hH][tT]{2}[pP]://[wW]{3}.(([a-zA-Z]+)[.])+(([a-z]){2}|([a-z]){3})"/>
+            </xsd:restriction>
+
+        </xsd:simpleType>
+
+        <xsd:complexType name="detailsType">
+            <xsd:sequence>
+                <xsd:element minOccurs="1" name="gender" type="xsd:string"/>
+                <xsd:element minOccurs="1" name="birthDate" type="dateType"/>
+                <xsd:element minOccurs="1" name="birthPlace" type="xsd:string"/>
+                <xsd:element minOccurs="1" name="citizenship" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+
+        <xsd:simpleType name="dateType">
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="[0-3][0-9][.][0-1][0-9][.][1-2][0-9]{3}"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+
+        <xsd:complexType name="educationType">
+            <xsd:sequence>
+                <xsd:element minOccurs="1" name="school" type="schoolType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+
+        <xsd:complexType name="schoolType">
+            <xsd:sequence>
+                <xsd:element name="from" type="dateType" />
+                <xsd:element name="to" type="dateType" />
+            </xsd:sequence>
+
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+        </xsd:complexType>
+
+        <xsd:complexType name="thesisType">
+
+        </xsd:complexType>
+
+        <xsd:complexType name="experienceType">
+            <xsd:sequence>
+                <xsd:element minOccurs="1" name="job" type="schoolType"/>
+            </xsd:sequence>
+
+        </xsd:complexType>
+
+        <xsd:complexType name="languagesType">
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="4" name="language" type="languageType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+
+        <xsd:complexType name="languageType">
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="knowledge" type="xsd:string" use="required"/>
+        </xsd:complexType>
+
+        <xsd:complexType name="referenceType">
+            <xsd:sequence>
+                <xsd:element minOccurs="0" name="relationship" type="xsd:string"/>
+                <xsd:element name="contact" type="contactType"/>
+            </xsd:sequence>
+        </xsd:complexType>
 
 
 
 
-</xsd:schema>
+
+
+    </xsd:schema>
