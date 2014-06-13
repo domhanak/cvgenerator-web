@@ -59,9 +59,11 @@ public class ProfilerServlet extends HttpServlet {
                         NodeList nl = el.getChildNodes();
                         for (int i = 0; i < nl.getLength(); i++)
                         {
-                            Element element = (Element) nl.item(i);
-                            if (element.getAttribute("pid").equals(pid)){
-                                el.removeChild(element);
+                            if(nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                                Element element = (Element) nl.item(i);
+                                if (element.getAttribute("pid").equals(pid)) {
+                                    el.removeChild(element);
+                                }
                             }
                         }
                     }

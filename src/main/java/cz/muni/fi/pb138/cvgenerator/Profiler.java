@@ -39,12 +39,11 @@ public class Profiler {
         return profile;
     }
 
-    private Element createPersonalReference() throws ProfilerException
-    {
+    private Element createPersonalReference() throws ProfilerException {
         Element reference = doc.createElement("reference");
         Element refContact = doc.createElement("contact");
 
-        if (request.getParameter("relationship") != null || !request.getParameter("relationship").isEmpty()){
+        if (request.getParameter("relationship") != null || !request.getParameter("relationship").isEmpty()) {
             reference.appendChild(createSimpleElement(request.getParameter("relationship"), "relationship"));
         }
         if (request.getParameter("refdegree") != null && !request.getParameter("refdegree").isEmpty()) {
@@ -53,16 +52,18 @@ public class Profiler {
         if (request.getParameter("refname") != null && request.getParameter("refsurname") != null) {
             refContact.appendChild(createSimpleElement(request.getParameter("refname") + " " + request.getParameter("refsurname"), "name"));
         }
-        refContact.appendChild(createAddressElement(request.getParameter("refstreet"),
+         if (request.getParameter("refstreet")!= null && !request.getParameter("refstreet").isEmpty()
+            && request.getParameter("refhousenumber") != null && !request.getParameter("refhousenumber").isEmpty()
+            && request.getParameter("refpostcode") != null && !request.getParameter("refpostcode").isEmpty()
+            && request.getParameter("refcity") != null && !request.getParameter("refcity").isEmpty()) {
+
+            refContact.appendChild(createAddressElement(request.getParameter("refstreet"),
                 request.getParameter("refhousenumber"),
                 request.getParameter("refpostcode"),
                 request.getParameter("refcity")));
-
+        }
         if (request.getParameter("refcountry") != null && !request.getParameter("refcountry").isEmpty()) {
             refContact.appendChild(createSimpleElement(request.getParameter("refcountry"), "country"));
-        } else {
-            request.setAttribute("error", "Please fill country field.");
-            throw new ProfilerException("Country field not filled.");
         }
 
         if (request.getParameter("reftel") != null && !request.getParameter("reftel").isEmpty()) {
@@ -77,9 +78,6 @@ public class Profiler {
         }
         if (request.getParameter("refemail") != null && !request.getParameter("refemail").isEmpty()) {
             refContact.appendChild(createSimpleElement(request.getParameter("refemail"), "email"));
-        } else {
-            request.setAttribute("error", "Please fill email field.");
-            throw new ProfilerException("Email field not filled.");
         }
         if (request.getParameter("refhomepage") != null && !request.getParameter("refhomepage").isEmpty()) {
             refContact.appendChild(createSimpleElement(request.getParameter("refhomepage"), "homepage"));
