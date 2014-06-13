@@ -43,7 +43,7 @@ public class Profiler {
         Element reference = doc.createElement("reference");
         Element refContact = doc.createElement("contact");
 
-        if (request.getParameter("relationship") != null || !request.getParameter("relationship").isEmpty()) {
+        if (request.getParameter("relationship") != null && !request.getParameter("relationship").isEmpty()) {
             reference.appendChild(createSimpleElement(request.getParameter("relationship"), "relationship"));
         }
         if (request.getParameter("refdegree") != null && !request.getParameter("refdegree").isEmpty()) {

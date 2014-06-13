@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -116,11 +118,7 @@ public class ProfilerServlet extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                try {
-                    Process p = Runtime.getRuntime().exec("pdflatex latex");
-                } catch (Exception e) {
-
-                }
+                //TODO: Convert to pdf.
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
