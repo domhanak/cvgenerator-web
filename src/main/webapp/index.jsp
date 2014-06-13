@@ -259,8 +259,11 @@
             </table>
         </div>
     </div>
-    <input type="Submit" value="Create CV"  style="border: 2px solid gray; background-color: gold; width: 200px; height: 40px; font-size: 22px; margin-top: 15px; margin-left: 905px"/>
+    <input class="button" type="Submit" value="Create CV" style="margin-top: 15px; margin-left: 905px;"/>
 </form>
-
+<form action="${pageContext.request.contextPath}/profiles/load" method="post">
+    <input type="number" name="pid" value="<c:out value='${param.pid}'/>" placeholder="Your profile ID" style="margin-left: 750px;">
+    <input class="button" type="submit" value="Load CV">
+</form>
 </body>
 </html>

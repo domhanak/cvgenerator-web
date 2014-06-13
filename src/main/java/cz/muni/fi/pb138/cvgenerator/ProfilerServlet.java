@@ -98,12 +98,10 @@ public class ProfilerServlet extends HttpServlet {
                     validationError = profileValidator.validate((File) getServletContext().getAttribute("xmlFile"));
                     System.err.println(validationError);
 
-                }catch (IOException ex) {
+                } catch (IOException ex) {
                     System.err.println("File not found: " + ex.getMessage());
+                    return;
                 }
-
-
-
 
                 TransformerFactory tf = TransformerFactory.newInstance();
                 try {
@@ -114,8 +112,10 @@ public class ProfilerServlet extends HttpServlet {
                             new StreamResult(new File(this.getClass().getResource("/latex.tex").toURI())));
                 } catch (TransformerException e) {
                     e.printStackTrace();
+                    return;
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
+                    return;
                 }
 
                 //TODO: Convert to pdf.
