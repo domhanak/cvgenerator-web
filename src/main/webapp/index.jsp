@@ -50,6 +50,10 @@
         <div id="tabs-1">
             <table>
                 <tr>
+                    <th>Your ID:</th>
+                    <td><input type="text" name="pid" value="<c:out value='${param.pid}'/>"/></td>
+                </tr>
+                <tr>
                     <th>Degree:</th>
                     <td><input type="text" name="degree" value="<c:out value='${param.degree}'/>"/></td>
                 </tr>
@@ -248,6 +252,8 @@
                     </tr>
                     <th>E-mail:</th>
                     <td><input type="email" name="refemail" value="<c:out value='${param.refemail}'/>"></td>
+                    <th>Homepage:</th>
+                    <td><input type="url" name="refhomepage" value="<c:out value='${param.refhomepage}'/>"></td>
                 </table>
 
             </table>

@@ -68,9 +68,8 @@
     <xsd:complexType name="addressType">
         <xsd:sequence>
             <xsd:element minOccurs="1" name="street" type="streetType"/>
-            <xsd:element minOccurs="1" name="city" type="xsd:string"/>
             <xsd:element minOccurs="1" name="postcode" type="xsd:string"/>
-            
+            <xsd:element minOccurs="1" name="city" type="xsd:string"/>
         </xsd:sequence>
 
 

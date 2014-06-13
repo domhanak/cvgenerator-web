@@ -22,9 +22,9 @@ public class Profiler {
         this.doc = doc;
     }
 
-    public Element createProfile() throws ProfilerException {
+    public Element createProfile(String pid) throws ProfilerException {
         Element profile = doc.createElement("profile");
-        //profile.setAttribute("pid", request.);
+        profile.setAttribute("pid", pid);
 
         profile.appendChild(createContactElement());
         profile.appendChild(createPersonalInfo());
@@ -34,8 +34,60 @@ public class Profiler {
         }
         profile.appendChild(createExperience());
         profile.appendChild(createLanguages());
+        profile.appendChild(createPersonalReference());
 
         return profile;
+    }
+
+    private Element createPersonalReference() throws ProfilerException
+    {
+        Element reference = doc.createElement("reference");
+        Element refContact = doc.createElement("contact");
+
+        if (request.getParameter("relationship") != null || !request.getParameter("relationship").isEmpty()){
+            reference.appendChild(createSimpleElement(request.getParameter("relationship"), "relationship"));
+        }
+        if (request.getParameter("refdegree") != null && !request.getParameter("refdegree").isEmpty()) {
+            refContact.appendChild(createSimpleElement(request.getParameter("refdegree"), "degree"));
+        }
+        if (request.getParameter("refname") != null && request.getParameter("refsurname") != null) {
+            refContact.appendChild(createSimpleElement(request.getParameter("refname") + " " + request.getParameter("refsurname"), "name"));
+        }
+        refContact.appendChild(createAddressElement(request.getParameter("refstreet"),
+                request.getParameter("refhousenumber"),
+                request.getParameter("refpostcode"),
+                request.getParameter("refcity")));
+
+        if (request.getParameter("refcountry") != null && !request.getParameter("refcountry").isEmpty()) {
+            refContact.appendChild(createSimpleElement(request.getParameter("refcountry"), "country"));
+        } else {
+            request.setAttribute("error", "Please fill country field.");
+            throw new ProfilerException("Country field not filled.");
+        }
+
+        if (request.getParameter("reftel") != null && !request.getParameter("reftel").isEmpty()) {
+            refContact.appendChild(createSimpleElement(request.getParameter("reftel"), "phone"));
+        } else {
+            request.setAttribute("error", "Please fill phone field.");
+            throw new ProfilerException("Phone field not filled.");
+        }
+
+        if (request.getParameter("reffax") != null && !request.getParameter("reffax").isEmpty()) {
+            refContact.appendChild(createSimpleElement(request.getParameter("fax"), "fax"));
+        }
+        if (request.getParameter("refemail") != null && !request.getParameter("refemail").isEmpty()) {
+            refContact.appendChild(createSimpleElement(request.getParameter("refemail"), "email"));
+        } else {
+            request.setAttribute("error", "Please fill email field.");
+            throw new ProfilerException("Email field not filled.");
+        }
+        if (request.getParameter("refhomepage") != null && !request.getParameter("refhomepage").isEmpty()) {
+            refContact.appendChild(createSimpleElement(request.getParameter("refhomepage"), "homepage"));
+        }
+
+        reference.appendChild(refContact);
+
+        return reference;
     }
 
     private Element createContactElement() throws ProfilerException {
@@ -44,7 +96,7 @@ public class Profiler {
             contact.appendChild(createSimpleElement(request.getParameter("degree"), "degree"));
         }
         if (request.getParameter("name") != null && request.getParameter("surname") != null) {
-            contact.appendChild(createSimpleElement(request.getParameter("name") + request.getParameter("surname"), "name"));
+            contact.appendChild(createSimpleElement(request.getParameter("name") + " " + request.getParameter("surname"), "name"));
         }
         contact.appendChild(createAddressElement(request.getParameter("street"),
                 request.getParameter("housenumber"),
@@ -302,7 +354,7 @@ public class Profiler {
 
         Element language = doc.createElement("language");
         language.setAttribute("name", languageName);
-        language.setAttribute("level", languageLvl);
+        language.setAttribute("knowledge", languageLvl);
 
         return language;
     }

@@ -2,6 +2,8 @@ package cz.muni.fi.pb138.cvgenerator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,9 +43,33 @@ public class ProfilerServlet extends HttpServlet {
             case "/add":
                 Profiler profiler = new Profiler(request, profiles);
                 Element profile = null;
+                String pid;
+
+                if (request.getParameter("pid") == null || request.getParameter("pid").isEmpty()){
+                    request.setAttribute("error2", "You didn't fill your ID.");
+                    request.getRequestDispatcher(LIST_JSP).forward(request, response);
+                    return;
+                } else {
+                    /* Check if user that came created CV before */
+                    if (checkIfNewUser(request.getParameter("pid"), profiles)){
+                        pid = request.getParameter("pid");
+                    } else {
+                        pid = request.getParameter("pid");
+                        Element el = profiles.getDocumentElement();
+                        NodeList nl = el.getChildNodes();
+                        for (int i = 0; i < nl.getLength(); i++)
+                        {
+                            Element element = (Element) nl.item(i);
+                            if (element.getAttribute("pid").equals(pid)){
+                                el.removeChild(element);
+                            }
+                        }
+                    }
+                }
+
 
                 try {
-                    profile = profiler.createProfile();
+                    profile = profiler.createProfile(pid);
                 } catch (ProfilerException e) {
                     request.setAttribute("error2", "Some required fields weren't filled. Hint: " + e.getMessage());
                     request.getRequestDispatcher(LIST_JSP).forward(request, response);
@@ -51,7 +77,6 @@ public class ProfilerServlet extends HttpServlet {
                 }
 
                 Element el = profiles.getDocumentElement();
-                System.out.println(el.getTagName());
                 el.appendChild(profile);
 
                 try {
@@ -70,7 +95,7 @@ public class ProfilerServlet extends HttpServlet {
                     System.err.println(validationError);
 
                 }catch (IOException ex) {
-                    System.err.println("File not found: "+ex.getMessage());
+                    System.err.println("File not found: " + ex.getMessage());
                 }
 
 
@@ -89,24 +114,11 @@ public class ProfilerServlet extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                File workingDirectory = null;
-               /* try {
+                try {
+                    Process p = Runtime.getRuntime().exec("pdflatex latex");
+                } catch (Exception e) {
 
-                    workingDirectory = new File(this.getClass().getResource("/").toURI());
-                    File template = new File(workingDirectory.getAbsolutePath() + File.separator + "latex.tex");
-                    File desktop = new File(System.getProperty("user.home")	+ File.separator + "Desktop");
-
-                    JLRGenerator pdfGen = new JLRGenerator();
-
-                    pdfGen.generate(template, desktop, workingDirectory);
-
-                    File pdf1 = pdfGen.getPDF();
-                    JLROpener.open(pdf1);
-
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
                 }
-*/
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
@@ -130,4 +142,22 @@ public class ProfilerServlet extends HttpServlet {
         StreamResult result = new StreamResult(xmlFile);
         transformer.transform(source, result);
     }
+
+    private boolean checkIfNewUser(String pid, Document doc)
+    {
+        Element docEle = doc.getDocumentElement();
+        NodeList nl = docEle.getChildNodes();
+        for (int i = 0; i < nl.getLength(); i++)
+        {
+            if(nl.item(i).getNodeType() == Node.ELEMENT_NODE){
+                Element el = (Element) nl.item(i);
+                if (pid.equals(el.getAttribute("pid"))){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
 }
