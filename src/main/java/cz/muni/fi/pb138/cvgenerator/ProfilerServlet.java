@@ -141,6 +141,19 @@ public class ProfilerServlet extends HttpServlet {
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
+
+
+            default:
+                throw new ServletException("");
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        String action = request.getPathInfo();
+        switch (action) {
             case "/load":
                 String loadPid = request.getParameter("loadpid");
                 Element docEle = profiles.getDocumentElement();
@@ -150,22 +163,28 @@ public class ProfilerServlet extends HttpServlet {
                     if(nl.item(i).getNodeType() == Node.ELEMENT_NODE){
                         Element element = (Element) nl.item(i);
                         if (loadPid.equals(element.getAttribute("pid"))){
-                            //TODO: Send to form on web
+                            try {
+
+                                request.setAttribute("loadedProfile", element.getChildNodes());
+                                request.getRequestDispatcher(LIST_JSP).forward(request, response);
+
+                            }catch (ServletException ex)
+                            {
+                                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+                            }catch (IOException ex)
+                            {
+                                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+                            }
 
                         }
                     }
 
                 }
-
-            default:
-                throw new ServletException("");
         }
+
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse httpServletResponse)
-            throws ServletException, IOException {
-    }
+
 
     private void saveToFile(File xmlFile, Document doc) throws TransformerException
     {
