@@ -23,7 +23,6 @@ import javax.xml.validation.Schema;
 @WebListener
 public class StartListener implements ServletContextListener {
 
-    private DocumentBuilder dBuilder = null;
     private Document doc = null;
     private File file = null;
     private File schemaFile = null;
@@ -31,11 +30,8 @@ public class StartListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent)
     {
-
         ServletContext servletContext = servletContextEvent.getServletContext();
 
-
-        //File file = null;
         try {
             file = new File(this.getClass().getResource("/profiles.xml").toURI());
             schemaFile = new File(this.getClass().getResource("/profiles.xsd").toURI());
@@ -47,15 +43,7 @@ public class StartListener implements ServletContextListener {
             throw new NullPointerException("File is null!");
         }
 
-        try {
-            doc = fileParser(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+        doc = fileParser(file);
 
         servletContext.setAttribute("xmlFile", file);
         servletContext.setAttribute("schemaFile", schemaFile);
@@ -68,29 +56,24 @@ public class StartListener implements ServletContextListener {
         System.out.print(true);
     }
 
-    private Document fileParser(File xmlFile) throws IOException, SAXException, ParserConfigurationException
+    /**
+     *
+     * @param xmlFile File to be parsed
+     * @return valid org.w3c.Document; null if exception caught
+     */
+    private Document fileParser(File xmlFile)
     {
-        /*
-        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = sf.newSchema(schemaFile);
-
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setValidating(true);
-        dbFactory.setSchema(schema);
-        dBuilder = dbFactory.newDocumentBuilder();
-        return dBuilder.parse(xmlFile);
-        */
         ProfileValidator profileValidator = new ProfileValidator(schemaFile);
 
-        try
-        {
+        try {
             return profileValidator.parse(file);
 
-        }catch (IOException ex) {
-            System.err.println("File not found: "+ex.getMessage());
-        }catch (SAXException ex) {
+        } catch (IOException ex) {
+            System.err.println("File not found: " + ex.getMessage());
+        } catch (SAXException ex) {
             System.err.println("Validation error: " + ex.getMessage());
         }
+
         return null;
 
     }

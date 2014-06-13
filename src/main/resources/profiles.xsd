@@ -101,13 +101,13 @@
 
     <xsd:simpleType name="emailType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([a-zA-Z])+([.])?)+[@](([a-zA-Z])+[.])+([a-z]{2}|[a-z]{3})"/>
+            <xsd:pattern value="(([a-zA-Z0-9])+([.])?)+[@](([a-zA-Z])+[.])+([a-z]{2}|[a-z]{3})"/>
         </xsd:restriction>
     </xsd:simpleType>
 
     <xsd:simpleType name="homepageType">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="[http://www][.](([a-zA-Z])+[.])+(([a-z])2|([a-z]){3})"/>
+            <xsd:pattern value="[hH][tT]{2}[pP]://[wW]{3}.(([a-zA-Z]+)[.])+(([a-z]){2}|([a-z]){3})"/>
         </xsd:restriction>
 
     </xsd:simpleType>

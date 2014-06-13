@@ -88,7 +88,6 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
-
                 ProfileValidator profileValidator = new ProfileValidator((File) getServletContext().getAttribute("schemaFile"));
                 String validationError = null;
                 try
@@ -105,6 +104,7 @@ public class ProfilerServlet extends HttpServlet {
                 try {
                     Transformer xsltProc = tf.newTransformer(
                             new StreamSource(new File(this.getClass().getResource("/toPdf.xsl").toURI())));
+                    xsltProc.setParameter("pid", pid);
                     xsltProc.transform(
                             new StreamSource(new File(this.getClass().getResource("/profiles.xml").toURI())),
                             new StreamResult(new File(this.getClass().getResource("/latex.tex").toURI())));
@@ -118,8 +118,9 @@ public class ProfilerServlet extends HttpServlet {
 
                 try {
                     File latex = new File(this.getClass().getResource("/latex.tex").toURI());
+                    System.out.print(this.getClass().getResource("/latex.tex").toURI());
                     try {
-                        Process p = Runtime.getRuntime().exec("pdflatex " + latex.getAbsolutePath());
+                        Process p = Runtime.getRuntime().exec("pdflatex " + this.getClass().getResource("/latex.tex").toURI());
 
                     } catch (IOException e) {
                         System.out.print("error  " + e.getMessage());
@@ -127,7 +128,6 @@ public class ProfilerServlet extends HttpServlet {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-                //TODO: Convert to pdf.
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;

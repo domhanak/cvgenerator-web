@@ -34,7 +34,10 @@ public class Profiler {
         }
         profile.appendChild(createExperience());
         profile.appendChild(createLanguages());
-        profile.appendChild(createPersonalReference());
+        if (request.getParameter("relationship") != null && !request.getParameter("relationship").isEmpty()){
+            profile.appendChild(createPersonalReference());
+        }
+
 
         return profile;
     }
