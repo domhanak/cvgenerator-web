@@ -131,7 +131,7 @@
 
         <xsd:complexType name="educationType">
             <xsd:sequence>
-                <xsd:element minOccurs="1" name="school" type="schoolType"/>
+                <xsd:element minOccurs="1" maxOccurs="3" name="school" type="schoolType"/>
             </xsd:sequence>
         </xsd:complexType>
 
@@ -150,7 +150,7 @@
 
         <xsd:complexType name="experienceType">
             <xsd:sequence>
-                <xsd:element minOccurs="1" name="job" type="schoolType"/>
+                <xsd:element minOccurs="1" maxOccurs="3" name="job" type="schoolType"/>
             </xsd:sequence>
 
         </xsd:complexType>
@@ -172,10 +172,5 @@
                 <xsd:element name="contact" type="contactType"/>
             </xsd:sequence>
         </xsd:complexType>
-
-
-
-
-
 
     </xsd:schema>

@@ -116,17 +116,27 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
+
+                String path = null;
+                path = ProfilerServlet.class.getProtectionDomain().getCodeSource().getLocation().toString();
+                String[] pathFrags = path.split("/");
+                String newPath = new String();
+                int counter = 0;
+                while (!pathFrags[counter].equals("classes")){
+                    newPath += pathFrags[counter] + "/";
+                    counter++;
+                }
+                newPath += "classes/";
+
                 try {
-                    File latex = new File(this.getClass().getResource("/latex.tex").toURI());
-                    System.out.print(this.getClass().getResource("/latex.tex").toURI());
                     try {
                         Process p = Runtime.getRuntime().exec("pdflatex " + this.getClass().getResource("/latex.tex").toURI());
-
-                    } catch (IOException e) {
-                        System.out.print("error  " + e.getMessage());
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
                     }
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
+                    System.out.print("Som tu!");
+                } catch (IOException e) {
+                    System.out.print("error  " + e.getMessage());
                 }
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
