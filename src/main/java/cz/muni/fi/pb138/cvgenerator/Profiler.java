@@ -321,7 +321,7 @@ public class Profiler {
             throw new ProfilerException("Address elements weren't inputed.");
         }
 
-        Element streetEl = createSimpleElement(street + houseNumber, "street");
+        Element streetEl = createSimpleElement(street + " " + houseNumber, "street");
         Element postCodeEl = createSimpleElement(postcode, "postcode");
         Element cityEl = createSimpleElement(city, "city");
 

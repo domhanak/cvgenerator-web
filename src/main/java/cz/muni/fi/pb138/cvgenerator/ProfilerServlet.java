@@ -122,6 +122,22 @@ public class ProfilerServlet extends HttpServlet {
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
+            case "/load":
+                String loadPid = request.getParameter("loadpid");
+                Element docEle = profiles.getDocumentElement();
+                NodeList nl = docEle.getChildNodes();
+                for (int i = 0; i < nl.getLength(); i++)
+                {
+                    if(nl.item(i).getNodeType() == Node.ELEMENT_NODE){
+                        Element element = (Element) nl.item(i);
+                        if (loadPid.equals(element.getAttribute("pid"))){
+                            //TODO: Send to form on web
+
+                        }
+                    }
+
+                }
+
             default:
                 throw new ServletException("");
         }
