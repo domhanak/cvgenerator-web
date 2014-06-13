@@ -175,11 +175,11 @@ public class Profiler {
 
         if (request.getParameter("ndschoolname") != null && !request.getParameter("ndschoolname").isEmpty()) {
             education.appendChild(createComplexElement(request.getParameter("ndschoolname"),
-                    Arrays.asList(request.getParameter("ndschoolfrom"), request.getParameter("ndschoolto")), "job"));
+                    Arrays.asList(request.getParameter("ndschoolfrom"), request.getParameter("ndschoolto")), "school"));
         }
         if (request.getParameter("rdschoolname") != null && !request.getParameter("rdschoolname").isEmpty()) {
             education.appendChild(createComplexElement(request.getParameter("rdschoolname"),
-                    Arrays.asList(request.getParameter("rdschoolfrom"), request.getParameter("rdschoolto")), "job"));
+                    Arrays.asList(request.getParameter("rdschoolfrom"), request.getParameter("rdschoolto")), "school"));
         }
 
         return education;
