@@ -105,6 +105,7 @@ public class ProfilerServlet extends HttpServlet {
                 try {
                     Transformer xsltProc = tf.newTransformer(
                             new StreamSource(new File(this.getClass().getResource("/toPdf.xsl").toURI())));
+                    xsltProc.setParameter("pid", pid);
                     xsltProc.transform(
                             new StreamSource(new File(this.getClass().getResource("/profiles.xml").toURI())),
                             new StreamResult(new File(this.getClass().getResource("/latex.tex").toURI())));
