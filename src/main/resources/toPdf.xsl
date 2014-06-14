@@ -66,7 +66,7 @@
 
         <xsl:text>\begin{CV}&#xa;</xsl:text>
 
-        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/@name"/>
+        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/@name"/> \\
 
         <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[2]" mode="job2" /> \\
 
