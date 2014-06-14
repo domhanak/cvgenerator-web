@@ -36,6 +36,11 @@
         <c:out value="${error2}"/>
     </div>
 </c:if>
+<c:if test="${not empty pidError}">
+    <div style="border: solid 1px red; background-color: yellow; padding: 10px">
+        <c:out value="${pidError}"/>
+    </div>
+</c:if>
 <form action="${pageContext.request.contextPath}/profiles/add" method="post">
     <div id="tabs" style="width: 1105px" >
         <ul>

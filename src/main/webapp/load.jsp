@@ -59,8 +59,8 @@
 
     <x:parse xml="${profilesDoc}" var="output"/>
     <x:out select="$output/profiles/profile[1]/contact/name" />
-
-
+    <x:set var="fragment" select="$output/profiles/profile[1]/contact/name"/>
+    <c:out value="${fragment}"/>
 
 
 
