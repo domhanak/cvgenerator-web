@@ -26,7 +26,6 @@ public class ProfileValidator {
 
         @Override
         public void warning(SAXParseException exception) throws SAXException {
-            //Logger.getAnonymousLogger(ProfileValidator.class.getName()).log(Level.INFO,exception.getMessage());
             System.out.println(exception.getMessage());
         }
 
