@@ -124,36 +124,7 @@ public class ProfilerTest {
 
     }
 
-    /*
-    public Element createComplexElement(String attribute, List<String> childs, String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("name is empty or null.");
-        }
-        if (attribute == null || attribute.isEmpty()) {
-            throw new IllegalArgumentException("attribute is empty or null.");
-        }
-        if (childs.size() != 2) {
-            throw new IllegalArgumentException("childs is invalid");
-        }
-        if (childs.get(0) == null || childs.get(0).isEmpty()
-                || childs.get(1) == null || childs.get(1).isEmpty()) {
-            throw new IllegalArgumentException("childs content is empty or null.");
-        }
 
-        Element element = doc.createElement(name);
-        Element from = doc.createElement("from");
-        Element to = doc.createElement("to");
-
-        element.setAttribute("name", attribute);
-        from.setTextContent(childs.get(0));
-        to.setTextContent(childs.get(1));
-
-        element.appendChild(from);
-        element.appendChild(to);
-
-        return element;
-    }
-     */
 
     @Test
     public void createAddressElementTest(){

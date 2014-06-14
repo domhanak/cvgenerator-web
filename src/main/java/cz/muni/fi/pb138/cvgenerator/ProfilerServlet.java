@@ -211,7 +211,6 @@ public class ProfilerServlet extends HttpServlet {
 
 
                         String xmlString = documentToString(createProfileDocument(profiles, loadPid));
-                        //String xmlString = documentToString(profiles);
                         System.out.println(xmlString);
                         request.setAttribute("profilesDoc", xmlString);
                         System.out.println(loadPid);
@@ -236,8 +235,6 @@ public class ProfilerServlet extends HttpServlet {
         String xmlString=null;
         try {
             transformer = tf.newTransformer();
-            // below code to remove XML declaration
-            // transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             StringWriter writer = new StringWriter();
             transformer.transform(new DOMSource(doc), new StreamResult(writer));
             xmlString = writer.getBuffer().toString();
