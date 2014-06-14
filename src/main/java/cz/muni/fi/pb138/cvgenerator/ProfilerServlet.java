@@ -153,30 +153,33 @@ public class ProfilerServlet extends HttpServlet {
         switch (action) {
             case "/load":
                 String loadPid = request.getParameter("loadPid");
+                /*
                 Element docEle = profiles.getDocumentElement();
                 NodeList profileNodes = docEle.getElementsByTagName("profile");
                 for (int i = 0; i < profileNodes.getLength(); i++)
                 {
                     Element element = (Element) profileNodes.item(i);
                     if (loadPid.equals(element.getAttribute("pid"))){
-                        try {
 
-                            request.setAttribute("loadedProfile", element.getChildNodes());
-                            request.setAttribute("loadPid", loadPid);
-                            request.setAttribute("xmlPath", getServletContext().getAttribute("xmlFile"));
-                            request.getRequestDispatcher(LOAD_JSP).forward(request, response);
-
-                        }catch (ServletException ex)
-                        {
-                            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
-                        }catch (IOException ex)
-                        {
-                            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
-                        }
 
                     }
 
 
+                }
+                */
+                try {
+
+                    //request.setAttribute("loadedProfile", element.getChildNodes());
+                    request.setAttribute("loadPid", loadPid);
+                    request.setAttribute("xmlPath", getServletContext().getAttribute("xmlFile"));
+                    request.getRequestDispatcher(LOAD_JSP).forward(request, response);
+
+                }catch (ServletException ex)
+                {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+                }catch (IOException ex)
+                {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
                 }
         }
 

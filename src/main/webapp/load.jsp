@@ -59,7 +59,7 @@
     <table>
         <tr>
             <th>Your ID:</th>
-            <td><input type="text" name="pid" value="<c:out value='${param.pid}'/>"/></td>
+            <td><input type="text" name="pid" value="<c:out value='${param.pid}'/>"placeholder="<c:out value='${param.pid}'/>"/></td>
         </tr>
         <tr>
             <th>Degree:</th>
@@ -269,7 +269,7 @@
 </div>
 <input class="button" type="Submit" value="Create CV" style="margin-top: 15px; margin-left: 905px;"/>
 </form>
-<form action="${pageContext.request.contextPath}/profiles/load" method="post">
+<form action="${pageContext.request.contextPath}/profiles/load" method="get">
     <input type="text" name="loadpid" value="<c:out value='${param.loadpid}'/>" placeholder="Your profile ID" style="margin-left: 750px;">
     <input class="button" type="submit" value="Load CV">
 </form>
