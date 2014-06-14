@@ -156,6 +156,11 @@ public class ProfilerTest {
             languageElement = profiler.createLanguageElement(languageName, languageLvl);
         }catch (ProfilerException ex){}
 
+        assertNotNull(languageElement);
+        assertEquals(languageName, languageElement.getAttribute("name"));
+        assertEquals(languageLvl, languageElement.getAttribute("knowledge"));
+
+
     }
 
 }
