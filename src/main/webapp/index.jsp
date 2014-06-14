@@ -177,9 +177,9 @@
                     <th><input type="text" name="stlanguage" value="<c:out value='${param.stlanguage}'/>"></th>
                     <td>
                         <select id="stlanguagelvl" name="stlanguagelvl" value="<c:out value='${param.stlanguagelvl}'/>">
-                            <option value="1">native</option>
-                            <option value="2">near native</option>
-                            <option value="3">fair</option>
+                            <option value="native">native</option>
+                            <option value="near native">near native</option>
+                            <option value="fair">fair</option>
                         </select>
                     </td>
                 </tr>
@@ -187,9 +187,9 @@
                     <th><input type="text" name="ndlanguage" value="<c:out value='${param.ndlanguage}'/>"></th>
                     <td>
                         <select id="ndlanguagelvl" name="ndlanguagelvl" value="<c:out value='${param.ndlanguagelvl}'/>">
-                            <option value="1">native</option>
-                            <option value="2">near native</option>
-                            <option value="3">fair</option>
+                            <option value="native">native</option>
+                            <option value="near native">near native</option>
+                            <option value="fair">fair</option>
                         </select>
                     </td>
                 </tr>
@@ -197,9 +197,9 @@
                     <th><input type="text" name="rdlanguage" value="<c:out value='${param.rdlanguage}'/>"></th>
                     <td>
                         <select id="rdlanguagelvl" name="rdlanguagelvl" value="<c:out value='${param.rdlanguagelvl}'/>">
-                            <option value="1">native</option>
-                            <option value="2">near native</option>
-                            <option value="3">fair</option>
+                            <option value="native">native</option>
+                            <option value="near native">near native</option>
+                            <option value="fair">fair</option>
                         </select>
                     </td>
                 </tr>
@@ -207,9 +207,9 @@
                     <th><input type="text" name="thlanguage" value="<c:out value='${param.thlanguage}'/>"></th>
                     <td>
                         <select id="thlanguagelvl" name="thlanguagelvl" value="<c:out value='${param.thlanguagelvl}'/>">
-                            <option value="1">native</option>
-                            <option value="2">near native</option>
-                            <option value="3">fair</option>
+                            <option value="native">native</option>
+                            <option value="near native">near native</option>
+                            <option value="fair">fair</option>
                         </select>
                     </td>
                 </tr>

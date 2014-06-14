@@ -135,7 +135,7 @@ public class ProfilerServlet extends HttpServlet {
                 newPath += "WEB-INF/classes/";
 
                 try {
-                    String cmd = "pdflatex -output-directory=/home/wexik/IdeaProjects/cv2 "  + newPath + "pdfko.tex";
+                    String cmd = "pdflatex -output-directory=/home/wexik/IdeaProjects/cv3 "  + newPath + "pdfko.tex";
                     Process p = Runtime.getRuntime().exec(cmd);
 
 
