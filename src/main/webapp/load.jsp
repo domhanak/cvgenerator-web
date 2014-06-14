@@ -15,6 +15,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -58,65 +59,64 @@
 <div id="tabs-1">
 
     <x:parse xml="${profilesDoc}" var="output"/>
-    <x:out select="$output/profiles/profile[1]/contact/name" />
-    <x:set var="fragment" select="$output/profiles/profile[1]/contact/name"/>
+    <x:out select="$output/profiles/profile[1]/contact/name/text()" />
+    <x:out select="$output/profiles/profile[1]/contact/name/text()" />
+    <x:set var="fragment" scope="page" select="$output/profiles/profile[1]/contact/name/text()"/>
     <c:out value="${fragment}"/>
 
+    <c:set var="degreeAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/degree/text()" />
+    </c:set>
+    <c:set var="fullNameAttr">
+        <x:out select="string($output/profiles/profile[@pid = $loadPid]/contact/name/text())" />
+    </c:set>
+    <c:set var="nameParts" value="${fn:split($fullNameAttr, '0')}" />
+
+    <c:set var="fullStreetAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/address/street/text()" />
+    </c:set>
+    <c:set var="cityAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/address/city/text()" />
+    </c:set>
+    <c:set var="postCodeAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/address/postcode/text()" />
+    </c:set>
+    <c:set var="countryAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/country/text()" />
+    </c:set>
 
 
 
 
 
-
-    <%--
-    <x:set var="fragment" select="$output//book"/>
-<b>The price of the second book</b>:
-<c:out value="${fragment}" />
-<x:out select="$output//book[1]/name"/>
-
-
-
-    <x:set var="fragment" select="$output//book"/>
-<b>The price of the second book</b>:
-<c:out value="${fragment}" />
-<x:out select="$output//book[1]/name"/>
-<c:import var="xml" charEncoding="UTF-8" url="profiles.xml"/>
-<x:parse xml="${xml}" var="output"/>
-
-<x:set var="attrCity" select="$output/profiles/profile[1]/contact/address/city"/>
-<x:set var="attrName" select="string($output/profiles/profile[1]/contact/address/city)"/>
-
-<x:out select="$output/profiles/profile[1]/contact/name" />
-<x:out select="$output/profiles/profile[1]/contact/address/city"/>
---%>
 
     <table>
         <tr>
             <th>Your ID:</th>
-            <td><input type="text" name="pid" value="<c:out value='${param.pid}'/>"placeholder="<c:out value='${param.pid}'/>"/></td>
+            <td><input type="text" name="pid" value="<c:out value='${loadPid}'/>"/></td>
         </tr>
         <tr>
             <th>Degree:</th>
-            <td><input type="text" name="degree" value="<c:out value='${param.degree}'/>"/></td>
+            <td><input type="text" name="degree" value="<c:out value='${degreeAttr}'/>"/></td>
         </tr>
         <tr>
             <th>Name:</th>
-            <td><input type="text" name="name" value="<c:out value='${param.name}'/>" required /></td>
+            <td><input type="text" name="name" value="<c:out value='${fullNameAttr}'/>" required /></td>
         </tr>
         <tr>
             <th>Surname:</th>
-            <td><input type="text" name="surname" value="<c:out value='${param.surname}'/>" required /></td>
+            <td><input type="text" name="surname" value="<c:out value='${fullNameAttr}'/>" required /></td>
         </tr>
         <tr>
             <th style="vertical-align: text-bottom">Address:</th>
-            <td><input type="text" name="street" value="<c:out value='${param.street}'/>" placeholder="Street" required>
+            <td><input type="text" name="street" value="<c:out value='${fullStreetAttr}'/>" placeholder="Street" required>
                 <input type="number" name="housenumber" value="<c:out value='${param.housenumber}'/>" placeholder="House number" required><br />
-                <input type="text" name="city" value="<c:out value='${param.city}'/>" placeholder="City" required>
-                <input type="text" name="postcode" value="<c:out value='${param.postcode}'/>" placeholder="Postcode" required></td>
+                <input type="text" name="city" value="<c:out value='${cityAttr}'/>" placeholder="City" required>
+                <input type="text" name="postcode" value="<c:out value='${postCodeAttr}'/>" placeholder="Postcode" required></td>
         </tr>
         <tr>
             <th>Country:</th>
-            <td><input type="text" name="country" value="<c:out value='${param.country}'/>" required></td>
+            <td><input type="text" name="country" value="<c:out value='${countryAttr}'/>" required></td>
         </tr>
         <tr>
             <th>Phone:</th>
