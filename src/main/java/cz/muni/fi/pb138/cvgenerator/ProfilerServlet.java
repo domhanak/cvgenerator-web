@@ -32,6 +32,7 @@ public class ProfilerServlet extends HttpServlet {
     private Document profiles = null;
 
     private static final String LIST_JSP = "/index.jsp";
+    private static final String LOAD_JSP = "/load.jsp";
     public static final String URL_MAPPING = "/profiles";
 
     @Override
@@ -151,7 +152,7 @@ public class ProfilerServlet extends HttpServlet {
         String action = request.getPathInfo();
         switch (action) {
             case "/load":
-                String loadPid = request.getParameter("loadpid");
+                String loadPid = request.getParameter("loadPid");
                 Element docEle = profiles.getDocumentElement();
                 NodeList profileNodes = docEle.getElementsByTagName("profile");
                 for (int i = 0; i < profileNodes.getLength(); i++)
@@ -163,7 +164,7 @@ public class ProfilerServlet extends HttpServlet {
                             request.setAttribute("loadedProfile", element.getChildNodes());
                             request.setAttribute("loadPid", loadPid);
                             request.setAttribute("xmlPath", getServletContext().getAttribute("xmlFile"));
-                            request.getRequestDispatcher(LIST_JSP).forward(request, response);
+                            request.getRequestDispatcher(LOAD_JSP).forward(request, response);
 
                         }catch (ServletException ex)
                         {
