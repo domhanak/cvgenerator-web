@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="Made pdflatex to do whaat we want">
+    <list default="true" id="01a9c4a5-38c6-4665-91b7-5f6078e624a8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cvgenerator-web.iws" />
@@ -918,11 +918,15 @@
       <created>1402771638437</created>
       <updated>1402771638437</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Made pdflatex to do whaat we want">
+      <created>1402771784013</created>
+      <updated>1402771784013</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69184000" />
+    <option name="totallyTimeSpent" value="69200000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
