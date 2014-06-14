@@ -59,22 +59,25 @@
 <div id="tabs-1">
 
     <x:parse xml="${profilesDoc}" var="output"/>
-    <x:out select="$output/profiles/profile[1]/contact/name/text()" />
-    <x:out select="$output/profiles/profile[1]/contact/name/text()" />
-    <x:set var="fragment" scope="page" select="$output/profiles/profile[1]/contact/name/text()"/>
-    <c:out value="${fragment}"/>
 
     <c:set var="degreeAttr">
         <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/degree/text()" />
     </c:set>
     <c:set var="fullNameAttr">
-        <x:out select="string($output/profiles/profile[@pid = $loadPid]/contact/name/text())" />
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/name/text()" />
     </c:set>
-    <c:set var="nameParts" value="${fn:split($fullNameAttr, '0')}" />
+
+    <c:set var="nameParts" value="${fn:split(fullNameAttr, ' ')}" />
+
 
     <c:set var="fullStreetAttr">
         <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/address/street/text()" />
     </c:set>
+
+    <c:set var="streetParts" value="${fn:split(fullStreetAttr, ' ')}" />
+
+
+
     <c:set var="cityAttr">
         <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/address/city/text()" />
     </c:set>
@@ -84,9 +87,109 @@
     <c:set var="countryAttr">
         <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/country/text()" />
     </c:set>
+    <c:set var="phoneAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/phone/text()" />
+    </c:set>
+    <c:set var="faxAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/fax/text()" />
+    </c:set>
+    <c:set var="emailAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/email/text()" />
+    </c:set>
+    <c:set var="homepageAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/homepage/text()" />
+    </c:set>
+
+    <c:set var="genderAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/details/gender/text()" />
+    </c:set>
+    <c:set var="birthDateAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/details/birthDate/text()" />
+    </c:set>
+    <c:set var="birthPlaceAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/details/birthPlace/text()" />
+    </c:set>
+    <c:set var="citizenshipAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/details/citizenship/text()" />
+    </c:set>
+
+    <c:set var="school1pAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[1]/@name" />
+    </c:set>
+    <c:set var="school1FromAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[1]/from/text()" />
+    </c:set>
+    <c:set var="school1ToAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[1]/to/text()" />
+    </c:set>
+
+    <c:set var="school2pAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[2]/@name" />
+    </c:set>
+    <c:set var="school2FromAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[2]/from/text()" />
+    </c:set>
+    <c:set var="school2ToAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[2]/to/text()" />
+    </c:set>
+
+    <c:set var="school3pAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[3]/@name" />
+    </c:set>
+    <c:set var="school3FromAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[3]/from/text()" />
+    </c:set>
+    <c:set var="school3ToAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/education/school[3]/to/text()" />
+    </c:set>
+
+    <c:set var="thesisAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/thesis/text()" />
+    </c:set>
+
+    <c:set var="job3Attr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[3]/@name" />
+    </c:set>
+    <c:set var="job3FromAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[3]/from/text()" />
+    </c:set>
+    <c:set var="job3ToAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[3]/to/text()" />
+    </c:set>
+
+    <c:set var="job1Attr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[1]/@name" />
+    </c:set>
+    <c:set var="job1FromAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[1]/from/text()" />
+    </c:set>
+    <c:set var="job1ToAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[1]/to/text()" />
+    </c:set>
+
+    <c:set var="job2Attr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[2]/@name" />
+    </c:set>
+    <c:set var="job2FromAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[2]/from/text()" />
+    </c:set>
+    <c:set var="job2ToAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]//job[2]/to/text()" />
+    </c:set>
 
 
 
+    <c:set var="fullRefNameAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/reference//name/text()" />
+    </c:set>
+
+    <c:set var="refNameParts" value="${fn:split(fullRefNameAttr, ' ')}" />
+
+    <c:set var="fullRefStreetAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/reference//street/text()" />
+    </c:set>
+
+    <c:set var="refStreetParts" value="${fn:split(fullRefStreetAttr, ' ')}" />
 
 
 
@@ -101,16 +204,16 @@
         </tr>
         <tr>
             <th>Name:</th>
-            <td><input type="text" name="name" value="<c:out value='${fullNameAttr}'/>" required /></td>
+            <td><input type="text" name="name" value="<c:out value='${nameParts[0]}'/>" required /></td>
         </tr>
         <tr>
             <th>Surname:</th>
-            <td><input type="text" name="surname" value="<c:out value='${fullNameAttr}'/>" required /></td>
+            <td><input type="text" name="surname" value="<c:out value='${nameParts[1]}'/>" required /></td>
         </tr>
         <tr>
             <th style="vertical-align: text-bottom">Address:</th>
-            <td><input type="text" name="street" value="<c:out value='${fullStreetAttr}'/>" placeholder="Street" required>
-                <input type="number" name="housenumber" value="<c:out value='${param.housenumber}'/>" placeholder="House number" required><br />
+            <td><input type="text" name="street" value="<c:out value='${streetParts[0]}'/>" placeholder="Street" required>
+                <input type="number" name="housenumber" value="<c:out value='${streetParts[1]}'/>" placeholder="House number" required><br />
                 <input type="text" name="city" value="<c:out value='${cityAttr}'/>" placeholder="City" required>
                 <input type="text" name="postcode" value="<c:out value='${postCodeAttr}'/>" placeholder="Postcode" required></td>
         </tr>
@@ -120,17 +223,17 @@
         </tr>
         <tr>
             <th>Phone:</th>
-            <td><input type="text" name="tel" value="<c:out value='${param.tel}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" required></td>
+            <td><input type="text" name="tel" value="<c:out value='${phoneAttr}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" required></td>
         </tr>
         <tr>
             <th>Fax:</th>
-            <td><input type="tel" name="fax" value="<c:out value='${param.fax}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" ></td>
+            <td><input type="tel" name="fax" value="<c:out value='${faxAttr}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" ></td>
         </tr>
         <th>E-mail:</th>
-        <td><input type="email" name="email" value="<c:out value='${param.email}'/>"></td>
+        <td><input type="email" name="email" value="<c:out value='${emailAttr}'/>"></td>
         <tr/>
         <th>Homepage:</th>
-        <td><input type="url" name="homepage" value="<c:out value='${param.homepage}'/>"></td>
+        <td><input type="url" name="homepage" value="<c:out value='${homepageAttr}'/>"></td>
         <tr/>
     </table>
 </div>
@@ -140,7 +243,7 @@
         <tr>
             <th>Gender:</th>
             <td>
-                <select id="gender" name="gender" required value="<c:out value='${param.gendre}'/>">
+                <select id="gender" name="gender" required value="<c:out value='${genderAttr}'/>">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -148,15 +251,15 @@
         </tr>
         <tr>
             <th>Date of birth:</th>
-            <td><input type="text" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" name="dateofbirth" value="<c:out value='${param.dateofbirth}'/>"></td>
+            <td><input type="text" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" name="dateofbirth" value="<c:out value='${birthDateAttr}'/>"></td>
         </tr>
         <tr>
             <th>Place of birth:</th>
-            <td><input type="text" required name="placeofbirth" value="<c:out value='${param.placeofbirth}'/>"></td>
+            <td><input type="text" required name="placeofbirth" value="<c:out value='${birthPlaceAttr}'/>"></td>
         </tr>
         <tr>
             <th>Present Citizenship:</th>
-            <td><input type="text" required name="citizenship" value="<c:out value='${param.citizenship}'/>"></td>
+            <td><input type="text" required name="citizenship" value="<c:out value='${citizenshipAttr}'/>"></td>
         </tr>
 
     </table>
@@ -165,54 +268,54 @@
 <div id="tabs-3">
     <table>
         <tr>
-            <td>From: <input type="text" name="stschoolfrom" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stschoolfrom}'/>"></td>
-            <td>To: <input type="text" name="stschoolto" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stschoolto}'/>"></td>
-            <td>School name: <input type="text" name="stschoolname" required value="<c:out value='${param.stchoolname}'/>"  style="width: 350px"></td>
+            <td>From: <input type="text" name="stschoolfrom" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${school1FromAttr}'/>"></td>
+            <td>To: <input type="text" name="stschoolto" required pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${school1ToAttr}'/>"></td>
+            <td>School name: <input type="text" name="stschoolname" required value="<c:out value='${school1pAttr}'/>"  style="width: 350px"></td>
         </tr>
         <tr>
-            <td>From: <input type="text" name="ndschoolfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndschoolfrom}'/>"></td>
-            <td>To: <input type="text" name="ndschoolto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndschoolto}'/>"></td>
-            <td>School name: <input type="text" name="ndschoolname" value="<c:out value='${param.ndschoolname}'/>"  style="width: 350px"></td>
+            <td>From: <input type="text" name="ndschoolfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${school2FromAttr}'/>"></td>
+            <td>To: <input type="text" name="ndschoolto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${school2ToAttr}'/>"></td>
+            <td>School name: <input type="text" name="ndschoolname" value="<c:out value='${school2pAttr}'/>"  style="width: 350px"></td>
         </tr>
         <tr>
-            <td>From: <input type="text" name="rdschoolfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdschoolfrom}'/>"></td>
-            <td>To: <input type="text" name="rdschoolto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdschoolto}'/>"></td>
-            <td>School name: <input type="text" name="rdschoolname" value="<c:out value='${param.rdschoolname}'/>"  style="width: 350px"></td>
+            <td>From: <input type="text" name="rdschoolfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${school3FromAttr}'/>"></td>
+            <td>To: <input type="text" name="rdschoolto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${school3ToAttr}'/>"></td>
+            <td>School name: <input type="text" name="rdschoolname" value="<c:out value='${school3pAttr}'/>"  style="width: 350px"></td>
         </tr>
     </table>
 </div>
 
 <div id="tabs-4">
     <tr>
-        <td><textarea cols="80" rows="15" name="thesis" placeholder="Describe your thesis"></textarea></td>
+        <td><textarea cols="80" rows="15" name="thesis" value="<c:out value='${thesisAttr}'/>" placeholder="Describe your thesis"></textarea></td>
     </tr>
 </div>
 
 <div id="tabs-5">
     <table>
         <tr>
-            <td>From: <input type="text" name="stworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stworkfrom}'/>"></td>
-            <td>To: <input type="text" name="stworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.stworkto}'/>"></td>
-            <td>Work: <input type="text" name="stwork" value="<c:out value='${param.stwork}'/>"  style="width: 350px"></td>
+            <td>From: <input type="text" name="stworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${job1FromAttr}'/>"></td>
+            <td>To: <input type="text" name="stworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${job1ToAttr}'/>"></td>
+            <td>Work: <input type="text" name="stwork" value="<c:out value='${job1Attr}'/>"  style="width: 350px"></td>
         </tr>
         <tr>
-            <td>From: <input type="text" name="ndworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndworkfrom}'/>"></td>
-            <td>To: <input type="text" name="ndworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.ndworkto}'/>"></td>
-            <td>Work: <input type="text" name="ndwork" value="<c:out value='${param.ndwork}'/>"  style="width: 350px"></td>
+            <td>From: <input type="text" name="ndworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${job2FromAttr}'/>"></td>
+            <td>To: <input type="text" name="ndworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${job2ToAttr}'/>"></td>
+            <td>Work: <input type="text" name="ndwork" value="<c:out value='${job2Attr}'/>"  style="width: 350px"></td>
         </tr>
         <tr>
-            <td>From: <input type="text" name="rdworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdworkfrom}'/>"></td>
-            <td>To: <input type="text" name="rdworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${param.rdworkto}'/>"></td>
-            <td>Work: <input type="text" name="rdwork" value="<c:out value='${param.rdwork}'/>"  style="width: 350px"></td>
+            <td>From: <input type="text" name="rdworkfrom" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${job3FromAttr}'/>"></td>
+            <td>To: <input type="text" name="rdworkto" pattern="(([0][1-9])|([1-2][0-9])|[3][0|1])[.](([0][1-9])|([1][0-2]))[.](19|20)\d{2}" placeholder="01.01.2014" value="<c:out value='${job3ToAttr}'/>"></td>
+            <td>Work: <input type="text" name="rdwork" value="<c:out value='${job3Attr}'/>"  style="width: 350px"></td>
         </tr>
     </table>
 </div>
 <div id="tabs-6">
     <table>
         <tr>
-            <th><input type="text" name="stlanguage" value="<c:out value='${param.stlanguage}'/>"></th>
+            <th><input type="text" name="stlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[1]/@name" />"></th>
             <td>
-                <select id="stlanguagelvl" name="stlanguagelvl" value="<c:out value='${param.stlanguagelvl}'/>">
+                <select id="stlanguagelvl" name="stlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[1]/@knowledge" />">
                     <option value="1">native</option>
                     <option value="2">near native</option>
                     <option value="3">fair</option>
@@ -220,9 +323,9 @@
             </td>
         </tr>
         <tr>
-            <th><input type="text" name="ndlanguage" value="<c:out value='${param.ndlanguage}'/>"></th>
+            <th><input type="text" name="ndlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[2]/@name" />"></th>
             <td>
-                <select id="ndlanguagelvl" name="ndlanguagelvl" value="<c:out value='${param.ndlanguagelvl}'/>">
+                <select id="ndlanguagelvl" name="ndlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[2]/@knowledge" />">
                     <option value="1">native</option>
                     <option value="2">near native</option>
                     <option value="3">fair</option>
@@ -230,9 +333,9 @@
             </td>
         </tr>
         <tr>
-            <th><input type="text" name="rdlanguage" value="<c:out value='${param.rdlanguage}'/>"></th>
+            <th><input type="text" name="rdlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[3]/@name" />"></th>
             <td>
-                <select id="rdlanguagelvl" name="rdlanguagelvl" value="<c:out value='${param.rdlanguagelvl}'/>">
+                <select id="rdlanguagelvl" name="rdlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[3]/@knowledge" />">
                     <option value="1">native</option>
                     <option value="2">near native</option>
                     <option value="3">fair</option>
@@ -240,9 +343,9 @@
             </td>
         </tr>
         <tr>
-            <th><input type="text" name="thlanguage" value="<c:out value='${param.thlanguage}'/>"></th>
+            <th><input type="text" name="thlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[4]/@name" />"></th>
             <td>
-                <select id="thlanguagelvl" name="thlanguagelvl" value="<c:out value='${param.thlanguagelvl}'/>">
+                <select id="thlanguagelvl" name="thlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[4]/@knowledge" />">
                     <option value="1">native</option>
                     <option value="2">near native</option>
                     <option value="3">fair</option>
@@ -254,48 +357,48 @@
 <div id="tabs-7">
     <table>
         <tr>
-            <th>Person, who are familiar with your qualifications and your character:</th>
+            <th>Person, who is familiar with your qualifications and your character:</th>
         </tr>
         <table>
             <tr>
                 <th>Relationship:</th>
-                <td><input type="text" name="relationship" value="<c:out value='${param.realtionship}'/>"/></td>
+                <td><input type="text" name="relationship" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//relationship/text()" />"/></td>
             </tr>
             <tr>
                 <th>Degree:</th>
-                <td><input type="text" name="refdegree" value="<c:out value='${param.refdegree}'/>"/></td>
+                <td><input type="text" name="refdegree" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//degree/text()" />"/></td>
             </tr>
             <tr>
                 <th>Name:</th>
-                <td><input type="text" name="refname" value="<c:out value='${param.refname}'/>"/></td>
+                <td><input type="text" name="refname" value="${refNameParts[0]}"/></td>
             </tr>
             <tr>
                 <th>Surname:</th>
-                <td><input type="text" name="refsurname" value="<c:out value='${param.refsurname}'/>"></td>
+                <td><input type="text" name="refsurname" value="<c:out value='${refNameParts[1]}'/>"></td>
             </tr>
             <tr>
                 <th style="vertical-align: text-bottom">Address:</th>
-                <td><input type="text" name="refstreet" value="<c:out value='${param.refstreet}'/>" placeholder="Street">
-                    <input type="number" name="refhousenumber" value="<c:out value='${param.refhousenumber}'/>" placeholder="House number"><br />
-                    <input type="text" name="refcity" value="<c:out value='${param.refcity}'/>" placeholder="City">
-                    <input type="text" name="refpostcode" value="<c:out value='${param.refpostcode}'/>" placeholder="Postcode"></td>
+                <td><input type="text" name="refstreet" value="<c:out value='${refStreetParts[0]}'/>" placeholder="Street">
+                    <input type="number" name="refhousenumber" value="<c:out value='${refStreetParts[1]}'/>" placeholder="House number"><br />
+                    <input type="text" name="refcity" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//city/text()" />" placeholder="City">
+                    <input type="text" name="refpostcode" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//postcode/text()" />" placeholder="Postcode"></td>
             </tr>
             <tr>
                 <th>Country:</th>
-                <td><input type="text" name="refcountry" value="<c:out value='${param.refcountry}'/>"></td>
+                <td><input type="text" name="refcountry" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//country/text()" />"></td>
             </tr>
             <tr>
                 <th>Phone:</th>
-                <td><input type="text" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reftel}'/>"></td>
+                <td><input type="text" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//phone/text()" />"></td>
             </tr>
             <tr>
                 <th>Fax:</th>
-                <td><input type="text" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reffax}'/>"></td>
+                <td><input type="text" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//fax/text()" />"></td>
             </tr>
             <th>E-mail:</th>
-            <td><input type="email" name="refemail" value="<c:out value='${param.refemail}'/>"></td>
+            <td><input type="email" name="refemail" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//email/text()" />"></td>
             <th>Homepage:</th>
-            <td><input type="url" name="refhomepage" value="<c:out value='${param.refhomepage}'/>"></td>
+            <td><input type="url" name="refhomepage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//homepage/text()" />"></td>
         </table>
 
     </table>

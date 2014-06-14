@@ -121,7 +121,8 @@ public class ProfilerServlet extends HttpServlet {
                 path = ProfilerServlet.class.getProtectionDomain().getCodeSource().getLocation().toString();
                 String[] pathFrags = path.split("/");
                 String newPath = new String();
-                newPath +="/";
+
+                newPath +="";
                 int counter = 0;
                 while (!pathFrags[counter].equals("WEB-INF")){
                     if (pathFrags[counter].equals("file:")) {
@@ -135,7 +136,7 @@ public class ProfilerServlet extends HttpServlet {
                 newPath += "WEB-INF/classes/";
 
                 try {
-                    String cmd = "pdflatex -output-directory=/home/wexik/IdeaProjects/cv4 "  + newPath + "pdfko.tex";
+                    String cmd = "pdflatex -output-directory=" + newPath + " " + newPath + "pdfko.tex";
                     Process p = Runtime.getRuntime().exec(cmd);
 
 
@@ -154,6 +155,22 @@ public class ProfilerServlet extends HttpServlet {
                     System.out.println("Here is the standard error of the command (if any):\n");
                     while ((s = stdError.readLine()) != null) {
                         System.out.println(s);
+                    }
+
+                    try {
+                        Desktop desktop = null;
+                        // Before more Desktop API is used, first check
+                        // whether the API is supported by this particular
+                        // virtual machine (VM) on this particular host.
+                        if (Desktop.isDesktopSupported()) {
+                            desktop = Desktop.getDesktop();
+                            File file = new File(newPath + "/pdfko.pdf");
+                            System.out.println("Opening " + file);
+                                desktop.open(file);
+
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                 } catch (IOException e) {
