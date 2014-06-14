@@ -129,11 +129,7 @@ public class ProfilerServlet extends HttpServlet {
                 newPath += "classes/";
 
                 try {
-                    try {
-                        Process p = Runtime.getRuntime().exec("pdflatex " + this.getClass().getResource("/latex.tex").toURI());
-                    } catch (URISyntaxException e) {
-                        e.printStackTrace();
-                    }
+                    Process p = Runtime.getRuntime().exec("pdflatex -output-directory=" + newPath + " " + newPath +"latex.tex");
                     System.out.print("Som tu!");
                 } catch (IOException e) {
                     System.out.print("error  " + e.getMessage());
