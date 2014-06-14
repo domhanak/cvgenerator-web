@@ -125,7 +125,7 @@ public class ProfilerServlet extends HttpServlet {
                 String[] pathFrags = path.split("/");
                 String newPath = new String();
 
-                newPath +="";
+                newPath +="/";
                 int counter = 0;
                 while (!pathFrags[counter].equals("WEB-INF")){
                     if (pathFrags[counter].equals("file:")) {
