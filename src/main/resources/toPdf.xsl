@@ -24,7 +24,7 @@
         <xsl:text>\huge{\textsc{Curriculum Vitae}}&#xa;</xsl:text>
         <xsl:text>\vspace{\baselineskip}&#xa;</xsl:text>
 
-        \Large{\textsc{<xsl:value-of select="profiles/profile[@pid=$pid]/contact/degree"/> <xsl:value-of select="profiles/profile[@pid=$pid]/contact/name"/>}}
+        \Large{\textsc{<xsl:value-of select="profiles/profile[@pid=$pid]/contact/degree"/><xsl:text> </xsl:text> <xsl:value-of select="profiles/profile[@pid=$pid]/contact/name"/>}}
         <xsl:text>\end{center}&#xa;</xsl:text>
         <xsl:text>\vspace{1.5\baselineskip}&#xa;</xsl:text>
 
@@ -53,12 +53,12 @@
         <xsl:text>\section{Education}&#xa;</xsl:text>
 
         <xsl:text>\begin{CV}&#xa;</xsl:text>
-        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/@name"/>
-        <xsl:apply-templates select="/profiles/profile[@pid=$pid]/education/school[2]" mode="school2" />
-        <xsl:apply-templates select="/profiles/profile[@pid=$pid]/education/school[3]" mode="school3" />
+        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/@name"/> \\
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/education/school[2]" mode="school2" /> \\
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/education/school[3]" mode="school3" /> \\
         <xsl:text>\end{CV}&#xa;</xsl:text>
 
-        <xsl:text>\pagebreak&#xa;</xsl:text>
+
 
         <xsl:apply-templates select="profiles/profile[@pid=$pid]/thesis" mode="thesis"/>
 
@@ -68,9 +68,9 @@
 
         \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/@name"/>
 
-        <xsl:apply-templates select="/profiles/profile[@pid=$pid]/experience/job[2]" mode="job2" />
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[2]" mode="job2" /> \\
 
-        <xsl:apply-templates select="/profiles/profile[@pid=$pid]/experience/job[3]" mode="job3" />
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[3]" mode="job3" /> \\
 
         <xsl:text>\end{CV}&#xa;</xsl:text>
 
@@ -80,17 +80,17 @@
         <xsl:text>\begin{tabular}{p{2cm}>{\bfseries}p{2.5cm}p{3cm}}&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[1]/@name"/>  <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[1]/@knowledge"/> \\
         <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[2]/@name"/>  <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[2]/@knowledge"/> \\
-        <xsl:apply-templates select="profiles/profile[@pid=$pid]/languages/language[3]/@name" mode="language3"/>
-        <xsl:apply-templates select="profiles/profile[@pid=$pid]/languages/language[3]/@name" mode="language4"/>
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/languages/language[3]" mode="language3"/>
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/languages/language[4]" mode="language4"/>
         <xsl:text>\end{tabular}&#xa;</xsl:text>
         <xsl:text>\end{table}&#xa;</xsl:text>
 
-        <xsl:text>\pagebreak&#xa;</xsl:text>
+
 
         <xsl:apply-templates select="profiles/profile[@pid=$pid]/reference" mode="reference"/>
 
         <xsl:text>\vspace{2\baselineskip}&#xa;</xsl:text>
-        <xsl:text>\noindent Groningen, \today&#xa;</xsl:text>
+        <xsl:text>\noindent \today&#xa;</xsl:text>
 
 
 
@@ -109,32 +109,32 @@
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/education/school[2]" mode="school2">
-        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[2]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[2]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/education/school[2]/@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
     </xsl:template>
 
-    <xsl:template match="profiles/profile/education/school[3]" mode="school3">
-        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[3]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[3]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/education/school[3]/@name"/>
+    <xsl:template match="profiles/profile[@pid=$pid]/education/school[3]" mode="school3">
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/thesis" mode="thesis">
         <xsl:text>\section{Thesis}&#xa;</xsl:text>
-        \noindent <xsl:value-of select="profiles/profile[@pid=$pid]/thesis"/>
+        <xsl:text>\noindent </xsl:text><xsl:value-of select="/profiles/profile[@pid=$pid]/thesis"/>
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/experience/job[2]" mode="job2">
-        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[2]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[2]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[2]/@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/experience/job[3]" mode="job3">
-        \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[3]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[3]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[3]/@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
     </xsl:template>
 
-    <xsl:template match="profiles/profile[@pid=$pid]/languages/language[3]/@name" mode="language3">
-        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[3]/@name"/> <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[3]/@knowledge"/>\\
+    <xsl:template match="profiles/profile[@pid=$pid]/languages/language[3]" mode="language3">
+        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="@name"/> <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="@knowledge"/>\\
     </xsl:template>
 
-    <xsl:template match="profiles/profile[@pid=$pid]/languages/language[4]/@name" mode="language4">
-        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[4]/@name"/> <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[4]/@knowledge"/> \\
+    <xsl:template match="profiles/profile[@pid=$pid]/languages/language[4]" mode="language4">
+        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="@name"/> <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="@knowledge"/> \\
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/reference" mode="reference">
@@ -142,11 +142,11 @@
 
         <xsl:text>\begin{table}[h]&#xa;</xsl:text>
         <xsl:text>\begin{tabular}{@{}lll@{}}&#xa;</xsl:text>
-        \textbf{<xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/degree"/> <xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/name"/>} \\
-        <xsl:value-of select="profiles/profile[@pid=$pid]/reference/relationship"/> <xsl:text disable-output-escaping="yes">&amp; Phone: &amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/phone"/>\\
-        <xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/address/street"/> <xsl:text disable-output-escaping="yes">&amp; Fax: &amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/fax"/>\\
-        <xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/address/postcode"/> <xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/address/city"/> <xsl:text disable-output-escaping="yes">&amp; Email: &amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/email"/> \\
-        <xsl:value-of select="profiles/profile[@pid=$pid]/reference/contact/address/country"/> \\
+        \textbf{<xsl:value-of select="contact/degree"/> <xsl:value-of select="contact/name"/>} \\
+        <xsl:value-of select="relationship"/> <xsl:text disable-output-escaping="yes">&amp; Phone: &amp; </xsl:text><xsl:value-of select="contact/phone"/>\\
+        <xsl:value-of select="contact/address/street"/> <xsl:text disable-output-escaping="yes">&amp; Fax: &amp; </xsl:text><xsl:value-of select="contact/fax"/>\\
+        <xsl:value-of select="contact/address/postcode"/> <xsl:value-of select="contact/address/city"/> <xsl:text disable-output-escaping="yes">&amp; Email: &amp; </xsl:text><xsl:value-of select="contact/email"/> \\
+        <xsl:value-of select="contact/address/country"/> \\
         <xsl:text>\end{tabular}&#xa;</xsl:text>
         <xsl:text>\end{table}&#xa;</xsl:text>
     </xsl:template>
