@@ -2,7 +2,7 @@
     <xsl:output method="text" version="1.0" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
     <xsl:param name="pid" />
 
-    <xsl:template match="/profiles">
+    <xsl:template match="/">
         <xsl:text>\documentclass[a4paper]{article}&#xa;</xsl:text>
         <xsl:text>\usepackage[utf8]{inputenc}&#xa;</xsl:text>
         <xsl:text>\usepackage[dvips]{graphicx,color} % or [pdftex]?&#xa;</xsl:text>

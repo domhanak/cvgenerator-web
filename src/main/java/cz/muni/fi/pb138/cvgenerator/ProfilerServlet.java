@@ -121,6 +121,7 @@ public class ProfilerServlet extends HttpServlet {
                 path = ProfilerServlet.class.getProtectionDomain().getCodeSource().getLocation().toString();
                 String[] pathFrags = path.split("/");
                 String newPath = new String();
+                newPath +="/";
                 int counter = 0;
                 while (!pathFrags[counter].equals("WEB-INF")){
                     if (pathFrags[counter].equals("file:")) {
@@ -134,7 +135,7 @@ public class ProfilerServlet extends HttpServlet {
                 newPath += "WEB-INF/classes/";
 
                 try {
-                    String cmd = "pdflatex -output-directory=C:/" + " -output-format=pdf " + newPath + "pdfko.tex";
+                    String cmd = "pdflatex -output-directory=/home/wexik/IdeaProjects/cv2 "  + newPath + "pdfko.tex";
                     Process p = Runtime.getRuntime().exec(cmd);
 
 
