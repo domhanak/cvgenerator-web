@@ -19,9 +19,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.net.URISyntaxException;
 
 /**
@@ -109,7 +107,7 @@ public class ProfilerServlet extends HttpServlet {
                     xsltProc.setParameter("pid", pid);
                     xsltProc.transform(
                             new StreamSource(new File(this.getClass().getResource("/profiles.xml").toURI())),
-                            new StreamResult(new File(this.getClass().getResource("/latex.tex").toURI())));
+                            new StreamResult(new File(this.getClass().getResource("/pdfko.tex").toURI())));
                 } catch (TransformerException e) {
                     e.printStackTrace();
                     return;
@@ -124,15 +122,39 @@ public class ProfilerServlet extends HttpServlet {
                 String[] pathFrags = path.split("/");
                 String newPath = new String();
                 int counter = 0;
-                while (!pathFrags[counter].equals("classes")){
+                while (!pathFrags[counter].equals("WEB-INF")){
+                    if (pathFrags[counter].equals("file:")) {
+                        counter++;
+                        continue;
+                    }
+
                     newPath += pathFrags[counter] + "/";
                     counter++;
                 }
-                newPath += "classes/";
+                newPath += "WEB-INF/classes/";
 
                 try {
-                    Process p = Runtime.getRuntime().exec("pdflatex -output-directory=" + newPath + " " + newPath +"latex.tex");
+                    String cmd = "pdflatex -output-directory=C:/" + " -output-format=pdf " + newPath + "pdfko.tex";
+                    Process p = Runtime.getRuntime().exec(cmd);
+
+
+                    BufferedReader stdInput = new BufferedReader(new
+                            InputStreamReader(p.getInputStream()));
+
+                    BufferedReader stdError = new BufferedReader(new
+                            InputStreamReader(p.getErrorStream()));
+
+                    System.out.println("Here is the standard output of the command:\n");
+                    String s = null;
+                    while ((s = stdInput.readLine()) != null) {
+                        System.out.println(s);
+                    }
                     System.out.print("Som tu!");
+                    System.out.println("Here is the standard error of the command (if any):\n");
+                    while ((s = stdError.readLine()) != null) {
+                        System.out.println(s);
+                    }
+
                 } catch (IOException e) {
                     System.out.print("error  " + e.getMessage());
                 }
