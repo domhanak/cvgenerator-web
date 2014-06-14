@@ -173,6 +173,7 @@ public class ProfilerServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String action = request.getPathInfo();
+        profiles = (Document) getServletContext().getAttribute("profilesDoc");
         switch (action) {
             case "/load":
                 String loadPid = request.getParameter("loadpid");
@@ -190,21 +191,26 @@ public class ProfilerServlet extends HttpServlet {
 
                 }
                 */
-                try {
-
-                    String xmlString = DocumentToString(profiles);
-                    System.out.println(xmlString);
-                    request.setAttribute("profilesDoc", xmlString);
-                    System.out.println(loadPid);
-                    request.setAttribute("loadPid", loadPid);
-                    request.getRequestDispatcher(LOAD_JSP).forward(request, response);
-
-                }catch (ServletException ex)
+                if(checkIfNewUser(loadPid, profiles))
                 {
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
-                }catch (IOException ex)
-                {
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+                    request.setAttribute("PidError", "No pid found with value:" + loadPid);
+                    request.getRequestDispatcher(LIST_JSP).forward(request,response);
+                }
+                else {
+                    try {
+
+                        String xmlString = DocumentToString(profiles);
+                        System.out.println(xmlString);
+                        request.setAttribute("profilesDoc", xmlString);
+                        System.out.println(loadPid);
+                        request.setAttribute("loadPid", loadPid);
+                        request.getRequestDispatcher(LOAD_JSP).forward(request, response);
+
+                    } catch (ServletException ex) {
+                        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+                    } catch (IOException ex) {
+                        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+                    }
                 }
         }
 
