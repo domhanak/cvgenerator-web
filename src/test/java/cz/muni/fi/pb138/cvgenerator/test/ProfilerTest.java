@@ -20,6 +20,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 
 import static junit.framework.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
@@ -128,11 +129,32 @@ public class ProfilerTest {
 
     @Test
     public void createAddressElementTest(){
+        String street = "Jungmanova";
+        String houseNumber = "6";
+        String postcode = "111 111";
+        String city = "Brno";
 
+        Element addressElement = null;
+        try {
+            addressElement = profiler.createAddressElement(street, houseNumber, postcode, city);
+        }catch (ProfilerException ex){}
+        assertNotNull(addressElement);
+        NodeList nl = addressElement.getChildNodes();
+        assertNotNull(nl);
+        assertEquals(street + " " + houseNumber, nl.item(0).getTextContent());
+        assertEquals(postcode, nl.item(1).getTextContent());
+        assertEquals(city, nl.item(2).getTextContent());
     }
 
     @Test
     public void createLanguageElement(){
+        String languageName = "German";
+        String languageLvl = "fair";
+
+        Element languageElement = null;
+        try {
+            languageElement = profiler.createLanguageElement(languageName, languageLvl);
+        }catch (ProfilerException ex){}
 
     }
 
