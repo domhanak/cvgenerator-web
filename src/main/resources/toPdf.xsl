@@ -142,11 +142,11 @@
 
         <xsl:text>\begin{table}[h]&#xa;</xsl:text>
         <xsl:text>\begin{tabular}{@{}lll@{}}&#xa;</xsl:text>
-        \textbf{<xsl:value-of select="contact/degree"/> <xsl:value-of select="contact/name"/>} \\
+        \textbf{<xsl:value-of select="contact/degree"/><xsl:text> </xsl:text> <xsl:value-of select="contact/name"/>} \\
         <xsl:value-of select="relationship"/> <xsl:text disable-output-escaping="yes">&amp; Phone: &amp; </xsl:text><xsl:value-of select="contact/phone"/>\\
         <xsl:value-of select="contact/address/street"/> <xsl:text disable-output-escaping="yes">&amp; Fax: &amp; </xsl:text><xsl:value-of select="contact/fax"/>\\
         <xsl:value-of select="contact/address/postcode"/> <xsl:value-of select="contact/address/city"/> <xsl:text disable-output-escaping="yes">&amp; Email: &amp; </xsl:text><xsl:value-of select="contact/email"/> \\
-        <xsl:value-of select="contact/address/country"/> \\
+        <xsl:value-of select="contact/country"/> <xsl:text disable-output-escaping="yes">&amp; Homepage: &amp; </xsl:text><xsl:value-of select="contact/homepage"/>\\
         <xsl:text>\end{tabular}&#xa;</xsl:text>
         <xsl:text>\end{table}&#xa;</xsl:text>
     </xsl:template>
