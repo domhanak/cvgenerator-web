@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -21,6 +22,8 @@ import javax.xml.transform.stream.StreamSource;
 import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * Created by Hany on 4.5.2014.
@@ -195,20 +198,9 @@ public class ProfilerServlet extends HttpServlet {
         switch (action) {
             case "/load":
                 String loadPid = request.getParameter("loadpid");
-                /*
-                Element docEle = profiles.getDocumentElement();
-                NodeList profileNodes = docEle.getElementsByTagName("profile");
-                for (int i = 0; i < profileNodes.getLength(); i++)
-                {
-                    Element element = (Element) profileNodes.item(i);
-                    if (loadPid.equals(element.getAttribute("pid"))){
 
 
-                    }
 
-
-                }
-                */
                 if(checkIfNewUser(loadPid, profiles))
                 {
                     request.setAttribute("PidError", "No pid found with value:" + loadPid);
@@ -217,7 +209,9 @@ public class ProfilerServlet extends HttpServlet {
                 else {
                     try {
 
-                        String xmlString = DocumentToString(profiles);
+
+                        String xmlString = documentToString(createProfileDocument(profiles, loadPid));
+                        //String xmlString = documentToString(profiles);
                         System.out.println(xmlString);
                         request.setAttribute("profilesDoc", xmlString);
                         System.out.println(loadPid);
@@ -235,7 +229,7 @@ public class ProfilerServlet extends HttpServlet {
     }
 
 
-    private String DocumentToString(Document doc)
+    private String documentToString(Document doc)
     {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer;
@@ -253,6 +247,36 @@ public class ProfilerServlet extends HttpServlet {
         }
 
         return xmlString;
+    }
+
+    private Document createProfileDocument(Document doc, String loadPid)
+    {
+        Element docEle = doc.getDocumentElement();
+        NodeList profileNodes = docEle.getElementsByTagName("profile");
+        for (int i = 0; i < profileNodes.getLength(); i++)
+        {
+            Element element = (Element) profileNodes.item(i);
+            if (loadPid.equals(element.getAttribute("pid"))){
+
+                Node node = profileNodes.item(i);
+
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                factory.setNamespaceAware(true);
+                DocumentBuilder builder = null;
+                try {
+                    builder = factory.newDocumentBuilder();
+                }catch (ParserConfigurationException ex){}
+
+                Document newDocument = builder.newDocument();
+                Element el = newDocument.createElement("profiles");
+
+                el.appendChild(newDocument.importNode(node,true));
+                newDocument.appendChild(el);
+                return newDocument;
+
+            }
+        }
+        return null;
     }
 
     private void saveToFile(File xmlFile, Document doc) throws TransformerException
