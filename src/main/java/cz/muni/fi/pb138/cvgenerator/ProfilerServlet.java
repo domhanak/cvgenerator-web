@@ -21,6 +21,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
 
 /**
@@ -152,7 +153,7 @@ public class ProfilerServlet extends HttpServlet {
         String action = request.getPathInfo();
         switch (action) {
             case "/load":
-                String loadPid = request.getParameter("loadPid");
+                String loadPid = request.getParameter("loadpid");
                 /*
                 Element docEle = profiles.getDocumentElement();
                 NodeList profileNodes = docEle.getElementsByTagName("profile");
@@ -169,9 +170,11 @@ public class ProfilerServlet extends HttpServlet {
                 */
                 try {
 
-                    //request.setAttribute("loadedProfile", element.getChildNodes());
+                    String xmlString = DocumentToString(profiles);
+                    System.out.println(xmlString);
+                    request.setAttribute("profilesDoc", xmlString);
+                    System.out.println(loadPid);
                     request.setAttribute("loadPid", loadPid);
-                    request.setAttribute("xmlPath", getServletContext().getAttribute("xmlFile"));
                     request.getRequestDispatcher(LOAD_JSP).forward(request, response);
 
                 }catch (ServletException ex)
@@ -186,6 +189,25 @@ public class ProfilerServlet extends HttpServlet {
     }
 
 
+    private String DocumentToString(Document doc)
+    {
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer transformer;
+        String xmlString=null;
+        try {
+            transformer = tf.newTransformer();
+            // below code to remove XML declaration
+            // transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            StringWriter writer = new StringWriter();
+            transformer.transform(new DOMSource(doc), new StreamResult(writer));
+            xmlString = writer.getBuffer().toString();
+
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+        return xmlString;
+    }
 
     private void saveToFile(File xmlFile, Document doc) throws TransformerException
     {

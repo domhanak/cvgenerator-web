@@ -56,6 +56,40 @@
 </ul>
 
 <div id="tabs-1">
+
+    <x:parse xml="${profilesDoc}" var="output"/>
+    <x:out select="$output/profiles/profile[1]/contact/name" />
+
+
+
+
+
+
+
+
+
+    <%--
+    <x:set var="fragment" select="$output//book"/>
+<b>The price of the second book</b>:
+<c:out value="${fragment}" />
+<x:out select="$output//book[1]/name"/>
+
+
+
+    <x:set var="fragment" select="$output//book"/>
+<b>The price of the second book</b>:
+<c:out value="${fragment}" />
+<x:out select="$output//book[1]/name"/>
+<c:import var="xml" charEncoding="UTF-8" url="profiles.xml"/>
+<x:parse xml="${xml}" var="output"/>
+
+<x:set var="attrCity" select="$output/profiles/profile[1]/contact/address/city"/>
+<x:set var="attrName" select="string($output/profiles/profile[1]/contact/address/city)"/>
+
+<x:out select="$output/profiles/profile[1]/contact/name" />
+<x:out select="$output/profiles/profile[1]/contact/address/city"/>
+--%>
+
     <table>
         <tr>
             <th>Your ID:</th>
