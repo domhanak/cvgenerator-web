@@ -59,10 +59,6 @@
 <div id="tabs-1">
 
     <x:parse xml="${profilesDoc}" var="output"/>
-    <x:out select="$output/profiles/profile[1]/contact/name/text()" />
-    <x:out select="$output/profiles/profile[1]/contact/name/text()" />
-    <x:set var="fragment" scope="page" select="$output/profiles/profile[1]/contact/name/text()"/>
-    <c:out value="${fragment}"/>
 
     <c:set var="degreeAttr">
         <x:out select="$output/profiles/profile[@pid = $loadPid]/contact/degree/text()" />
@@ -72,11 +68,6 @@
     </c:set>
 
     <c:set var="nameParts" value="${fn:split(fullNameAttr, ' ')}" />
-
-
-
-
-
 
 
     <c:set var="fullStreetAttr">
@@ -193,6 +184,12 @@
     </c:set>
 
     <c:set var="refNameParts" value="${fn:split(fullRefNameAttr, ' ')}" />
+
+    <c:set var="fullRefStreetAttr">
+        <x:out select="$output/profiles/profile[@pid = $loadPid]/reference//street/text()" />
+    </c:set>
+
+    <c:set var="refStreetParts" value="${fn:split(fullRefStreetAttr, ' ')}" />
 
 
 
@@ -381,27 +378,27 @@
             </tr>
             <tr>
                 <th style="vertical-align: text-bottom">Address:</th>
-                <td><input type="text" name="refstreet" value="<c:out value='${param.refstreet}'/>" placeholder="Street">
-                    <input type="number" name="refhousenumber" value="<c:out value='${param.refhousenumber}'/>" placeholder="House number"><br />
-                    <input type="text" name="refcity" value="<c:out value='${param.refcity}'/>" placeholder="City">
-                    <input type="text" name="refpostcode" value="<c:out value='${param.refpostcode}'/>" placeholder="Postcode"></td>
+                <td><input type="text" name="refstreet" value="<c:out value='${refStreetParts[0]}'/>" placeholder="Street">
+                    <input type="number" name="refhousenumber" value="<c:out value='${refStreetParts[1]}'/>" placeholder="House number"><br />
+                    <input type="text" name="refcity" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//city/text()" />" placeholder="City">
+                    <input type="text" name="refpostcode" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//postcode/text()" />" placeholder="Postcode"></td>
             </tr>
             <tr>
                 <th>Country:</th>
-                <td><input type="text" name="refcountry" value="<c:out value='${param.refcountry}'/>"></td>
+                <td><input type="text" name="refcountry" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//country/text()" />"></td>
             </tr>
             <tr>
                 <th>Phone:</th>
-                <td><input type="text" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reftel}'/>"></td>
+                <td><input type="text" name="reftel" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//phone/text()" />"></td>
             </tr>
             <tr>
                 <th>Fax:</th>
-                <td><input type="text" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<c:out value='${param.reffax}'/>"></td>
+                <td><input type="text" name="reffax" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//fax/text()" />"></td>
             </tr>
             <th>E-mail:</th>
-            <td><input type="email" name="refemail" value="<c:out value='${param.refemail}'/>"></td>
+            <td><input type="email" name="refemail" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//email/text()" />"></td>
             <th>Homepage:</th>
-            <td><input type="url" name="refhomepage" value="<c:out value='${param.refhomepage}'/>"></td>
+            <td><input type="url" name="refhomepage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//homepage/text()" />"></td>
         </table>
 
     </table>
