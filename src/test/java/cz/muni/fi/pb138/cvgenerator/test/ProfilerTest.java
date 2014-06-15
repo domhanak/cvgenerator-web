@@ -20,6 +20,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 
 import static junit.framework.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
@@ -124,44 +125,41 @@ public class ProfilerTest {
 
     }
 
-    /*
-    public Element createComplexElement(String attribute, List<String> childs, String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("name is empty or null.");
-        }
-        if (attribute == null || attribute.isEmpty()) {
-            throw new IllegalArgumentException("attribute is empty or null.");
-        }
-        if (childs.size() != 2) {
-            throw new IllegalArgumentException("childs is invalid");
-        }
-        if (childs.get(0) == null || childs.get(0).isEmpty()
-                || childs.get(1) == null || childs.get(1).isEmpty()) {
-            throw new IllegalArgumentException("childs content is empty or null.");
-        }
 
-        Element element = doc.createElement(name);
-        Element from = doc.createElement("from");
-        Element to = doc.createElement("to");
-
-        element.setAttribute("name", attribute);
-        from.setTextContent(childs.get(0));
-        to.setTextContent(childs.get(1));
-
-        element.appendChild(from);
-        element.appendChild(to);
-
-        return element;
-    }
-     */
 
     @Test
     public void createAddressElementTest(){
+        String street = "Jungmanova";
+        String houseNumber = "6";
+        String postcode = "111 111";
+        String city = "Brno";
 
+        Element addressElement = null;
+        try {
+            addressElement = profiler.createAddressElement(street, houseNumber, postcode, city);
+        }catch (ProfilerException ex){}
+        assertNotNull(addressElement);
+        NodeList nl = addressElement.getChildNodes();
+        assertNotNull(nl);
+        assertEquals(street + " " + houseNumber, nl.item(0).getTextContent());
+        assertEquals(postcode, nl.item(1).getTextContent());
+        assertEquals(city, nl.item(2).getTextContent());
     }
 
     @Test
     public void createLanguageElement(){
+        String languageName = "German";
+        String languageLvl = "fair";
+
+        Element languageElement = null;
+        try {
+            languageElement = profiler.createLanguageElement(languageName, languageLvl);
+        }catch (ProfilerException ex){}
+
+        assertNotNull(languageElement);
+        assertEquals(languageName, languageElement.getAttribute("name"));
+        assertEquals(languageLvl, languageElement.getAttribute("knowledge"));
+
 
     }
 

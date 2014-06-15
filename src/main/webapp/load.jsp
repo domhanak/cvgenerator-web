@@ -75,6 +75,9 @@
     </c:set>
 
     <c:set var="streetParts" value="${fn:split(fullStreetAttr, ' ')}" />
+    <c:set var="streetNum" value="${streetParts[fn:length(streetParts)-1]}" />
+    <c:set var="streetNameWithSpace" value="${fn:substringBefore(fullStreetAttr,streetNum)}" />
+    <c:set var="streetName" value="${fn:trim(streetNameWithSpace)}" />
 
 
 
@@ -191,6 +194,9 @@
 
     <c:set var="refStreetParts" value="${fn:split(fullRefStreetAttr, ' ')}" />
 
+    <c:set var="refStreetNum" value="${refStreetParts[fn:length(refStreetParts)-1]}" />
+    <c:set var="refStreetNameWithSpace" value="${fn:substringBefore(fullRefStreetAttr,refStreetNum)}" />
+    <c:set var="refStreetName" value="${fn:trim(refStreetNameWithSpace)}" />
 
 
     <table>
@@ -212,8 +218,8 @@
         </tr>
         <tr>
             <th style="vertical-align: text-bottom">Address:</th>
-            <td><input type="text" name="street" value="<c:out value='${streetParts[0]}'/>" placeholder="Street" required>
-                <input type="number" name="housenumber" value="<c:out value='${streetParts[1]}'/>" placeholder="House number" required><br />
+            <td><input type="text" name="street" value="<c:out value='${streetName}'/>" placeholder="Street" required>
+                <input type="number" name="housenumber" value="<c:out value='${streetNum}'/>" placeholder="House number" required><br />
                 <input type="text" name="city" value="<c:out value='${cityAttr}'/>" placeholder="City" required>
                 <input type="text" name="postcode" value="<c:out value='${postCodeAttr}'/>" placeholder="Postcode" required></td>
         </tr>
@@ -378,8 +384,8 @@
             </tr>
             <tr>
                 <th style="vertical-align: text-bottom">Address:</th>
-                <td><input type="text" name="refstreet" value="<c:out value='${refStreetParts[0]}'/>" placeholder="Street">
-                    <input type="number" name="refhousenumber" value="<c:out value='${refStreetParts[1]}'/>" placeholder="House number"><br />
+                <td><input type="text" name="refstreet" value="<c:out value='${refStreetName}'/>" placeholder="Street">
+                    <input type="number" name="refhousenumber" value="<c:out value='${refStreetNum}'/>" placeholder="House number"><br />
                     <input type="text" name="refcity" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//city/text()" />" placeholder="City">
                     <input type="text" name="refpostcode" value="<x:out select="$output/profiles/profile[@pid = $loadPid]/reference//postcode/text()" />" placeholder="Postcode"></td>
             </tr>
