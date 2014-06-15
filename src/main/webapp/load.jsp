@@ -316,8 +316,8 @@
             <th><input type="text" name="stlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[1]/@name" />"></th>
             <td>
                 <select id="stlanguagelvl" name="stlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[1]/@knowledge" />">
-                    <option value="1">native</option>
-                    <option value="2">near native</option>
+                    <option value="native">native</option>
+                    <option value="near native">near native</option>
                     <option value="3">fair</option>
                 </select>
             </td>
@@ -326,9 +326,9 @@
             <th><input type="text" name="ndlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[2]/@name" />"></th>
             <td>
                 <select id="ndlanguagelvl" name="ndlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[2]/@knowledge" />">
-                    <option value="1">native</option>
-                    <option value="2">near native</option>
-                    <option value="3">fair</option>
+                    <option value="native">native</option>
+                    <option value="near native">near native</option>
+                    <option value="fair">fair</option>
                 </select>
             </td>
         </tr>
@@ -336,9 +336,9 @@
             <th><input type="text" name="rdlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[3]/@name" />"></th>
             <td>
                 <select id="rdlanguagelvl" name="rdlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[3]/@knowledge" />">
-                    <option value="1">native</option>
-                    <option value="2">near native</option>
-                    <option value="3">fair</option>
+                    <option value="native">native</option>
+                    <option value="near native">near native</option>
+                    <option value="fair">fair</option>
                 </select>
             </td>
         </tr>
@@ -346,9 +346,9 @@
             <th><input type="text" name="thlanguage" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[4]/@name" />"></th>
             <td>
                 <select id="thlanguagelvl" name="thlanguagelvl" value="<x:out select="$output/profiles/profile[@pid = $loadPid]//language[4]/@knowledge" />">
-                    <option value="1">native</option>
-                    <option value="2">near native</option>
-                    <option value="3">fair</option>
+                    <option value="native">native</option>
+                    <option value="near native">near native</option>
+                    <option value="fair">fair</option>
                 </select>
             </td>
         </tr>

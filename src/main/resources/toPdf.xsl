@@ -54,8 +54,8 @@
 
         <xsl:text>\begin{CV}&#xa;</xsl:text>
         \item[<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/education/school[1]/@name"/> \\
-        <xsl:apply-templates select="profiles/profile[@pid=$pid]/education/school[2]" mode="school2" /> \\
-        <xsl:apply-templates select="profiles/profile[@pid=$pid]/education/school[3]" mode="school3" /> \\
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/education/school[2]" mode="school2" />
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/education/school[3]" mode="school3" />
         <xsl:text>\end{CV}&#xa;</xsl:text>
 
 
@@ -68,9 +68,9 @@
 
         \item[<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/from"/>--<xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/to"/>] <xsl:value-of select="profiles/profile[@pid=$pid]/experience/job[1]/@name"/> \\
 
-        <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[2]" mode="job2" /> \\
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[2]" mode="job2" />
 
-        <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[3]" mode="job3" /> \\
+        <xsl:apply-templates select="profiles/profile[@pid=$pid]/experience/job[3]" mode="job3" />
 
         <xsl:text>\end{CV}&#xa;</xsl:text>
 
@@ -109,11 +109,11 @@
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/education/school[2]" mode="school2">
-        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/> \\
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/education/school[3]" mode="school3">
-        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/> \\
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/thesis" mode="thesis">
@@ -122,11 +122,11 @@
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/experience/job[2]" mode="job2">
-        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/> \\
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/experience/job[3]" mode="job3">
-        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/>
+        <xsl:text>\item[</xsl:text><xsl:value-of select="from"/>--<xsl:value-of select="to"/>] <xsl:value-of select="@name"/> \\
     </xsl:template>
 
     <xsl:template match="profiles/profile[@pid=$pid]/languages/language[3]" mode="language3">

@@ -202,8 +202,8 @@ public class Profiler {
                     Arrays.asList(request.getParameter("ndworkfrom"), request.getParameter("ndworkto")), "job"));
         }
         if (request.getParameter("rdwork") != null && !request.getParameter("rdwork").isEmpty()) {
-            experience.appendChild(createComplexElement(request.getParameter("ndwork"),
-                    Arrays.asList(request.getParameter("ndworkfrom"), request.getParameter("ndworkto")), "job"));
+            experience.appendChild(createComplexElement(request.getParameter("rdwork"),
+                    Arrays.asList(request.getParameter("rdworkfrom"), request.getParameter("rdworkto")), "job"));
         }
 
         return experience;
