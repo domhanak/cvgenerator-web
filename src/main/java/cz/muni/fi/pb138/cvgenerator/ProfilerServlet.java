@@ -1,5 +1,6 @@
 package cz.muni.fi.pb138.cvgenerator;
 
+import com.sun.deploy.util.SystemUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -7,6 +8,7 @@ import org.w3c.dom.NodeList;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -81,16 +83,6 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
-                Element el = profiles.getDocumentElement();
-                el.appendChild(profile);
-
-                try {
-                    saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
-                } catch (TransformerException e) {
-                    e.printStackTrace();
-                    return;
-                }
-
                 ProfileValidator profileValidator = new ProfileValidator((File) getServletContext().getAttribute("schemaFile"));
                 String validationError = null;
                 try {
@@ -103,7 +95,7 @@ public class ProfilerServlet extends HttpServlet {
                             if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
                                 Element element = (Element) nl.item(i);
                                 if (element.getAttribute("pid").equals(pid)) {
-                                    el.removeChild(element);
+                                    ele.removeChild(element);
                                     request.setAttribute("error2", "Some required fields weren't filled correctly.");
                                     request.getRequestDispatcher(LIST_JSP).forward(request, response);
                                     return;
@@ -114,6 +106,15 @@ public class ProfilerServlet extends HttpServlet {
 
                 } catch (IOException ex) {
                     System.err.println("File not found: " + ex.getMessage());
+                    return;
+                }
+
+                Element el = profiles.getDocumentElement();
+                el.appendChild(profile);
+                try {
+                    saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
+                } catch (TransformerException e) {
+                    e.printStackTrace();
                     return;
                 }
 
@@ -139,7 +140,10 @@ public class ProfilerServlet extends HttpServlet {
                 String[] pathFrags = path.split("/");
                 String newPath = new String();
 
-                newPath +="";
+                if(System.getProperty("os.name").equals("Linux")) {
+                    newPath += "/";
+                }
+
                 int counter = 0;
                 while (!pathFrags[counter].equals("WEB-INF")){
                     if (pathFrags[counter].equals("file:")) {
@@ -179,13 +183,30 @@ public class ProfilerServlet extends HttpServlet {
                         // Before more Desktop API is used, first check
                         // whether the API is supported by this particular
                         // virtual machine (VM) on this particular host.
-                        if (Desktop.isDesktopSupported()) {
-                            desktop = Desktop.getDesktop();
-                            File file = new File(newPath + "/pdfko.pdf");
-                            System.out.println("Opening " + file);
-                                desktop.open(file);
 
+                        ServletOutputStream outStream = response.getOutputStream();
+                        File downloadFile = new File(newPath + "/pdfko.pdf");
+                        FileInputStream inStream = new FileInputStream(downloadFile);
+                        response.setContentType("application/pdf");
+                        response.setContentLength((int) downloadFile.length());
+                        response.setHeader("Content-disposition","attachment; filename=" +"pdfko.pdf");
+                        byte[] buffer = new byte[4096];
+                        int bytesRead = -1;
+
+                        while ((bytesRead = inStream.read(buffer)) != -1) {
+                            outStream.write(buffer, 0, bytesRead);
                         }
+
+                        inStream.close();
+                        outStream.close();
+
+//                        if (Desktop.isDesktopSupported()) {
+//                            desktop = Desktop.getDesktop();
+//                            File file = new File(newPath + "/pdfko.pdf");
+//                            System.out.println("Opening " + file);
+//                                desktop.open(file);
+//
+//                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

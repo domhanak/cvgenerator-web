@@ -46,7 +46,7 @@
         Gender: <xsl:value-of select="profiles/profile[@pid=$pid]/details/gender"/> \\
         Date of birth: <xsl:value-of select="profiles/profile[@pid=$pid]/details/birthDate"/> \\
         Place of birth: <xsl:value-of select="profiles/profile[@pid=$pid]/details/birthPlace"/> \\
-        Present Citizenship: <xsl:value-of select="profiles/profile[@pid=$pid]/details/citizenship"/>
+        Present Citizenship: <xsl:value-of select="profiles/profile[@pid=$pid]/details/citizenship"/> \\
         <xsl:text>\end{flushleft}&#xa;</xsl:text>
 
 
@@ -76,10 +76,10 @@
 
 
         <xsl:text>\section{Language Knowledge}&#xa;</xsl:text>
-        <xsl:text>\begin{table}[h] %\centering&#xa;</xsl:text>
+        <xsl:text>\begin{table}[h] %centering&#xa;</xsl:text>
         <xsl:text>\begin{tabular}{p{2cm}>{\bfseries}p{2.5cm}p{3cm}}&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[1]/@name"/>  <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[1]/@knowledge"/> \\
-        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[2]/@name"/>  <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[2]/@knowledge"/> \\
+        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[1]/@name"/>  <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:text disable-output-escaping="yes"> </xsl:text> <xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[1]/@knowledge"/> \\
+        <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[2]/@name"/>  <xsl:text disable-output-escaping="yes">&amp; </xsl:text><xsl:text disable-output-escaping="yes"> </xsl:text><xsl:value-of select="profiles/profile[@pid=$pid]/languages/language[2]/@knowledge"/> \\
         <xsl:apply-templates select="profiles/profile[@pid=$pid]/languages/language[3]" mode="language3"/>
         <xsl:apply-templates select="profiles/profile[@pid=$pid]/languages/language[4]" mode="language4"/>
         <xsl:text>\end{tabular}&#xa;</xsl:text>
