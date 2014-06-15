@@ -93,10 +93,24 @@ public class ProfilerServlet extends HttpServlet {
 
                 ProfileValidator profileValidator = new ProfileValidator((File) getServletContext().getAttribute("schemaFile"));
                 String validationError = null;
-                try
-                {
+                try {
                     validationError = profileValidator.validate((File) getServletContext().getAttribute("xmlFile"));
-                    System.err.println(validationError);
+                    if (validationError != null){
+                        System.err.println(validationError);
+                        Element ele = profiles.getDocumentElement();
+                        NodeList nl = ele.getChildNodes();
+                        for (int i = 0; i < nl.getLength(); i++) {
+                            if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                                Element element = (Element) nl.item(i);
+                                if (element.getAttribute("pid").equals(pid)) {
+                                    el.removeChild(element);
+                                    request.setAttribute("error2", "Some required fields weren't filled correctly.");
+                                    request.getRequestDispatcher(LIST_JSP).forward(request, response);
+                                    return;
+                                }
+                            }
+                        }
+                    }
 
                 } catch (IOException ex) {
                     System.err.println("File not found: " + ex.getMessage());
@@ -125,7 +139,7 @@ public class ProfilerServlet extends HttpServlet {
                 String[] pathFrags = path.split("/");
                 String newPath = new String();
 
-                newPath +="/";
+                newPath +="";
                 int counter = 0;
                 while (!pathFrags[counter].equals("WEB-INF")){
                     if (pathFrags[counter].equals("file:")) {
@@ -182,8 +196,6 @@ public class ProfilerServlet extends HttpServlet {
 
                 request.getRequestDispatcher(LIST_JSP).forward(request, response);
                 return;
-
-
             default:
                 throw new ServletException("");
         }
@@ -199,8 +211,6 @@ public class ProfilerServlet extends HttpServlet {
             case "/load":
                 String loadPid = request.getParameter("loadpid");
 
-
-
                 if(checkIfNewUser(loadPid, profiles))
                 {
                     request.setAttribute("PidError", "No pid found with value:" + loadPid);
@@ -208,8 +218,6 @@ public class ProfilerServlet extends HttpServlet {
                 }
                 else {
                     try {
-
-
                         String xmlString = documentToString(createProfileDocument(profiles, loadPid));
                         System.out.println(xmlString);
                         request.setAttribute("profilesDoc", xmlString);
