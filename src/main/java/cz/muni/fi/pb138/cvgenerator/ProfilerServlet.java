@@ -230,7 +230,11 @@ public class ProfilerServlet extends HttpServlet {
                     } catch (IOException ex) {
                         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
                     }
+
+                    return;
                 }
+            default:
+                return;
         }
 
     }

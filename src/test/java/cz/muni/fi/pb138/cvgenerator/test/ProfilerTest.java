@@ -4,12 +4,11 @@ import cz.muni.fi.pb138.cvgenerator.Profiler;
 import cz.muni.fi.pb138.cvgenerator.ProfilerException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+
 import org.w3c.dom.NodeList;
 
 import java.util.List;
@@ -19,10 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.net.URISyntaxException;
 
-import static junit.framework.Assert.*;
+
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class ProfilerTest {
     private Profiler profiler;
@@ -44,17 +44,6 @@ public class ProfilerTest {
         profiler = new Profiler(request, document);
     }
 
-    @Test
-    public void createProfileTest()
-    {
-        /*
-        try {
-            profiler.createProfile();
-            fail();
-        } catch (ProfilerException ex) {}
-          catch (IllegalArgumentException ex){}
-          */
-    }
 
     @Test
     public void createSimpleElementTest()
@@ -70,8 +59,6 @@ public class ProfilerTest {
         assertEquals(element.getTextContent(), elementContent);
 
         assertFalse(element.hasAttributes());
-
-        //TODO check child nodes
 
         element = null;
         elementName = null;
