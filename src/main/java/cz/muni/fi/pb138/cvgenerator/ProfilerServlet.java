@@ -83,6 +83,16 @@ public class ProfilerServlet extends HttpServlet {
                     return;
                 }
 
+                Element el = profiles.getDocumentElement();
+                el.appendChild(profile);
+
+                try {
+                    saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
+                } catch (TransformerException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
                 ProfileValidator profileValidator = new ProfileValidator((File) getServletContext().getAttribute("schemaFile"));
                 String validationError = null;
                 try {
@@ -96,6 +106,12 @@ public class ProfilerServlet extends HttpServlet {
                                 Element element = (Element) nl.item(i);
                                 if (element.getAttribute("pid").equals(pid)) {
                                     ele.removeChild(element);
+                                    try {
+                                        saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
+                                    } catch (TransformerException e) {
+                                        e.printStackTrace();
+                                        return;
+                                    }
                                     request.setAttribute("error2", "Some required fields weren't filled correctly.");
                                     request.getRequestDispatcher(LIST_JSP).forward(request, response);
                                     return;
@@ -106,15 +122,6 @@ public class ProfilerServlet extends HttpServlet {
 
                 } catch (IOException ex) {
                     System.err.println("File not found: " + ex.getMessage());
-                    return;
-                }
-
-                Element el = profiles.getDocumentElement();
-                el.appendChild(profile);
-                try {
-                    saveToFile((File) getServletContext().getAttribute("xmlFile"), profiles);
-                } catch (TransformerException e) {
-                    e.printStackTrace();
                     return;
                 }
 
