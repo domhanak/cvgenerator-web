@@ -233,7 +233,7 @@
         </tr>
         <tr>
             <th>Fax:</th>
-            <td><input type="tel" name="fax" value="<c:out value='${faxAttr}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" ></td>
+            <td><input type="text" name="fax" value="<c:out value='${faxAttr}'/>" pattern="\+[0-9]{3}(\s{0,1}[0-9]{3}){3}" placeholder="+420 777 178 983" ></td>
         </tr>
         <th>E-mail:</th>
         <td><input type="email" name="email" value="<c:out value='${emailAttr}'/>"></td>
