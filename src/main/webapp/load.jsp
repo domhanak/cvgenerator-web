@@ -21,7 +21,7 @@
 <head>
     <title>PDF-CV Generator</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script>
@@ -32,7 +32,7 @@
 </head>
 <body>
 
-<img src="images/CVlogo.jpg">
+<img src="<%=request.getContextPath()%>/images/CVlogo.jpg">
 
 <c:if test="${not empty error}">
     <div style="border: solid 1px red; background-color: yellow; padding: 10px">
