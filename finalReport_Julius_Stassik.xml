@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
+               'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
+<article lang="en">
+	  <articleinfo>
+		<title>CV Generator - final report</title>
+		<author>
+		  <firstname>Dominik</firstname>
+		  <surname>Hanák</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Igor</firstname>
+		  <surname>Orság</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Július</firstname>
+		  <surname>Stasšík</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Adam</firstname>
+		  <surname>Ryvola</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+	  </articleinfo>
+  <abstract>
+    <para>Final report about final project from subject PB138 Moderní značkovací jazyky a jejich aplikace (Modern Markup Languages and Their Applications).</para>
+  </abstract>
+  <section>
+    <title>Introduction</title>
+		<para>Application CV Generator is java web application which can help with writing curriculum vitae for future job. User fills in web form and then he could create his CV. User defines own ID for future rewriting informations. Informations about users are stored in one xml file. This file is validating by xml schema. This app transforms user profile by xml transformation and generates PDF file for download.</para>
+  </section>
+ 
+  
+  
+  <section>		
+	<title>XSLT</title>
+	<para>XSL transformation transforms XML file into .tex file, which is according to this template http://ctan.org/pkg/cv. Parameter $pid is representing one and only profile from profiles.xml, we are searching according to this parameter. omit-xml-declaration="yes" we need to omit XML header because latex does not recognize those tags. xsl:text disable-output-escaping="yes" we need to disable output escaping because latex does not recognize escape sequences. </para>
+  </section> 
+</article>
