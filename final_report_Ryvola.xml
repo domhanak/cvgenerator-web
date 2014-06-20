@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
+               'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
+<article lang="en">
+	  <articleinfo>
+		<title>CV Generator - final report</title>
+		<author>
+		  <firstname>Dominik</firstname>
+		  <surname>Hanák</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Igor</firstname>
+		  <surname>Orság</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Július</firstname>
+		  <surname>Stasšík</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Adam</firstname>
+		  <surname>Ryvola</surname>
+		  <affiliation>
+			<orgname>Masarykova Univerzita, Fakulta Informatiky</orgname>
+		  </affiliation>
+		</author>
+	  </articleinfo>
+  <abstract>
+    <para>Final report about final project from subject PB138 Moderní značkovací jazyky a jejich aplikace (Modern Markup Languages and Their Applications).</para>
+  </abstract>
+  <section>
+    <title>Introduction</title>
+		<para>Application CV Generator is java web application which can help with writing curriculum vitae for future job. User fills in web form and then he could create his CV. User defines own ID for future rewriting informations. Informations about users are stored in one xml file. This file is validating by xml schema. This app transforms user profile by xml transformation and generates PDF file for download.</para>
+  </section>
+  <section>
+  	<title>JSP</title>
+	<para>JSP contains form for user's informations, button for generate cv and input with button for load CV. On the top of page is simple logo. JSP also has css, just for buttons design and text align.</para>
+	<para>Form is designed by jQuerry css and script (ThemeRoller). It is just table and list of tabs. Button design is in own css.</para>
+	<para>Input types are text, number, email and url. These types are possile from HTML5. Date is text type defined by regular expression. Regex allow us the check before send data to servlet. Phone number is also defined by regex. Language level is selection between three choices. Thesis is textarea. Some inputs have attribut placeholder. This attribute can show possible value or description (phone number, address fields). Attribute value is for set variable param for sending data to servlet. Prefix "c" is for JSTL (JSP standard tag library) and JSP can communicate with servlet via this library.</para>
+	<para>For load stored information user have to know ID. User types ID in input and informations are loaded into web form for edit.</para>
+  </section>
+</article>
