@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
+               'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
+<article lang="en">
+  <abstract>
+    <para>Final report about project from subject PB138 Modern� znackovac� jazyky a jejich aplikace (Modern Markup Languages and Their Applications).</para>
+  </abstract>
+  <section>
+    <title>Introduction</title>
+		<para>Application CV Generator is java web application which can help with writing curriculum vitae for future job. User fills in web form and then he could create his CV. User defines own ID for future rewriting informations. Informations about users are stored in one xml file. This file is validating by xml schema. This app transforms user profile by xml transformation and generates PDF file for download.</para>
+  </section>
+  <section>
+  	<title>load.jsp</title>
+
+  <para>Servlet sends xml string with content of user profile. For xml parsing on JSTL site we must include XALAN dependecy to Maven. Load.jsp site contains JSTL &lt;x:parse&gt; tag for parsing string with user profile xml into xml document node variable called output. Jstl tag &lt;x:out select="Xpath"&gt; uses XPath expression for selection of descendant node from output document node. JSTL tag &lt;c:set var"variableName"&gt; assigns value found by XPath into variable, which is printed in appropiate input tag in form.</para>
+
+  </section>
+
+  <section>  
+  	<title>Servlet - Load</title>
+	<para>About servlet.</para>
+
+    <para>
+    Servlet contains function createProfileDocument(Document doc, String loadPid) for selection of user profile from profiles.xml file by unique pid attribute. 
+    Method createProfileDocument(Document doc, String loadPid) selects profile element identified by loadPid argument from Document doc argument. 
+    Selected profile element is then imported into newly created Document node which is returned. 
+    Method documentToString(Document doc) transforms Document node into string with document xml.
+    Servlet sets and sends request with xml string attribute that contaians complete user profile. Profile is processed by XALAN on site load.jsp.  
+    </para>
+  
+  </section>	
+  
+    <section>  
+  	<title>Servlet - Validation</title>
+	<para>About servlet validation.</para>
+
+    <para>
+    For validation servlet uses class ProfileValidator with functions parse and validate. Class constructor argument is schema file. According schema, xml file is validated and parsed.
+    For parsing is used instance of DocumentBuilder.    
+    Function validate returns error message if file is not valid, null when file is valid. Function parse returns document node.   
+    </para>
+  
+  </section>	
+  
+  <section>
+	<title>XML Schema</title>
+	<para>About xml schema.</para>
+
+  <para>
+  Xml schema structure is similar to form where user infromation is typed. Each profile contains mandatory elements:
+  </para>
+  <para>
+  contact with full name, address and another contacts. Phone, fax, email, homepage are patterned with regular expression. Homepage and fax are not mandatory.  
+  </para> 
+  <para>
+  details, that contains mandatory string typed elements gender, birthplace, citizenship and mandatory regular expession pattrened element birthdate.  
+  </para>
+  <para>
+  education, experience have declared common schoolType. SchoolType element contains one name attribute with school or job institution name. Two elements from, to stores info about start and end date.  
+  </para>  
+  <para>
+  language contains two mandatory string attributes storing name of language and level of knowledge.
+  </para>
+  <para>
+  Elements thesis and reference are not required. Reference element contains contact information of person who refers on CV writer and their mutual relationship. Reference element contains not required relationship element and mandatory contact element described before.
+  </para>
+
+  </section>
+  
+
+
+</article>
+
+
+
+
